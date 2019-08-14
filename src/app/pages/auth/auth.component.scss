@@ -1,0 +1,37 @@
+.wrapper{
+  width: 100%;
+  background-image: url("../../../assets/images/bg.jpg");
+  background-size: cover;
+  padding: 300px 0;
+  overflow-y: hidden;
+}
+.form-group{
+  width: 400px;
+  margin: 0 auto;
+  &__input {
+    padding-left: 0.75em;
+    width: 344px;
+    height: 46px;
+    color: black;
+    background-color: white;
+    border-radius: 6px ;
+    border: 2px solid white;
+    margin: 1px 0 0 0 ;
+  }
+  &__button {
+    width: 344px;
+    height: 46px;
+    color: white;
+    background-color: #48ac98;
+    border-radius: 6px ;
+    border: 2px solid #48ac98;
+    margin: 40px 0 0 0 ;
+    &:disabled {
+      background-color: darkgrey;
+      border: none;
+    }
+  }
+}
+.form-center{
+  text-align: center;
+}

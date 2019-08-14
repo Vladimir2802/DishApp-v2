@@ -1,0 +1,26 @@
+<mat-drawer-container class="main">
+  <mat-drawer #drawer class="menu" mode="side">
+    <mat-list>
+      <mat-list-item routerLink="/main/home" (click)="drawer.toggle()" routerLinkActive="active">
+        <i class="fas fa-home"></i>
+        <p>Home</p>
+      </mat-list-item>
+      <mat-list-item routerLink="/main/cafe" (click)="drawer.toggle()" routerLinkActive="active">
+        <i class="fas fa-concierge-bell"></i>
+        <p>Cafe</p>
+      </mat-list-item>
+      <mat-list-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">
+        <i class="fas fa-sign-out-alt"></i>
+        <p>Log Out</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content class="main__content">
+    <mat-toolbar>
+      <button mat-raised-button (click)="drawer.toggle()"><i class="material-icons">
+        dehaze
+      </i></button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

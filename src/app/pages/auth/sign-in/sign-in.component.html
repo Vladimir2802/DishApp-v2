@@ -1,0 +1,26 @@
+
+  <div class="form-group">
+    <form [formGroup]="entityForm"  (ngSubmit)="signIn()" class="form-center">
+
+      <input class="form-group__input"
+             formControlName="email"
+             type="text"  placeholder="Email">
+
+
+
+      <input class="form-group__input"
+             formControlName="password"
+             type="password"  placeholder="Password" >
+
+
+      <button class="form-group__button" type="submit" [disabled]="entityForm.invalid">
+        Sign In
+      </button>
+
+      <!--      <button class="wrapper_button"-->
+      <!--              routerLink="/main">-->
+      <!--      Login-->
+      <!--      </button>-->
+    </form>
+  </div>
+

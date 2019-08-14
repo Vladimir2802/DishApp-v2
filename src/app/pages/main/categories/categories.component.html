@@ -58,7 +58,8 @@
     <div class="two-sections__item">
     <mat-list>
       <mat-list-item *ngFor="let dish of dishes">
-        <p (click)="getDish(dish.id)">{{dish.name}}</p>
+        <mat-divider></mat-divider>
+        <p class="point" (click)="getDish(dish.id)">{{dish.name}}</p>
       </mat-list-item>
     </mat-list>
   </div>

@@ -1,7 +1,8 @@
 <mat-list class="menus">
   <mat-card class="menus__item" routerLink="/main/{{cafe.menuId}}/categories" *ngFor="let cafe of cafes">
-    {{cafe.name}}
-    <i class="fas fa-utensils"></i>
+    <i class="fas fa-file-signature">    {{cafe.name}}
+    </i>
+<!--    <i class="fas fa-utensils"></i>-->
     <i class="far fa-clock">{{cafe.workTime}}</i>
     <i class="fas fa-home">{{cafe.address}}</i>
     <i class="fas fa-phone-volume">{{cafe.phone}}</i>

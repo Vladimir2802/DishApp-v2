@@ -24,46 +24,45 @@
   </div>
 </div>
 
-<div class="two-sections">
-  <form [formGroup]="dishGroup">
-  <div class="two-sections__item">
-    <div class="example-container">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Name" formControlName="name">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="description" placeholder="Description">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput formControlName="price" placeholder="Price">
-      </mat-form-field>
-<!--      <mat-form-field>-->
-<!--        <input matInput formControlName="priceWeight" placeholder="Price Weight">-->
+<!--<div class="two-sections">-->
+<!--  <form [formGroup]="dishGroup">-->
+<!--  <div class="two-sections__item">-->
+<!--    <div class="example-container">-->
+<!--      <mat-form-field class="example-full-width">-->
+<!--        <input matInput placeholder="Name" formControlName="name">-->
 <!--      </mat-form-field>-->
-      <mat-form-field>
-        <input matInput formControlName="weight" placeholder="Weight">
-      </mat-form-field>
-<!--        <input formControlName="image" (change)="fileSelect($event)"  type="file" placeholder="Image">-->
-        <input formControlName="image" (change)="addPhoto($event)"  type="file" placeholder="Image">
-      <button mat-button *ngIf="dishId" (click)="updateDish()">Edit</button>
-      <button mat-button  (click)="addDish()">New</button>
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="description" placeholder="Description">-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="price" placeholder="Price">-->
+<!--      </mat-form-field>-->
+<!--&lt;!&ndash;      <mat-form-field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input matInput formControlName="priceWeight" placeholder="Price Weight">&ndash;&gt;-->
+<!--&lt;!&ndash;      </mat-form-field>&ndash;&gt;-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="weight" placeholder="Weight">-->
+<!--      </mat-form-field>-->
+<!--&lt;!&ndash;        <input formControlName="image" (change)="fileSelect($event)"  type="file" placeholder="Image">&ndash;&gt;-->
+<!--        <input formControlName="image" (change)="addPhoto($event)"  type="file" placeholder="Image">-->
+<!--      <button mat-button *ngIf="dishId" (click)="updateDish()">Edit</button>-->
+<!--      <button mat-button  (click)="addDish()">New</button>-->
 
-      <!--      <button mat-button (click)="deleteDishes(dishId)">Delete</button>-->
-    </div>
-  </div>
-  </form>
+<!--      &lt;!&ndash;      <button mat-button (click)="deleteDishes(dishId)">Delete</button>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  </form>-->
 
-<!--  <app-dish [dishes]="dishes"></app-dish>-->
-
-    <div class="two-sections__item">
-    <mat-list>
-      <mat-list-item *ngFor="let dish of dishes">
-        <mat-divider></mat-divider>
-        <p class="point" (click)="getDish(dish.id)">{{dish.name}}</p>
-      </mat-list-item>
-    </mat-list>
-  </div>
-</div>
+<app-dish [categoryId]="categoryId" [newDishes]="dishes"></app-dish>
+<!--    <div class="two-sections__item">-->
+<!--    <mat-list>-->
+<!--      <mat-list-item *ngFor="let dish of dishes">-->
+<!--        <mat-divider></mat-divider>-->
+<!--        <p class="point" (click)="getDish(dish.id)">{{dish.name}}</p>-->
+<!--      </mat-list-item>-->
+<!--    </mat-list>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 <!--<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">-->

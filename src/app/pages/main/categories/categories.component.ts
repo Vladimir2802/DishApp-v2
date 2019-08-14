@@ -37,16 +37,17 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.route.snapshot.data['data']['data'];
-    this.dishGroup = this.fb.group({
-      name: [''],
-      description: [''],
-      price: [''],
-      priceWeight: ['0'],
-      image: [null],
-      weight: [''],
-      lang: ['en']
-    });
-    this.categoryId = this.categories[0].id;
+    // this.dishGroup = this.fb.group({
+    //   name: [''],
+    //   description: [''],
+    //   price: [''],
+    //   priceWeight: ['0'],
+    //   image: [null],
+    //   weight: [''],
+    //   lang: ['en']
+    // });
+    this.getDishsById(this.categories[0].id);
+    //this.categoryId = this.categories[0].id;
     // this.submitRegister();
   }
 
@@ -80,33 +81,33 @@ export class CategoriesComponent implements OnInit {
   //   moveItemInArray(this.dishes, event.previousIndex, event.currentIndex);
   // }
 
-  addDish() {
-    this.dishService.createDish(this.prepareFormData())
-      .subscribe(res => {
-        console.log(res);
-        this.dishGroup.reset('');
-        this.getDishsById(this.categoryId);
-      });
-  }
+  // addDish() {
+  //   this.dishService.createDish(this.prepareFormData())
+  //     .subscribe(res => {
+  //       console.log(res);
+  //       this.dishGroup.reset('');
+  //       this.getDishsById(this.categoryId);
+  //     });
+  // }
+  //
+  // prepareFormData() {
+  //   let fd = new FormData();
+  //   for (let prop in this.dishGroup.value) {
+  //     if (this.dishGroup.value.hasOwnProperty(prop)) {
+  //       fd.append(`${prop}`, this.dishGroup.value[prop]);
+  //     }
+  //   }
+  //   fd.append('image', this.file);
+  //   fd.append('categoryId', this.categoryId);
+  //   return fd;
+  // }
 
-  prepareFormData() {
-    let fd = new FormData();
-    for (let prop in this.dishGroup.value) {
-      if (this.dishGroup.value.hasOwnProperty(prop)) {
-        fd.append(`${prop}`, this.dishGroup.value[prop]);
-      }
-    }
-    fd.append('image', this.file);
-    fd.append('categoryId', this.categoryId);
-    return fd;
-  }
-
-  updateDish() {
-    this.dishService.updateDish(this.dishId, this.prepareFormData())
-      .subscribe(res => {
-        this.getDishsById(this.categoryId);
-      });
-  }
+  // updateDish() {
+  //   this.dishService.updateDish(this.dishId, this.prepareFormData())
+  //     .subscribe(res => {
+  //       this.getDishsById(this.categoryId);
+  //     });
+  // }
 
   addCategory() {
     this.categoriesService.create(
@@ -125,20 +126,20 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
-  getDish(id) {
-    this.dishService.getIndex(id)
-      .subscribe(res => {
-        this.dishId = id;
-        this.dishGroup.patchValue(res['data']);
-      });
-  }
+  // getDish(id) {
+  //   this.dishService.getIndex(id)
+  //     .subscribe(res => {
+  //       this.dishId = id;
+  //       this.dishGroup.patchValue(res['data']);
+  //     });
+  // }
 
   getDishsById(id: any) {
     this.categoryId = id;
     this.dishService.getAll(id)
-      .subscribe(res => {
-        this.dishes = res['data'];
-        console.log(this.dishes);
+          .subscribe(res => {
+            this.dishes = res['data'];
+            console.log(this.dishes);
       });
   }
 
@@ -148,11 +149,11 @@ export class CategoriesComponent implements OnInit {
   //   console.log(event);
   //   event.target.value = '';
   // }
-
-  addPhoto(event) {
-    console.log(event.target.files[0]);
-    this.file = event.target.files[0];
-  }
+  //
+  // addPhoto(event) {
+  //   console.log(event.target.files[0]);
+  //   this.file = event.target.files[0];
+  // }
 
 
   // submitRegister() {

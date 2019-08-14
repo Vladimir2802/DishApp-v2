@@ -8,20 +8,20 @@ import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 })
 export class CategoriesService implements Resolve<any> {
 
-  menuId: any;
+  newMenuId: any;
 
   constructor(public request: RequestService) {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    this.menuId = route.params['id'];
+    this.newMenuId = route.params['id'];
     console.log(route);
     return this.getIndex(route.params['id']);
   }
 
   getIndex(id = null) {
     console.log(id);
-    return this.request.get(`${APP_URL.category.all}?menu_id=${id ? id : this.menuId}`);
+    return this.request.get(`${APP_URL.category.all}?menu_id=${id ? id : this.newMenuId}`);
   }
 
   getAll() {

@@ -7,7 +7,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {MenusComponent} from './menus/menus.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {CafeComponent} from './cafe/cafe.component';
-// import {DishComponent} from './categories/dish/dish.component';
+import {DishComponent} from './categories/dish/dish.component';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import {CafeComponent} from './cafe/cafe.component';
     MenusComponent,
     CategoriesComponent,
     CafeComponent,
-    // DishComponent,
+    DishComponent,
   ],
   imports: [
     MainRoutingModule,

@@ -6,7 +6,7 @@ import {CategoriesComponent} from './categories/categories.component';
 import {CategoriesService} from './shared/services/categories.service';
 import {CafeComponent} from './cafe/cafe.component';
 import {CafeService} from './shared/services/cafe.service';
-// import {DishComponent} from './categories/dish/dish.component';
+import {DishComponent} from './categories/dish/dish.component';
 
 const routes: Routes = [
   {
@@ -14,8 +14,8 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'cafe', component: CafeComponent, resolve: {data: CafeService}},
       {path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}},
-      // {path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}, children: [
-      //     {path: 'dishes', component: DishComponent}]},
+      {path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}, children: [
+          {path: 'dishes', component: DishComponent}]},
       {path: '', redirectTo: 'home', pathMatch: 'full'}
     ]
   }

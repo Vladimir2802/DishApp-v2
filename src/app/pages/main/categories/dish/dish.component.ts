@@ -3,6 +3,7 @@ import {DishService} from '../../shared/services/dish.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CategoriesService} from '../../shared/services/categories.service';
 import {ActivatedRoute} from '@angular/router';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-dish',
@@ -86,6 +87,8 @@ export class DishComponent implements OnInit {
     this.newFile = event.target.files[0];
   }
 
-
+  drop(event: CdkDragDrop<{title: string, poster: string}[]>) {
+    moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
+  }
 
 }

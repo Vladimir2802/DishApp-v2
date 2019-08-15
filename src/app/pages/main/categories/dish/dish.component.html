@@ -31,11 +31,19 @@
 
 
 
-<div class="two-sections__item">
-  <mat-list>
-    <mat-list-item *ngFor="let dish of newDishes">
-      <p (click)="newGetDish(dish.id)">{{dish.name}}</p>
-    </mat-list-item>
-  </mat-list>
+<!--<div class="two-sections__item">-->
+<!--  <mat-list>-->
+<!--    <mat-list-item *ngFor="let dish of newDishes">-->
+<!--      <p (click)="newGetDish(dish.id)">{{dish.name}}</p>-->
+<!--    </mat-list-item>-->
+<!--  </mat-list>-->
+<!--</div>-->
+<!--</div>-->
+
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let dish of newDishes" cdkDrag>
+    <p (click)="newGetDish(dish.id)">{{dish.name}}</p>
+    <img class="img_drag_drop" *cdkDragPreview [src]="dish.image" [alt]="dish.image">
+  </div>
 </div>
 </div>

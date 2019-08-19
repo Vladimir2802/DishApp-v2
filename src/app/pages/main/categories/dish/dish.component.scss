@@ -20,6 +20,10 @@
     }
   }
 
+  .delete-btn {
+    color: #48ac98;
+  }
+
 }
 
 .example-list {
@@ -76,5 +80,18 @@
   width: 25vw;
   height: 25vh;
 }
+
+.example-card {
+  max-width: 30vh;
+}
+mat-card {
+  margin: 0 auto;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
 
 

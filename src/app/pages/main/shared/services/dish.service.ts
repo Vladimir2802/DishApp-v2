@@ -24,6 +24,6 @@ export class DishService {
   }
 
   delete(id) {
-    return this.request.delete(`${APP_URL.dish.delete}${id}`);
+    return this.request.delete(`${APP_URL.dish.delete}/${id}`);
   }
 }

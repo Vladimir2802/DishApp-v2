@@ -53,7 +53,7 @@
 <!--  </div>-->
 <!--  </form>-->
 
-<app-dish [categoryId]="categoryId" [newDishes]="dishes"></app-dish>
+<app-dish [categoryId]="categoryId" [newDishes]="dishes" [condition]="condition" (conditionForm)="eventEmit($event)"></app-dish>
 <!--    <div class="two-sections__item">-->
 <!--    <mat-list>-->
 <!--      <mat-list-item *ngFor="let dish of dishes">-->

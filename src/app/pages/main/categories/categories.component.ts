@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
   dishes: any = [];
 
   dishId: any;
-
+condition: boolean = true;
   newCategory: any;
   categoryId: any;
 
@@ -49,6 +49,7 @@ export class CategoriesComponent implements OnInit {
     this.getDishsById(this.categories[0].id);
     //this.categoryId = this.categories[0].id;
     // this.submitRegister();
+
   }
 
 
@@ -140,9 +141,16 @@ export class CategoriesComponent implements OnInit {
           .subscribe(res => {
             this.dishes = res['data'];
             console.log(this.dishes);
+            if (!this.condition) {
+              this.condition = true;
+            }
       });
   }
 
+  eventEmit(ev){
+    console.log(ev);
+    this.condition = ev;
+  }
   // fileSelect(event) {
   //   const img = event.target.files[0];
   //   this.readThis(img);

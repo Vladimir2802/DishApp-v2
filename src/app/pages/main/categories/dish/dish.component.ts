@@ -24,15 +24,17 @@ export class DishComponent implements OnInit {
   text: any = {};
   readonly: boolean = true;
   btnSaveCheck: boolean = true;
+  hide: boolean = true;
+
 
 
   constructor(public dishService: DishService,
               public activatedRoute: ActivatedRoute,
               public categoriesService: CategoriesService,
-              public fb: FormBuilder) { }
+              public fb: FormBuilder) {
+  }
 
   ngOnInit() {
-    // this.newCategories = this.activatedRoute.snapshot.data['data']['data'];
     this.dishGroup = this.fb.group({
       name: [''],
       description: [''],
@@ -44,12 +46,13 @@ export class DishComponent implements OnInit {
     });
     console.log(this.newDishes);
     console.log(this.condition);
-    // this.getDish(this.categoryId);
-    // this.getDish();
   }
 
-  toggle() {
+  toggle(state?) {
     this.condition = !this.condition;
+    if (state === 'hide'){
+      this.hide = false;
+    } else this.hide = true;
     if (!this.condition) {
       this.conditionForm.emit(this.condition);
     }
@@ -58,10 +61,10 @@ export class DishComponent implements OnInit {
   newGetDish(id: any) {
     this.dishId = id;
     this.dishService.getIndex(id)
-      .subscribe(res =>{
+      .subscribe(res => {
         this.dishGroup.patchValue(res['data']);
-        this.dishGroup.patchValue({lang: 'en'})
-      })
+        this.dishGroup.patchValue({lang: 'en'});
+      });
   }
 
   getDish(id: any) {
@@ -76,17 +79,18 @@ export class DishComponent implements OnInit {
             image: ['image'],
             weight: ['weight'],
             lang: ['en']
-          })
-      })
+          });
+      });
   }
 
   newGetDishesById() {
-  this.dishService.getAll(this.categoryId)
-    .subscribe(res => {
-      this.newDishes = res['data'];
-      console.log(this.newDishes);
-    })
+    this.dishService.getAll(this.categoryId)
+      .subscribe(res => {
+        this.newDishes = res['data'];
+        console.log(this.newDishes);
+      });
   }
+
   addDish() {
     this.dishService.createDish(this.newPrepareFormData())
       .subscribe(res => {
@@ -95,6 +99,7 @@ export class DishComponent implements OnInit {
         this.newGetDishesById();
       });
   }
+
   updateDish() {
     this.dishService.updateDish(this.dishId, this.newPrepareFormData())
       .subscribe(res => {
@@ -119,40 +124,43 @@ export class DishComponent implements OnInit {
     console.log(event.target.files[0]);
     this.newFile = event.target.files[0];
   }
+
   deleteDish(id) {
     this.dishService.delete(id)
       .subscribe(res => {
         console.log(res);
-        if(res['success'] ) {
+        if (res['success']) {
           this.newDishes = this.newDishes.filter(item => {
               return item.id !== id;
             }
-          )
+          );
         }
-      })
+      });
   }
 
-  drop(event: CdkDragDrop<{title: string, poster: string}[]>) {
+  drop(event: CdkDragDrop<{ title: string, poster: string }[]>) {
     moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
   }
 
-  changeDishesUpdate(id) {
-    if(this.dishGroup.value.name !== this.text.dishGroup) {
-      this.dishService.updateDish(id, {
+  changeDishesUpdate(item) {
+    if (this.dishGroup.value.name !== this.text.dishGroup) {
+      this.dishService.updateDish(item.id, {
         name: this.dishGroup.value.name,
-        description: this.dishGroup.value.description
+        description: this.dishGroup.value.description,
+        lang: 'en',
       })
         .subscribe(res => {
-          this.dishGroup.patchValue({name: res['data']['name']});
-        })
+          item.name = res['data']['name'];
+          item.edit = !item.edit;
+          this.readonly = !this.readonly;
+        });
     }
   }
-inputValue() {
-    this.readonly = !this.readonly;
-}
 
-saveCheck() {
-    this.btnSaveCheck = !this.btnSaveCheck;
-}
+  inputValue(item) {
+    item.edit = !item.edit;
+    item.readOnly = !item.readOnly;
+  }
+
 
 }

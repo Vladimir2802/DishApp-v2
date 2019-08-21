@@ -140,6 +140,10 @@ condition: boolean = true;
     this.dishService.getAll(id)
           .subscribe(res => {
             this.dishes = res['data'];
+            this.dishes.forEach(item =>{
+              item.edit = true;
+              item.readOnly = true;
+            });
             console.log(this.dishes);
             if (!this.condition) {
               this.condition = true;

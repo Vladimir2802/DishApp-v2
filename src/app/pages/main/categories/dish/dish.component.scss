@@ -82,7 +82,11 @@
 }
 
 .example-card {
-  max-width: 30vh;
+  margin-top: 2vh;
+  padding: 3vh;
+  max-width: 60vh;
+  text-align: center;
+
 }
 mat-card {
   margin: 0 auto;
@@ -91,6 +95,23 @@ mat-card {
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+  max-width: 40vh;
+}
+
+.mat-card-image {
+  width: 60vh;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: white;
+  color: black;
 }
 
 

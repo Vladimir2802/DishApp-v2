@@ -1,0 +1,23 @@
+{
+  "MENU.SETTINGS": "Налаштування",
+  "MENU.LOGOUT": "Вихід з акаунту",
+
+  "SETTINGS.CHANGE_PASSWORD": "Змiнити пароль",
+  "SETTINGS.LANGUAGE": "Мова",
+  "SETTINGS.ENGLISH": "English",
+  "SETTINGS.Deutsch": "Deutsch",
+  "SETTING.PASSWORD": "Пароль",
+  "SETTING.EMAIL": "Email",
+
+  "BUTTON.YES": "Так",
+  "BUTTON.NO": "Ні",
+  "BUTTON.CANCEL": "Вийти",
+  "BUTTON.DELETE": "Відмінити",
+  "BUTTON.SIGN_IN": "Увійти",
+  "BUTTON.SIGN_UP": "Реєстрація",
+  "BUTTON.FORGOT_PASSWORD": "Забули свій пароль?",
+  "BUTTON.SAVE": "Зберегти",
+  "BUTTON.SENT_EMAIL": "Відправити e-mail",
+  "BUTTON.EDIT": "Редагувати",
+  "BUTTON.SEND": "Відправити"
+}

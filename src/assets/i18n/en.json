@@ -1,0 +1,23 @@
+{
+  "MENU.SETTINGS": "Settings",
+  "MENU.LOGOUT": "Logout",
+
+  "SETTINGS.CHANGE_PASSWORD": "Change your password",
+  "SETTINGS.LANGUAGE": "Language",
+  "SETTINGS.ENGLISH": "English",
+  "SETTINGS.Deutsch": "Deutsch",
+  "SETTING.PASSWORD": "Password",
+  "SETTING.EMAIL": "Email",
+
+  "BUTTON.YES": "Yes",
+  "BUTTON.NO": "No",
+  "BUTTON.CANCEL": "Cancel",
+  "BUTTON.DELETE": "Delete",
+  "BUTTON.SIGN_IN": "Sign In",
+  "BUTTON.SIGN_UP": "Registration",
+  "BUTTON.FORGOT_PASSWORD": "Forgot your password?",
+  "BUTTON.SAVE": "Save",
+  "BUTTON.SENT_EMAIL": "Sent email",
+  "BUTTON.EDIT": "Edit",
+  "BUTTON.SEND": "Send"
+}

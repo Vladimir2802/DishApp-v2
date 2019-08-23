@@ -1,0 +1,23 @@
+{
+  "MENU.SETTINGS": "Настройки",
+  "MENU.LOGOUT": "Выйти",
+
+  "SETTINGS.CHANGE_PASSWORD": "Изменить пароль",
+  "SETTINGS.LANGUAGE": "Язык",
+  "SETTINGS.ENGLISH": "English",
+  "SETTINGS.Deutsch": "Deutsch",
+  "SETTING.PASSWORD": "Пароль",
+  "SETTING.EMAIL": "Email",
+
+  "BUTTON.YES": "Да",
+  "BUTTON.NO": "Нет",
+  "BUTTON.CANCEL": "Выход",
+  "BUTTON.DELETE": "Удалить",
+  "BUTTON.SIGN_IN": "Авторизироваться",
+  "BUTTON.SIGN_UP": "Регистрация",
+  "BUTTON.FORGOT_PASSWORD": "Забыли пароль?",
+  "BUTTON.SAVE": "Сохранить",
+  "BUTTON.SENT_EMAIL": "Отправлен e-mail",
+  "BUTTON.EDIT": "Изменить",
+  "BUTTON.SEND": "Отправить"
+}

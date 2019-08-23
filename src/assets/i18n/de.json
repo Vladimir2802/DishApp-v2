@@ -1,0 +1,24 @@
+{
+  "MENU.SETTINGS": "die Einstellungen",
+  "MENU.LOGOUT": "Ausloggen",
+
+  "SETTINGS.CHANGE_PASSWORD": "Ändern Sie Ihr Passwort",
+  "SETTINGS.LANGUAGE": "Sprache",
+  "SETTINGS.ENGLISH": "English",
+  "SETTINGS.Deutsch": "Deutsch",
+  "SETTING.PASSWORD": "Passwort",
+  "SETTING.CHANGE_EMAIL": "E-Mail ändern",
+  "SETTING.EMAIL": "Mail",
+
+  "BUTTON.YES": "Ja",
+  "BUTTON.NO": "Nein",
+  "BUTTON.CANCEL": "Stornieren",
+  "BUTTON.DELETE": "Löschen",
+  "BUTTON.SIGN_IN": "Einloggen",
+  "BUTTON.SIGN_UP": "Anmeldung",
+  "BUTTON.FORGOT_PASSWORD": "Haben Sie Ihr Passwort vergessen?",
+  "BUTTON.SAVE": "Sparen",
+  "BUTTON.SENT_EMAIL": "Email senden",
+  "BUTTON.EDIT": "Bearbeiten",
+  "BUTTON.SEND": "Senden"
+}

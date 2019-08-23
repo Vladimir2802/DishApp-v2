@@ -97,6 +97,7 @@ export class DishComponent implements OnInit {
         console.log(res);
         this.dishGroup.reset('');
         this.newGetDishesById();
+        this.toggle();
       });
   }
 

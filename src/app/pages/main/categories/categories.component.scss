@@ -41,7 +41,7 @@
     justify-content: center;
     align-content: center;
     position: absolute;
-    top: 9%;
+    top: 7%;
     right: 10px;
     height: 25px;
     width: 25px;
@@ -104,8 +104,15 @@
       background-color: white;
       color: #48ac98;
     }
+    .btn__popup{
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 100px;
+    }
   }
 }
+
+
 
 .example-list {
   //width: 1000px;
@@ -126,13 +133,13 @@
   //color: #48ac98;
   //border-right: solid 1px #ccc;
   min-width: 10%;
-  max-width: 20%;
+  max-width: 15%;
   color: #48ac98;
   //background-color: black;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   box-sizing: border-box;
   cursor: pointer;
   background: white;
@@ -140,7 +147,6 @@
   flex-grow: 1;
   flex-basis: 0;
 }
-
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
@@ -171,4 +177,6 @@
   background-color: #fff;
 }
 
-
+.active__category{
+  background-color: #ececec;
+}

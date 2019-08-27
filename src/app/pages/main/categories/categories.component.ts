@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
   dishes: any = [];
 
   dishId: any;
-condition: boolean = true;
+  condition: boolean = true;
   newCategory: any;
   categoryId: any;
 
@@ -46,7 +46,7 @@ condition: boolean = true;
     //   weight: [''],
     //   lang: ['en']
     // });
-    this.getDishsById(this.categories[0].id);
+    this.getDishsById(this.categories[0].id, 0);
     //this.categoryId = this.categories[0].id;
     // this.submitRegister();
 
@@ -135,26 +135,37 @@ condition: boolean = true;
   //     });
   // }
 
-  getDishsById(id: any) {
+  getDishsById(id: any, i) {
     this.categoryId = id;
     this.dishService.getAll(id)
-          .subscribe(res => {
-            this.dishes = res['data'];
-            this.dishes.forEach(item =>{
-              item.edit = true;
-              item.readOnly = true;
-            });
-            console.log(this.dishes);
-            if (!this.condition) {
-              this.condition = true;
-            }
+      .subscribe(res => {
+        this.dishes = res['data'];
+        this.dishes.forEach(item => {
+          item.edit = true;
+          item.readOnly = true;
+        });
+        console.log(this.dishes);
+        if (!this.condition) {
+          this.condition = true;
+        }
+        this.activeCategory(i);
       });
   }
 
-  eventEmit(ev){
+  activeCategory(i) {
+    let act = document.querySelectorAll('.example-box');
+    act.forEach(item => {
+      item.classList.remove('active__category');
+      }
+    );
+    act[i].classList.add('active__category');
+  }
+
+  eventEmit(ev) {
     console.log(ev);
     this.condition = ev;
   }
+
   // fileSelect(event) {
   //   const img = event.target.files[0];
   //   this.readThis(img);

@@ -26,8 +26,6 @@ export class DishComponent implements OnInit {
   btnSaveCheck: boolean = true;
   hide: boolean = true;
 
-
-
   constructor(public dishService: DishService,
               public activatedRoute: ActivatedRoute,
               public categoriesService: CategoriesService,
@@ -44,8 +42,6 @@ export class DishComponent implements OnInit {
       weight: [''],
       lang: ['en']
     });
-    console.log(this.newDishes);
-    console.log(this.condition);
   }
 
   toggle(state?) {
@@ -94,7 +90,6 @@ export class DishComponent implements OnInit {
   addDish() {
     this.dishService.createDish(this.newPrepareFormData())
       .subscribe(res => {
-        console.log(res);
         this.dishGroup.reset('');
         this.newGetDishesById();
         this.toggle();
@@ -105,6 +100,7 @@ export class DishComponent implements OnInit {
     this.dishService.updateDish(this.dishId, this.newPrepareFormData())
       .subscribe(res => {
         this.newGetDishesById();
+        console.log(res);
       });
   }
 
@@ -139,9 +135,9 @@ export class DishComponent implements OnInit {
       });
   }
 
-  drop(event: CdkDragDrop<{ title: string, poster: string }[]>) {
-    moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
-  }
+  // drop(event: CdkDragDrop<{ title: string, poster: string }[]>) {
+  //   moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
+  // }
 
   changeDishesUpdate(item) {
     if (this.dishGroup.value.name !== this.text.dishGroup) {
@@ -162,6 +158,14 @@ export class DishComponent implements OnInit {
     item.edit = !item.edit;
     item.readOnly = !item.readOnly;
   }
+
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
+  }
+
+
 
 
 }

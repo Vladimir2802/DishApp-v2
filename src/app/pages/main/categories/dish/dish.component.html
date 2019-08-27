@@ -3,22 +3,22 @@
   <form [formGroup]="dishGroup">
     <div class="two-sections__item">
       <div class="example-container">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Name" formControlName="name">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput formControlName="description" placeholder="Description">
-                </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="description" placeholder="Description">
+        </mat-form-field>
         <mat-form-field>
           <input matInput formControlName="price" placeholder="Price">
         </mat-form-field>
-<!--              <mat-form-field>-->
-<!--                <input matInput formControlName="priceWeight" placeholder="Price Weight">-->
-<!--              </mat-form-field>-->
+        <!--              <mat-form-field>-->
+        <!--                <input matInput formControlName="priceWeight" placeholder="Price Weight">-->
+        <!--              </mat-form-field>-->
         <mat-form-field>
           <input matInput formControlName="weight" placeholder="Weight">
         </mat-form-field>
-<!--                <input formControlName="image" (change)="fileSelect($event)"  type="file" placeholder="Image">-->
+        <!--                <input formControlName="image" (change)="fileSelect($event)"  type="file" placeholder="Image">-->
         <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
         <button mat-button *ngIf="dishId" (click)="updateDish()">Edit</button>
         <i class="material-icons" *ngIf="hide">
@@ -28,9 +28,9 @@
           block
         </i>
 
-<!--        <button mat-fab  *ngIf="condition"  (click)="disabledToggle()">-->
-<!--        </button>-->
-<!--        <button mat-button (click)="addDish()">New</button>-->
+        <!--        <button mat-fab  *ngIf="condition"  (click)="disabledToggle()">-->
+        <!--        </button>-->
+        <!--        <button mat-button (click)="addDish()">New</button>-->
         <!--        <i class="material-icons" (click)="toggle()" >ssssss</i>-->
 
         <!--              <button mat-button (click)="deleteDishes(dishId)">Delete</button>-->
@@ -90,32 +90,48 @@
 <!--</div>-->
 <!--</form>-->
 <button mat-fab *ngIf="condition" (click)="toggle('hide')">
-  <i class="material-icons">
+  <i class="material-icons color__icons">
     add
   </i>
-  </button>
+</button>
 
 <button mat-fab *ngIf="!condition && !hide">
-  <i class="material-icons" (click)="addDish()">
+  <i class="material-icons color__icons" (click)="addDish()">
     check
   </i>
 </button>
 
 
+<div *ngIf="condition" class="menu__wrapper">
+  <!--  <mat-card class="example-card" *ngFor="let dish of newDishes">-->
+  <!--    <img mat-card-image src="{{dish.image}}">-->
+  <!--    <div class="menu">-->
+  <!--      <p class="menu__name">{{dish.name}}</p>-->
+  <!--      <p class="menu__price">{{dish.price}}</p>-->
+  <!--    </div>-->
+  <!--    <div class="menu__description">{{dish.description}}</div>-->
+  <!--    <div class="menu">-->
+  <!--      <i class="far fa-trash-alt" (click)="deleteDish(dish.id)"></i>-->
+  <!--      <i class="far fa-edit" (click)="toggle()"></i>-->
+  <!--    </div>-->
+  <!--  </mat-card>-->
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let dish of newDishes" cdkDrag>
+      <img class="menu__image" src="{{dish.image}}">
+      <div class="menu">
+        <p class="menu__name">{{dish.name}}</p>
+        <p class="menu__price">
+          <i class="fas fa-euro-sign"></i>
+          {{dish.price}}</p>
+      </div>
+      <div class="menu__description">{{dish.description}}</div>
+      <div class="menu">
+        <i class="far fa-trash-alt" (click)="deleteDish(dish.id)"></i>
+        <i class="far fa-edit" (click)="toggle()"></i>
+      </div>
+    </div>
+  </div>
 
-<div *ngIf="condition" >
-  <mat-card class="example-card" *ngFor="let dish of newDishes">
-    <img mat-card-image src="{{dish.image}}">
-    <div class="menu">
-      <p class="menu__name">{{dish.name}}</p>
-      <p class="menu__price">{{dish.price}}</p>
-    </div>
-    <div class="menu__description">{{dish.description}}</div>
-    <div class="menu">
-    <i class="far fa-trash-alt" (click)="deleteDish(dish.id)"></i>
-        <i class="far fa-edit" (click)="toggle()" ></i>
-    </div>
-  </mat-card>
 </div>
 
 

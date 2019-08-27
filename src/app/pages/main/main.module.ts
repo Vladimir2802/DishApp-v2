@@ -8,6 +8,7 @@ import {MenusComponent} from './menus/menus.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {CafeComponent} from './cafe/cafe.component';
 import {DishComponent} from './categories/dish/dish.component';
+import { CreateCafeComponent } from './create-cafe/create-cafe.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {DishComponent} from './categories/dish/dish.component';
     CategoriesComponent,
     CafeComponent,
     DishComponent,
+    CreateCafeComponent,
   ],
   imports: [
     MainRoutingModule,

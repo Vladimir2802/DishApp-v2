@@ -10,6 +10,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatMenuModule} from '@angular/material/menu';
+
+
 
 
 
@@ -29,6 +32,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatChipsModule,
     MatRadioModule,
     MatDividerModule,
+    MatMenuModule
   ],
   exports: [
     MatTabsModule,
@@ -43,7 +47,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCardModule,
     MatChipsModule,
     MatRadioModule,
-    MatDividerModule
+    MatDividerModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {

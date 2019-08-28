@@ -12,7 +12,8 @@
 <!--</mat-toolbar>-->
 
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"  cdkDrag>
+  <div class="example-box" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"
+       cdkDrag>
     {{category.name}}
     <i class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
     </i>
@@ -25,10 +26,12 @@
 </div>
 
 
-<mat-tab-group>
-  <mat-tab label="First"> Content 1 </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
-</mat-tab-group>
+
+<!--<mat-tab-group cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">-->
+<!--  <mat-tab class="example-box" (click)="getDishsById(category.id , i)"-->
+<!--           *ngFor="let category of categories; let i = index" cdkDrag class="example-box"-->
+<!--           cdkDrag>{{category.name}}</mat-tab>-->
+<!--</mat-tab-group>-->
 <!--<div class="two-sections">-->
 <!--  <form [formGroup]="dishGroup">-->
 <!--  <div class="two-sections__item">-->
@@ -58,7 +61,7 @@
 <!--  </div>-->
 <!--  </form>-->
 
-<app-dish [categoryId]="categoryId" [newDishes]="dishes" [condition]="condition" (conditionForm)="eventEmit($event)">
+<app-dish  [categoryId]="categoryId" [newDishes]="dishes" [condition]="condition" (conditionForm)="eventEmit($event)">
 
 </app-dish>
 <!--    <div class="two-sections__item">-->
@@ -83,7 +86,7 @@
 <div class="popup-wrapper" *ngIf="createPopup">
   <div class="popup">
     <mat-form-field>
-    <input matInput type="text" [(ngModel)]="newCategory">
+      <input matInput type="text" [(ngModel)]="newCategory">
     </mat-form-field>
     <div class="btn__popup">
       <i class="material-icons " (click)="addCategory()">
@@ -95,4 +98,6 @@
     </div>
   </div>
 </div>
+
+
 

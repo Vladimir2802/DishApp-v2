@@ -1,10 +1,37 @@
-<mat-list class="menus">
-  <mat-card class="menus__item" routerLink="/main/{{cafe.menuId}}/categories" *ngFor="let cafe of cafes">
-    <i class="fas fa-file-signature">    {{cafe.name}}
-    </i>
-<!--    <i class="fas fa-utensils"></i>-->
-    <i class="far fa-clock">{{cafe.workTime}}</i>
-    <i class="fas fa-home">{{cafe.address}}</i>
-    <i class="fas fa-phone-volume">{{cafe.phone}}</i>
+<!--<mat-list class="menus">-->
+<!--  <mat-card class="menus__item" routerLink="/main/{{cafe.menuId}}/categories" *ngFor="let cafe of cafes">-->
+<!--    <i class="fas fa-file-signature">    {{cafe.name}}-->
+<!--    </i>-->
+<!--&lt;!&ndash;    <i class="fas fa-utensils"></i>&ndash;&gt;-->
+<!--    <img src="{{cafe.logo}}" alt="">-->
+<!--    <i class="far fa-clock">{{cafe.workTime}}</i>-->
+<!--    <i class="fas fa-home">{{cafe.address}}</i>-->
+<!--    <i class="fas fa-phone-volume">{{cafe.phone}}</i>-->
+<!--  </mat-card>-->
+<!--</mat-list>-->
+
+<div class="header">
+
+  <mat-card class="example-card" routerLink="/main/{{cafe.menuId}}/categories" *ngFor="let cafe of cafes">
+    <mat-card-header>
+      <mat-card-title>
+          <i  class="fas fa-home ">
+            {{cafe.name}}
+          </i>
+      </mat-card-title>
+      <!--      <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+    </mat-card-header>
+    <img mat-card-image src="{{cafe.logo}}">
+    <!--    <mat-card-content>-->
+        <i class="fas fa-phone-volume header__number">{{cafe.phone}}</i>
+        <!--      <i class="material-icons">phone</i>-->
+
+
+    <!--    </mat-card-content>-->
+    <!--    <mat-card-actions>-->
+    <!--      <button mat-button>LIKE</button>-->
+    <!--      <button mat-button>SHARE</button>-->
+    <!--    </mat-card-actions>-->
   </mat-card>
-</mat-list>
+
+</div>

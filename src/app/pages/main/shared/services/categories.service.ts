@@ -15,12 +15,10 @@ export class CategoriesService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     this.newMenuId = route.params['id'];
-    console.log(route);
     return this.getIndex(route.params['id']);
   }
 
   getIndex(id = null) {
-    console.log(id);
     return this.request.get(`${APP_URL.category.all}?menu_id=${id ? id : this.newMenuId}`);
   }
 

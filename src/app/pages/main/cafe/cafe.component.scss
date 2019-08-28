@@ -4,6 +4,34 @@
 //  }
 //}
 
-.fas {
+//.fas {
+//  display: flex;
+//}
+//
+//img{
+//  width: 15vw;
+//  height: 15vh;
+//}
+.header{
+  margin: 0 auto;
+}
+
+.header__number{
   display: flex;
+  justify-content: space-between;
+}
+mat-card-title{
+  text-transform: uppercase;
+}
+.header__home{
+  display: flex;
+  justify-content: space-between;
+}
+.example-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.example-header-image {
+padding: 10px;
 }

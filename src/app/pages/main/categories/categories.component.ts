@@ -144,7 +144,6 @@ export class CategoriesComponent implements OnInit {
           item.edit = true;
           item.readOnly = true;
         });
-        console.log(this.dishes);
         if (!this.condition) {
           this.condition = true;
         }
@@ -162,7 +161,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   eventEmit(ev) {
-    console.log(ev);
     this.condition = ev;
   }
 

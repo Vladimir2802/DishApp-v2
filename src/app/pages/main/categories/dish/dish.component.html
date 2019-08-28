@@ -102,7 +102,7 @@
 </button>
 
 
-<div *ngIf="condition" class="menu__wrapper">
+<div *ngIf="condition" class="menu__wrapper anim-show">
   <!--  <mat-card class="example-card" *ngFor="let dish of newDishes">-->
   <!--    <img mat-card-image src="{{dish.image}}">-->
   <!--    <div class="menu">-->
@@ -115,8 +115,8 @@
   <!--      <i class="far fa-edit" (click)="toggle()"></i>-->
   <!--    </div>-->
   <!--  </mat-card>-->
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let dish of newDishes" cdkDrag>
+  <div cdkDropList class="example-list " (cdkDropListDropped)="drop($event)">
+    <div class="example-box " *ngFor="let dish of newDishes" cdkDrag>
       <img class="menu__image" src="{{dish.image}}">
       <div class="menu">
         <p class="menu__name">{{dish.name}}</p>

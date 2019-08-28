@@ -118,7 +118,6 @@ export class DishComponent implements OnInit {
   }
 
   newAddPhoto(event) {
-    console.log(event.target.files[0]);
     this.newFile = event.target.files[0];
   }
 

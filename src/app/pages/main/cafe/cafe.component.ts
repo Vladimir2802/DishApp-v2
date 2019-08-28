@@ -13,7 +13,6 @@ cafes: any = [];
 
   ngOnInit() {
     this.cafes  = this.route.snapshot.data['data']['data'];
-    console.log(this.cafes);
   }
 
 }

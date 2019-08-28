@@ -1,1 +1,33 @@
-<p>create-cafe works!</p>
+<form class="example-form" [formGroup]="cafeGroup">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Address" formControlName="address">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input type="tel" matInput placeholder="phone" formControlName="phone">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="WorkTime" formControlName="workTime">
+  </mat-form-field>
+
+  <input  type="file" (change)="addPhoto($event)" formControlName="logo">
+
+    <i class="material-icons" (click)="createCafe()">
+      done_all
+    </i>
+
+
+    <i class="material-icons">
+      block
+    </i>
+
+</form>
+
+
+
+

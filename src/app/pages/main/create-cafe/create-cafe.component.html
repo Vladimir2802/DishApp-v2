@@ -14,19 +14,48 @@
   <mat-form-field class="example-full-width">
     <input matInput placeholder="WorkTime" formControlName="workTime">
   </mat-form-field>
+  <input type="file" (change)="addPhoto($event)" formControlName="logo">
 
-  <input  type="file" (change)="addPhoto($event)" formControlName="logo">
+  <div class="work__time">
+    <mat-list *ngFor="let week of week; let i = index">
+      <mat-list-item>{{week}}</mat-list-item>
 
+      <div class="ngx-timepicker-field-example">
+        <!--<input [ngxTimepicker]="i">-->
+        <ngx-timepicker-field #week [format]="24" [defaultTime]="'09:00'"></ngx-timepicker-field>
+      </div>
+
+      <!--<div class="ngx-timepicker-field-example">-->
+        <!--<ngx-timepicker-field [format]="24" [defaultTime]="'23:00'"></ngx-timepicker-field>-->
+      <!--</div>-->
+      <!--<form class="work__time__list" action="formdata" method="post" name="form1">-->
+          <!--<select  name="list1" required>-->
+            <!--<option></option>-->
+            <!--<option>Option</option>-->
+          <!--</select>-->
+          <!--<select name="list1" required>-->
+            <!--<option></option>-->
+            <!--<option>Option</option>-->
+          <!--</select>-->
+      <!--</form>-->
+      <!--<input class="work__time__btn" type="submit" value="Отправить">-->
+    </mat-list>
+  </div>
+
+  <div class="btn__cafe">
     <i class="material-icons" (click)="createCafe()">
       done_all
     </i>
-
-
     <i class="material-icons">
       block
     </i>
+  </div>
+
+
 
 </form>
+
+
 
 
 

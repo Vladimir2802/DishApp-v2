@@ -8,6 +8,8 @@ import {SharedModule} from './shared/shared.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthenticationInterceptor} from './shared/interseptors/authentication.interseptor';
 
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +19,7 @@ import {AuthenticationInterceptor} from './shared/interseptors/authentication.in
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

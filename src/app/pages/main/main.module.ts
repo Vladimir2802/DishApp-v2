@@ -10,6 +10,10 @@ import {CafeComponent} from './cafe/cafe.component';
 import {DishComponent} from './categories/dish/dish.component';
 import { CreateCafeComponent } from './create-cafe/create-cafe.component';
 
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { CreateCafeComponent } from './create-cafe/create-cafe.component';
   imports: [
     MainRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    NgxMaterialTimepickerModule
+  ],
+  exports: [
+    NgxMaterialTimepickerModule
   ]
 })
 export class MainModule {

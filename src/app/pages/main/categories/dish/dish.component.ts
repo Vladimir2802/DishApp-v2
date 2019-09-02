@@ -42,13 +42,22 @@ export class DishComponent implements OnInit {
       weight: [''],
       lang: ['en']
     });
+    this.dishGroup.patchValue({
+      name: this.newDishes.name,
+      description: this.newDishes.description,
+      price: this.newDishes.price,
+      priceWeight: this.newDishes.priceWeight,
+      weight: this.newDishes.weight
+    });
   }
 
   toggle(state?) {
     this.condition = !this.condition;
-    if (state === 'hide'){
+    if (state === 'hide') {
       this.hide = false;
-    } else this.hide = true;
+    } else {
+      this.hide = true;
+    }
     if (!this.condition) {
       this.conditionForm.emit(this.condition);
     }
@@ -134,9 +143,6 @@ export class DishComponent implements OnInit {
       });
   }
 
-  // drop(event: CdkDragDrop<{ title: string, poster: string }[]>) {
-  //   moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
-  // }
 
   changeDishesUpdate(item) {
     if (this.dishGroup.value.name !== this.text.dishGroup) {
@@ -153,18 +159,21 @@ export class DishComponent implements OnInit {
     }
   }
 
-  inputValue(item) {
-    item.edit = !item.edit;
-    item.readOnly = !item.readOnly;
-  }
-
+  // inputValue(item) {
+  //   item.edit = !item.edit;
+  //   item.readOnly = !item.readOnly;
+  // }
 
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
   }
 
-
-
+  removeClassDish() {
+    // let exList = document.querySelectorAll('.example-box');
+    // exList.forEach(item => {
+    //   item.classList.remove('example.list');
+    // });
+  }
 
 }

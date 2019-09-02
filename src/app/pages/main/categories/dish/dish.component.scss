@@ -1,15 +1,18 @@
+.main__container{
+  overflow: hidden;
+}
 .two-sections {
-  display: flex;
-  //width: 100%;
-  //height: 100%;
+  position: absolute;
+  padding: 10px;
+  //display: flex;
 
   &__item {
     width: 50%;
     height: 100%;
-    //padding: 100px;
     .example-container {
-      //display: flex;
       flex-direction: column;
+      margin: 0 auto;
+
       color: black;
       padding: 0 20px;
 
@@ -19,6 +22,10 @@
 
       }
     }
+  }
+
+  .two-sections__item {
+    margin: 0 auto;
   }
 
   .delete-btn {
@@ -32,34 +39,11 @@
   padding: 10px;
 }
 
-.example-list {
-  //width: 70%;
-  //margin-right: 2vw;
-  //max-width: 100%;
-  ////border: solid 1px #ccc;
-  //min-height: 60px;
-  //display: block;
-  //background: transparent;
-  //border-radius: 4px;
-  //overflow: hidden;
-}
 
 .example-box {
   margin: 0 auto;
   width: 30vw;
   padding: 10px;
-  //display: flex;
-  //padding: 0 5px;
-  //border-bottom: solid 1px #ccc;
-  //color: rgba(0, 0, 0, 0.87);
-  //display: flex;
-  //flex-direction: row;
-  //align-items: center;
-  ////justify-content: space-between;
-  //box-sizing: border-box;
-  //cursor: pointer;
-  //background: white;
-  //font-size: 14px;
 }
 
 .cdk-drag-preview {
@@ -90,11 +74,6 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.img_drag_drop {
-  //width: 25vw;
-  //height: 25vh;
-}
-
 .menu {
   display: flex;
   justify-content: space-between;
@@ -103,40 +82,15 @@
 .menu__image {
   padding-right: 10px;
   width: 100%;
-  //display: flex;
-  //justify-content: space-between;
 }
 .menu__name{
   font-weight: bold;
   text-transform: uppercase;
 }
-.example-card {
-  //margin-top: 2vh;
-  //padding: 3vh;
-  //max-width: 60vh;
-  //text-align: center;
-
-}
-.color__icons{
-}
-
-mat-card {
-  //margin: 0 auto;
-}
-
-//.example-header-image {
-//  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-//  background-size: cover;
-//  max-width: 40vh;
-//}
 
 .mat-card-image {
   width: 60vh;
 }
-
-//.menu__image {
-//  width: 30vw;
-//}
 
 .mat-fab {
   position: fixed;
@@ -146,17 +100,20 @@ mat-card {
   color: black;
 }
 
-//.anim-show{
-//  opacity:0; /*Элемент полностью прозрачный (невидимый)*/
-//  transition: 1s; /*Скорость перехода состояния элемента*/
-//  animation: show 3s infinite; /* Указываем название анимации, её время и количество повторов*/
-//  animation-fill-mode: forwards; /* Чтобы элемент оставался в конечном состоянии анимации */
-//  animation-delay: 1s; /* Задержка перед началом */
-//}
-//@keyframes show{
-//  0%{ opacity:0; }
-//  100% { opacity:1; }
-//}
+.anim-show{
+  position: absolute;
+  right: 35%;
+  opacity: 1;
+}
+
+.anim-show-infinite{
+
+  animation: show 1s;
+}
+@keyframes show{
+  0%{ opacity:0; right: -35%;}
+  100% { opacity:1; right: 35%;}
+}
 
 
 

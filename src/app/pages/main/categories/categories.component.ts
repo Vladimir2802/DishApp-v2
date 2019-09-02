@@ -13,13 +13,8 @@ import {DishService} from '../shared/services/dish.service';
 export class CategoriesComponent implements OnInit {
 
   categories: any = [];
-
-  // image: any = new EventEmitter<any>();
-
   file: any;
-
   dishes: any = [];
-
   dishId: any;
   condition: boolean = true;
   newCategory: any;
@@ -37,19 +32,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.route.snapshot.data['data']['data'];
-    // this.dishGroup = this.fb.group({
-    //   name: [''],
-    //   description: [''],
-    //   price: [''],
-    //   priceWeight: ['0'],
-    //   image: [null],
-    //   weight: [''],
-    //   lang: ['en']
-    // });
     this.getDishsById(this.categories[0].id, 0);
-    //this.categoryId = this.categories[0].id;
-    // this.submitRegister();
-
   }
 
 
@@ -64,51 +47,11 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
-  //
-  // deleteDishes(id) {
-  //   this.dishService.delete(id)
-  //     .subscribe(res =>{
-  //       if(res['success']){
-  //         this.dishService = this.dishId;
-  //       }
-  //     })
-  // }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.categories, event.previousIndex, event.currentIndex);
   }
 
-  // drop(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(this.dishes, event.previousIndex, event.currentIndex);
-  // }
-
-  // addDish() {
-  //   this.dishService.createDish(this.prepareFormData())
-  //     .subscribe(res => {
-  //       console.log(res);
-  //       this.dishGroup.reset('');
-  //       this.getDishsById(this.categoryId);
-  //     });
-  // }
-  //
-  // prepareFormData() {
-  //   let fd = new FormData();
-  //   for (let prop in this.dishGroup.value) {
-  //     if (this.dishGroup.value.hasOwnProperty(prop)) {
-  //       fd.append(`${prop}`, this.dishGroup.value[prop]);
-  //     }
-  //   }
-  //   fd.append('image', this.file);
-  //   fd.append('categoryId', this.categoryId);
-  //   return fd;
-  // }
-
-  // updateDish() {
-  //   this.dishService.updateDish(this.dishId, this.prepareFormData())
-  //     .subscribe(res => {
-  //       this.getDishsById(this.categoryId);
-  //     });
-  // }
 
   addCategory() {
     this.categoriesService.create(
@@ -127,19 +70,13 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
-  // getDish(id) {
-  //   this.dishService.getIndex(id)
-  //     .subscribe(res => {
-  //       this.dishId = id;
-  //       this.dishGroup.patchValue(res['data']);
-  //     });
-  // }
 
   getDishsById(id: any, i) {
     this.categoryId = id;
     this.dishService.getAll(id)
       .subscribe(res => {
         this.dishes = res['data'];
+        console.log(this.dishes);
         this.dishes.forEach(item => {
           item.edit = true;
           item.readOnly = true;
@@ -151,61 +88,27 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
+  private tout;
+
   activeCategory(i) {
     let act = document.querySelectorAll('.example-box');
+    let mw = document.querySelector('.menu__wrapper');
     act.forEach(item => {
       item.classList.remove('active__category');
-      }
-    );
+    });
+
+    mw.classList.remove('anim-show-infinite');
+    // @ts-ignore
+    mw.offsetWidth;
+    mw.classList.add('anim-show-infinite');
+
     act[i].classList.add('active__category');
+
   }
 
   eventEmit(ev) {
     this.condition = ev;
   }
 
-  // fileSelect(event) {
-  //   const img = event.target.files[0];
-  //   this.readThis(img);
-  //   console.log(event);
-  //   event.target.value = '';
-  // }
-  //
-  // addPhoto(event) {
-  //   console.log(event.target.files[0]);
-  //   this.file = event.target.files[0];
-  // }
-
-
-  // submitRegister() {
-  //   if(this.files) {
-  //     this.dishGroup.patchValue({image: })
-  //     // console.log(this.files);
-  //     // let files = this.files;
-  //     // const formData = new FormData();
-  //     // formData.append('image', files);
-  //     // formData.append('data', JSON.stringify(this.files));
-  //     // console.log(formData.getAll('image'));
-  //   }
-  //   // else finalData = this.dishGroup;
-  // }
-
-  // fileSelect(event: any): void {
-  //   let file = event.target.files[0];
-  //   if (this.reportService.checkVideoFormat(file.type)) {
-  //     this.checkDuration(file);
-  //   }
-  //   input.value = '';
-  // }
-
-  // readThis(img: any): void {
-  //   const myReader: FileReader = new FileReader();
-  //   myReader.onloadend = (ev) => {
-  //     const image = myReader.result;
-  //     this.image.emit(image);
-  //     this.dishGroup.value.image = image;
-  //   };
-  //   myReader.readAsDataURL(img);
-  // }
 
 }

@@ -14,6 +14,11 @@
   justify-content: space-evenly;
 }
 
+input{
+  width: 90px;
+  height: 20px;
+}
+
 .work__time {
   //display: flex;
   //justify-content: space-evenly;
@@ -30,3 +35,4 @@ mat-list{
 .work__time__btn{
   width: 13vw;
 }
+

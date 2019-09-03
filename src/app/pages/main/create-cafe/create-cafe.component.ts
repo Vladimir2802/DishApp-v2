@@ -11,8 +11,11 @@ import {NgxTimepickerFieldComponent} from 'ngx-material-timepicker';
 })
 export class CreateCafeComponent implements OnInit, AfterViewInit {
   cafeGroup: FormGroup;
+  timeGroup: FormGroup;
   newFile: any;
   condition: boolean = true;
+
+  workTime: string[];
 
   week: any = [
     'Monday',
@@ -24,9 +27,7 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
     'Sunday'
   ];
 
-  workTime: any = [];
-  @ViewChild('week', {static: false}) private timepicker: NgxTimepickerFieldComponent;
-
+  // cafeTimeGroup: string[] = [];
 
 
   constructor(public fb: FormBuilder,
@@ -38,37 +39,73 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
       name: [''],
       address: [''],
       phone: [''],
-      workTime: [''],
-      logo: [null],
-      Monday: [''],
-      Tuesday: [''],
-      Wednesday: [''],
-      Thursday: [''],
-      Friday: [''],
-      Saturday: [''],
-      Sunday: ['']
+      logo: [null]
     });
+    this.timeGroup = this.fb.group({
+      Monday: [''],
+      MondayClose: [''],
+      Tuesday: [''],
+      TuesdayClose: [''],
+      Wednesday: [''],
+      WednesdayClose: [''],
+      Thursday: [''],
+      ThursdayClose: [''],
+      Friday: [''],
+      FridayClose: [''],
+      Saturday: [''],
+      SaturdayClose: [''],
+      Sunday: [''],
+      SundayClose: ['']
+    });
+
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.getTime();
   }
 
   createCafe() {
+    this.plusTime();
     this.cafeService.storeCafe(this.newPrepareFormData())
       .subscribe(res => {
         console.log(res);
       });
+    console.log(this.cafeGroup.value);
+
+  }
+
+  plusTime(){
+    this.workTime  = [];
+    for (let day of this.week) {
+      let open = this.timeGroup.value[day];
+      let close = this.timeGroup.value[`${day}Close`];
+
+      console.log({day, open, close});
+
+      if (open && close) {
+        this.workTime.push(`${open} - ${close}`);
+      } else {
+        this.workTime.push('-');
+      }
+    }
+    console.log(this.workTime);
+
+    // let monday;
+    // console.log(this.timeGroup.value);
+    // for (let time in this.timeGroup.value){
+    //   // if (this.timeGroup.value['Monday'] == this.timeGroup.value['MondayClose']){
+    //   //   monday = time;
+    //   //   console.log(monday);
+    //   // }
+    //   console.log(this.timeGroup.value[time]);
+    // }
   }
 
   addPhoto(event) {
     this.newFile = event.target.files[0];
   }
 
-  getTime(){
-    this.timepicker.registerOnChange(async () => {
-      console.log(this.timepicker);
-    });
+  getTime() {
   }
 
   newPrepareFormData() {
@@ -78,11 +115,14 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
         fb.append(`${prop}`, this.cafeGroup.value[prop]);
       }
     }
-    for (let prop of this.week) {
-      fb.append(`work_time[]`, this.cafeGroup.value[prop]);
+    for (let day of this.workTime) {
+      fb.append(`work_time[]`, day);
     }
-    fb.append('image', this.newFile);
+    fb.append('logo', this.newFile);
+    fb.append('position[0]', '49.5859836');
+    fb.append('position[1]', '34.5469355');
     return fb;
+
   }
 
 }

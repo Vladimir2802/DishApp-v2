@@ -11,35 +11,53 @@
     <input type="tel" matInput placeholder="phone" formControlName="phone">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="WorkTime" formControlName="workTime">
-  </mat-form-field>
-  <input type="file" (change)="addPhoto($event)" formControlName="logo">
+  <input type="file"  (change)="addPhoto($event)" formControlName="logo">
 
   <div class="work__time">
-    <mat-list *ngFor="let week of week; let i = index">
-      <mat-list-item>{{week}}</mat-list-item>
 
-      <div class="ngx-timepicker-field-example">
-        <!--<input [ngxTimepicker]="i">-->
-        <ngx-timepicker-field #week [format]="24" [defaultTime]="'09:00'"></ngx-timepicker-field>
-      </div>
+  </div>
 
-      <!--<div class="ngx-timepicker-field-example">-->
-        <!--<ngx-timepicker-field [format]="24" [defaultTime]="'23:00'"></ngx-timepicker-field>-->
-      <!--</div>-->
-      <!--<form class="work__time__list" action="formdata" method="post" name="form1">-->
-          <!--<select  name="list1" required>-->
-            <!--<option></option>-->
-            <!--<option>Option</option>-->
-          <!--</select>-->
-          <!--<select name="list1" required>-->
-            <!--<option></option>-->
-            <!--<option>Option</option>-->
-          <!--</select>-->
-      <!--</form>-->
-      <!--<input class="work__time__btn" type="submit" value="Отправить">-->
+</form>
+
+<form class="example-form" [formGroup]="timeGroup">
+
+  <div>
+    <mat-list>
+      <mat-list-item>Monday</mat-list-item>
+      <input type="time" formControlName="Monday">
+      <input type="time" formControlName="MondayClose">
     </mat-list>
+    <mat-list>
+      <mat-list-item>Tuesday</mat-list-item>
+      <input type="time" formControlName="Tuesday">
+      <input type="time" formControlName="TuesdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Wednesday</mat-list-item>
+      <input type="time" formControlName="Wednesday">
+      <input type="time" formControlName="WednesdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Thursday</mat-list-item>
+      <input type="time" formControlName="Thursday">
+      <input type="time" formControlName="ThursdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Friday</mat-list-item>
+      <input type="time" formControlName="Friday">
+      <input type="time" formControlName="FridayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Saturday</mat-list-item>
+      <input type="time" formControlName="Saturday">
+      <input type="time" formControlName="SaturdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Sunday</mat-list-item>
+      <input type="time" formControlName="Sunday">
+      <input type="time" formControlName="SundayClose">
+    </mat-list>
+
   </div>
 
   <div class="btn__cafe">
@@ -50,10 +68,11 @@
       block
     </i>
   </div>
-
-
-
 </form>
+
+
+
+
 
 
 

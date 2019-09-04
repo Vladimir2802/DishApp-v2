@@ -16,7 +16,8 @@ export const APP_URL = {
   category: {
     all: api + 'categories',
     store: api + 'categories',
-    delete: api + 'categories/'
+    delete: api + 'categories',
+    swap: api + 'categories'
   },
   menu: {
     all: api + 'menus',
@@ -32,6 +33,7 @@ export const APP_URL = {
     one: api + 'dishes',
     create: api + 'dishes',
     update: api + 'dishes',
-    delete: api + 'dishes'
+    delete: api + 'dishes',
+    swap: api + 'dishes'
   }
 };

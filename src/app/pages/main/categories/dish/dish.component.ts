@@ -12,19 +12,19 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 })
 export class DishComponent implements OnInit {
   @Input() categoryId: any;
-  newCategories: any;
-  newDishId: any;
+
   @Input() newDishes: any = [];
   dishGroup: FormGroup;
-  newCategoryId: any;
   newFile: any;
   dishId: any;
   @Input() condition: boolean;
   @Output() conditionForm: any = new EventEmitter<any>();
   text: any = {};
   readonly: boolean = true;
-  btnSaveCheck: boolean = true;
+  readonlyDishes: boolean = true;
   hide: boolean = true;
+
+  updateDishGroup: FormGroup;
 
   constructor(public dishService: DishService,
               public activatedRoute: ActivatedRoute,
@@ -38,17 +38,27 @@ export class DishComponent implements OnInit {
       description: [''],
       price: [''],
       priceWeight: ['0'],
+      // image: [null],
+      weight: [''],
+      lang: ['en']
+    });
+    this.updateDishGroup = this.fb.group({
+      name: [''],
+      description: [''],
+      price: [''],
+      priceWeight: ['0'],
       image: [null],
       weight: [''],
       lang: ['en']
     });
-    this.dishGroup.patchValue({
-      name: this.newDishes.name,
-      description: this.newDishes.description,
-      price: this.newDishes.price,
-      priceWeight: this.newDishes.priceWeight,
-      weight: this.newDishes.weight
-    });
+    // this.updateDishGroup.patchValue({
+    //   name: this.newDishes.name,
+    //   description: this.newDishes.description,
+    //   price: this.newDishes.price,
+    //   priceWeight: this.newDishes.priceWeight,
+    //   weight: this.newDishes.weight
+    // });
+    console.log(this.updateDishGroup.value);
   }
 
   toggle(state?) {
@@ -92,25 +102,37 @@ export class DishComponent implements OnInit {
     this.dishService.getAll(this.categoryId)
       .subscribe(res => {
         this.newDishes = res['data'];
+        this.newDishes.forEach(item => {
+          item.edit = true;
+        });
         console.log(this.newDishes);
       });
   }
 
   addDish() {
+    console.log(this.categoryId);
     this.dishService.createDish(this.newPrepareFormData())
       .subscribe(res => {
+        console.log(res);
         this.dishGroup.reset('');
         this.newGetDishesById();
         this.toggle();
       });
   }
 
-  updateDish() {
-    this.dishService.updateDish(this.dishId, this.newPrepareFormData())
+  updateDish(id) {
+    this.dishId = id;
+    console.log(this.dishId);
+    this.dishService.updateDish(this.dishId, this.newPrepareFormDataDb())
       .subscribe(res => {
         this.newGetDishesById();
         console.log(res);
       });
+
+  }
+
+  dblClickDishes(menu) {
+    menu.edit = false;
   }
 
   newPrepareFormData() {
@@ -121,7 +143,18 @@ export class DishComponent implements OnInit {
       }
     }
     fd.append('image', this.newFile);
-    console.log(this.categoryId);
+    fd.append('categoryId', this.categoryId);
+    return fd;
+  }
+
+  newPrepareFormDataDb() {
+    let fd = new FormData();
+    for(let prop in this.updateDishGroup.value) {
+      if (this.updateDishGroup.value.hasOwnProperty(prop)) {
+        fd.append(`${prop}`, this.updateDishGroup.value[prop]);
+      }
+    }
+    fd.append('image', this.newFile);
     fd.append('categoryId', this.categoryId);
     return fd;
   }
@@ -159,21 +192,20 @@ export class DishComponent implements OnInit {
     }
   }
 
-  // inputValue(item) {
-  //   item.edit = !item.edit;
-  //   item.readOnly = !item.readOnly;
-  // }
-
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.newDishes, event.previousIndex, event.currentIndex);
+    let id1 = this.newDishes[event.previousIndex].id;
+    let id2 = this.newDishes[event.currentIndex].id;
+    if (id1 === id2) {
+      return;
+    }
+
+    this.dishService.swap(id1, id2)
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 
-  removeClassDish() {
-    // let exList = document.querySelectorAll('.example-box');
-    // exList.forEach(item => {
-    //   item.classList.remove('example.list');
-    // });
-  }
 
 }

@@ -32,6 +32,10 @@ export class CategoriesService implements Resolve<any> {
   }
 
   delete(id) {
-    return this.request.delete(`${APP_URL.category.delete}${id}`); // id: Category
+    return this.request.delete(`${APP_URL.category.delete}/${id}`); // id: Category
+  }
+
+  swap(id1, id2){
+    return this.request.post(`${APP_URL.category.swap}/${id1}/${id2}`,{});
   }
 }

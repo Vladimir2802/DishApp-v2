@@ -50,8 +50,15 @@ export class CategoriesComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.categories, event.previousIndex, event.currentIndex);
-  }
+    let id1 = this.categories[event.previousIndex].id;
+    let id2 = this.categories[event.currentIndex].id;
+    if (id1 === id2) return;
 
+    this.categoriesService.swap(id1, id2)
+      .subscribe(res => {
+        console.log(res);
+      })
+  }
 
   addCategory() {
     this.categoriesService.create(

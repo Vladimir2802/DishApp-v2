@@ -26,4 +26,8 @@ export class DishService {
   delete(id) {
     return this.request.delete(`${APP_URL.dish.delete}/${id}`);
   }
+
+  swap(id1, id2){
+    return this.request.post(`${APP_URL.dish.swap}/${id1}/${id2}`, {});
+  }
 }

@@ -21,41 +21,41 @@
 
 <form class="example-form" [formGroup]="timeGroup">
 
-  <div>
+  <div >
     <mat-list>
       <mat-list-item>Monday</mat-list-item>
-      <input type="time"  formControlName="Monday">
-      <input type="time"  formControlName="MondayClose">
+      <input type="time"  formControlName="Monday" class="time__week">
+      <input type="time"  formControlName="MondayClose" class="time__week">
     </mat-list>
     <mat-list>
       <mat-list-item>Tuesday</mat-list-item>
-      <input type="time" formControlName="Tuesday">
-      <input type="time" formControlName="TuesdayClose">
+      <input type="time" formControlName="Tuesday" class="time__week">
+      <input type="time" formControlName="TuesdayClose" class="time__week">
     </mat-list>
     <mat-list>
       <mat-list-item>Wednesday</mat-list-item>
-      <input type="time" formControlName="Wednesday">
-      <input type="time" formControlName="WednesdayClose">
+      <input type="time" formControlName="Wednesday" class="time__week">
+      <input type="time" formControlName="WednesdayClose" class="time__week">
     </mat-list>
     <mat-list>
       <mat-list-item>Thursday</mat-list-item>
-      <input type="time" formControlName="Thursday">
-      <input type="time" formControlName="ThursdayClose">
+      <input type="time" formControlName="Thursday" class="time__week">
+      <input type="time" formControlName="ThursdayClose" class="time__week">
     </mat-list>
     <mat-list>
       <mat-list-item>Friday</mat-list-item>
-      <input type="time" formControlName="Friday">
-      <input type="time" formControlName="FridayClose">
+      <input type="time" formControlName="Friday" class="time__week">
+      <input type="time" formControlName="FridayClose" class="time__week">
     </mat-list>
     <mat-list>
       <mat-list-item>Saturday</mat-list-item>
-      <input type="time" formControlName="Saturday">
-      <input type="time" formControlName="SaturdayClose">
+      <input type="time" formControlName="Saturday" class="time__week">
+      <input type="time" formControlName="SaturdayClose" class="time__week">
     </mat-list>
     <mat-list>
       <mat-list-item>Sunday</mat-list-item>
-      <input type="time" formControlName="Sunday">
-      <input type="time" formControlName="SundayClose">
+      <input type="time" formControlName="Sunday" class="time__week">
+      <input type="time" formControlName="SundayClose" class="time__week">
     </mat-list>
 
   </div>
@@ -64,12 +64,11 @@
     <i class="material-icons" (click)="createCafe()">
       done_all
     </i>
-    <i class="material-icons">
+    <i class="material-icons" routerLink="/main">
       block
     </i>
   </div>
 </form>
-
 
 
 

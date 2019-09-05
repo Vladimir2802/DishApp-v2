@@ -17,7 +17,15 @@ export class CafeService implements Resolve <any>{
     return this.request.get(APP_URL.cafe.all);
   }
 
+  getIndex(id){
+    return this.request.get(`${APP_URL.cafe.one}/${id}`);
+  }
+
   storeCafe(data) {
     return this.request.post(APP_URL.cafe.store, data);
+  }
+
+  updateCafe(data){
+    return this.request.post(APP_URL.cafe.update,data);
   }
 }

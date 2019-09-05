@@ -1,37 +1,111 @@
-<!--<mat-list class="menus">-->
-<!--  <mat-card class="menus__item" routerLink="/main/{{cafe.menuId}}/categories" *ngFor="let cafe of cafes">-->
-<!--    <i class="fas fa-file-signature">    {{cafe.name}}-->
-<!--    </i>-->
-<!--&lt;!&ndash;    <i class="fas fa-utensils"></i>&ndash;&gt;-->
-<!--    <img src="{{cafe.logo}}" alt="">-->
-<!--    <i class="far fa-clock">{{cafe.workTime}}</i>-->
-<!--    <i class="fas fa-home">{{cafe.address}}</i>-->
-<!--    <i class="fas fa-phone-volume">{{cafe.phone}}</i>-->
-<!--  </mat-card>-->
-<!--</mat-list>-->
+<form class="example-form" [formGroup]="cafeGroup" *ngIf="!condition">
+  <div *ngFor="let cafe of cafes">
+    <mat-form-field class="example-full-width" *ngIf="cafe.edit">
+      <input matInput placeholder="Name"  formControlName="name" value="{{cafe.name}}">
+    </mat-form-field>
 
-<div class="header">
+    <mat-form-field class="example-full-width" *ngIf="cafe.edit">
+      <input matInput placeholder="Address"  formControlName="address" value="{{cafe.address}}">
+    </mat-form-field>
 
-  <mat-card class="example-card" routerLink="/main/{{cafe.menuId}}/categories" *ngFor="let cafe of cafes">
-    <mat-card-header>
+    <mat-form-field class="example-full-width" *ngIf="cafe.edit">
+      <input type="tel" matInput placeholder="phone"  formControlName="phone" value="{{cafe.phone}}">
+    </mat-form-field>
+
+    <input *ngIf="cafe.edit" type="file" (change)="addPhoto($event)" formControlName="logo">
+  </div>
+
+
+</form>
+
+<form class="example-form" [formGroup]="timeGroup" *ngIf="!condition">
+
+  <div *ngFor="let cafe of cafes">
+    <mat-list *ngFor="let time of cafe">
+      <mat-list-item>Monday</mat-list-item>
+      <input type="time" formControlName="Monday" value="{{time.workTime}}">
+      <input type="time" formControlName="MondayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Tuesday</mat-list-item>
+      <input type="time" formControlName="Tuesday">
+      <input type="time" formControlName="TuesdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Wednesday</mat-list-item>
+      <input type="time" formControlName="Wednesday">
+      <input type="time" formControlName="WednesdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Thursday</mat-list-item>
+      <input type="time" formControlName="Thursday">
+      <input type="time" formControlName="ThursdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Friday</mat-list-item>
+      <input type="time" formControlName="Friday">
+      <input type="time" formControlName="FridayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Saturday</mat-list-item>
+      <input type="time" formControlName="Saturday">
+      <input type="time" formControlName="SaturdayClose">
+    </mat-list>
+    <mat-list>
+      <mat-list-item>Sunday</mat-list-item>
+      <input type="time" formControlName="Sunday">
+      <input type="time" formControlName="SundayClose">
+    </mat-list>
+
+  </div>
+
+  <div class="btn__cafe" >
+    <i class="material-icons">
+      done_all
+    </i>
+    <i class="material-icons" (click)="closeEditCafe()">
+      block
+    </i>
+  </div>
+</form>
+
+<div class="header" *ngIf="condition">
+
+  <mat-card class="example-card" *ngFor="let cafe of cafes">
+
+    <mat-card-header class="header__cafe">
+
       <mat-card-title>
-          <i  class="fas fa-home ">
-            {{cafe.name}}
-          </i>
+        <i class="fas fa-home "></i>
+        {{cafe.name}}
       </mat-card-title>
-      <!--      <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+
+      <div class="create__cafe">
+        <i class="material-icons" (click)="openEditCafe(cafe)">
+          create
+        </i>
+      </div>
+
     </mat-card-header>
-    <img mat-card-image class="cafe__logo" src="{{cafe.logo}}">
-    <!--    <mat-card-content>-->
-        <i class="fas fa-phone-volume header__number">{{cafe.phone}}</i>
-        <!--      <i class="material-icons">phone</i>-->
 
 
-    <!--    </mat-card-content>-->
-    <!--    <mat-card-actions>-->
-    <!--      <button mat-button>LIKE</button>-->
-    <!--      <button mat-button>SHARE</button>-->
-    <!--    </mat-card-actions>-->
+    <img mat-card-image class="cafe__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
+
+    <i class="fas fa-phone-volume header__number">{{cafe.phone}}</i>
+    <div class="work__time-wrapper">
+      <div>
+        <mat-list role="list" class="work__time" *ngFor="let week of week">
+          <mat-list-item class="work__week">{{week}}</mat-list-item>
+        </mat-list>
+      </div>
+      <div>
+        <mat-list role="list" class="work__time" *ngFor="let time of cafe.workTime">
+          <mat-list-item class="work__week">{{time}}</mat-list-item>
+        </mat-list>
+      </div>
+
+    </div>
+
   </mat-card>
 
 </div>

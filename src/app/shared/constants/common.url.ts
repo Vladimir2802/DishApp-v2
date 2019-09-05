@@ -9,7 +9,7 @@ export const APP_URL = {
   cafe: {
     all: api + 'cafes',
     store: api + 'cafes',
-    one: api + 'cafes/',
+    one: api + 'cafes',
     update: api + 'cafes/',
     delete: api + 'cafes/'
   },

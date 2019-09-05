@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CafeService} from '../shared/services/cafe.service';
-import {NgxTimepickerFieldComponent} from 'ngx-material-timepicker';
 
 
 @Component({
@@ -89,16 +88,6 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
       }
     }
     console.log(this.workTime);
-
-    // let monday;
-    // console.log(this.timeGroup.value);
-    // for (let time in this.timeGroup.value){
-    //   // if (this.timeGroup.value['Monday'] == this.timeGroup.value['MondayClose']){
-    //   //   monday = time;
-    //   //   console.log(monday);
-    //   // }
-    //   console.log(this.timeGroup.value[time]);
-    // }
   }
 
   addPhoto(event) {

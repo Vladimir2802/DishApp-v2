@@ -1,6 +1,4 @@
-<!--<div class="two-sections" >-->
 <div class="two-sections" *ngIf="!condition">
-  <!--<div class="two-sections" >-->
   <form [formGroup]="dishGroup">
     <div class="two-sections__item">
       <div class="example-container">
@@ -13,15 +11,10 @@
         <mat-form-field>
           <input matInput  formControlName="price" placeholder="Price">
         </mat-form-field>
-        <!--              <mat-form-field>-->
-        <!--                <input matInput formControlName="priceWeight" placeholder="Price Weight">-->
-        <!--              </mat-form-field>-->
         <mat-form-field>
           <input matInput formControlName="weight" placeholder="Weight">
         </mat-form-field>
-        <!--                <input formControlName="image" (change)="fileSelect($event)"  type="file" placeholder="Image">-->
         <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
-        <!--<button mat-button *ngIf="dishId" (click)="updateDish()">Edit</button>-->
         <i class="material-icons" *ngIf="hide">
           done_all
         </i>
@@ -65,11 +58,11 @@
         <textarea [readonly]="dish.edit" class="menu__description" value="{{dish.description}}" formControlName="description"></textarea>
         <input [readonly]="dish.edit" class="menu__weight" value="{{dish.weight}}" formControlName="weight">
         <div class="menu">
-          <i class="far fa-trash-alt"  (click)="deleteDish(dish.id)"></i>
-          <i class="material-icons"   (click)="updateDish(dish.id)">
+          <i class="far fa-trash-alt" *ngIf="dish.edit" (click)="deleteDish(dish.id)"></i>
+          <i class="material-icons"  *ngIf="!dish.edit" (click)="updateDish(dish.id)">
             done
           </i>
-          <i class="material-icons" >
+          <i class="material-icons" *ngIf="!dish.edit" (click)="dish.edit = true">
             block
           </i>
         </div>

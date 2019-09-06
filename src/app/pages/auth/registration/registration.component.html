@@ -1,25 +1,22 @@
 <div class="form-group">
-<!--  <form [formGroup]="entityForm" (ngSubmit)="signIn()" class="form-center">-->
+  <form [formGroup]="entityForm" (ngSubmit)="signUp()" class="form-center">
 
-<!--    <input class="form-group__input"-->
-<!--           formControlName="email"-->
-<!--           type="text" placeholder="Email">-->
-
-
-<!--    <input class="form-group__input"-->
-<!--           formControlName="password"-->
-<!--           type="password" placeholder="Password">-->
-<!--    <input class="form-group__input"-->
-<!--           formControlName="password"-->
-<!--           type="password" placeholder="Password">-->
-
-<!--    <p routerLink="/auth/registration">Forgot your password?</p>-->
+    <input class="form-group__input"
+           formControlName="email"
+           type="text" placeholder="Email">
 
 
-<!--    <button class="form-group__button" type="submit" [disabled]="entityForm.invalid">-->
-<!--      Sign In-->
-<!--    </button>-->
-<!--  </form>-->
-  <p>work</p>
+    <input class="form-group__input"
+           formControlName="password"
+           type="password" placeholder="Password">
+    <input class="form-group__input"
+           formControlName="password_repeat"
+           type="password" placeholder="Repeat password">
+
+    <button class="form-group__button" type="submit" [disabled]="entityForm.invalid ||
+    entityForm.controls.password.value != entityForm.controls.password_repeat.value">
+      Sign Up
+    </button>
+  </form>
 </div>
 

@@ -161,6 +161,10 @@
   color: #48ac98;
 }
 
+.example-box label{
+  cursor: pointer;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;

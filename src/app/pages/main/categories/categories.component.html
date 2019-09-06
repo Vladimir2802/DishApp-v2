@@ -15,7 +15,7 @@
   <div class="example-box" (dblclick)="editCategory(category)" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"
        cdkDrag>
     <label *ngIf="editingCategoryId != category.id">{{category.name}}</label>
-    <input *ngIf="editingCategoryId == category.id" (mouseleave)="editCategory(category)" [(ngModel)]="editingCategoryInput">
+    <input *ngIf="editingCategoryId == category.id" (keyup.enter)="editCategory(category)" (mouseleave)="editCategory(category)" [(ngModel)]="editingCategoryInput">
     <i *ngIf="editingCategoryId != category.id" class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
     </i>
   </div>

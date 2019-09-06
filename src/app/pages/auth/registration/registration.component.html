@@ -1,5 +1,5 @@
 <div class="form-group">
-  <form  class="form-center">
+  <form [formGroup]="entityForm" (ngSubmit)="signUp()" class="form-center">
 
     <input class="form-group__input"
            formControlName="email"
@@ -10,16 +10,13 @@
            formControlName="password"
            type="password" placeholder="Password">
     <input class="form-group__input"
-           formControlName="password"
-           type="password" placeholder="Password">
+           formControlName="password_repeat"
+           type="password" placeholder="Repeat password">
 
-    <p routerLink="/auth/registration">Forgot your password?</p>
-
-
-    <button class="form-group__button" type="submit" [disabled]="entityForm.invalid">
-      Sign In
+    <button class="form-group__button" type="submit" [disabled]="entityForm.invalid ||
+    entityForm.controls.password.value != entityForm.controls.password_repeat.value">
+      Sign Up
     </button>
   </form>
-  <p>work</p>
 </div>
 

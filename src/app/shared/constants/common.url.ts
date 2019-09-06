@@ -4,7 +4,8 @@ const api = environment.apiHost;
 
 export const APP_URL = {
   auth: {
-    login: api + 'auth/admin-login'
+    login: api + 'auth/admin-login',
+    register: api + 'auth/admin-register',
   },
   cafe: {
     all: api + 'cafes',

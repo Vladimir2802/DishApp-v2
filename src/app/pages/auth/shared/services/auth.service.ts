@@ -13,4 +13,8 @@ export class AuthService {
   signIn(data: any): Observable<any> | any {
     return this.request.post(APP_URL.auth.login, data);
   }
+
+  signUp(data: any): Observable<any> | any {
+    return this.request.post(APP_URL.auth.register, data);
+  }
 }

@@ -7,7 +7,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthenticationInterceptor} from './shared/interseptors/authentication.interseptor';
-
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import {AuthenticationInterceptor} from './shared/interseptors/authentication.in
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    ToastrModule.forRoot(),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

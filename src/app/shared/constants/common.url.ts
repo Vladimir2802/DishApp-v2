@@ -16,6 +16,7 @@ export const APP_URL = {
   category: {
     all: api + 'categories',
     store: api + 'categories',
+    update: api + 'categories/',
     delete: api + 'categories',
     swap: api + 'categories'
   },

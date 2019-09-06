@@ -19,6 +19,7 @@ export class CategoriesComponent implements OnInit {
   condition: boolean = true;
   newCategory: any;
   categoryId: any;
+  editingCategoryId: number; editingCategoryInput: string;
 
   createPopup: boolean = false;
 
@@ -117,5 +118,26 @@ export class CategoriesComponent implements OnInit {
     this.condition = ev;
   }
 
+  editCategory(category: any) {
+    if (this.editingCategoryId === category.id) {
+      this.saveCategoryName(category);
+      this.editingCategoryId = undefined;
+    } else {
+      this.editingCategoryId = category.id;
+      this.editingCategoryInput = category.name;
+    }
+  }
+
+  saveCategoryName(category: any) {
+    const categoryData = new FormData();
+    categoryData.append('name', this.editingCategoryInput);
+    categoryData.append('lang', 'en');
+
+    this.categoriesService.update(categoryData, category.id)
+      .subscribe(data => {
+        // @ts-ignore
+        category.name = data.data.name;
+      });
+  }
 
 }

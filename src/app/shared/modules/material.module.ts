@@ -11,8 +11,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
-
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -35,7 +34,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatChipsModule,
     MatRadioModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatExpansionModule
   ],
   exports: [
     MatTabsModule,
@@ -51,7 +51,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatChipsModule,
     MatRadioModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule {

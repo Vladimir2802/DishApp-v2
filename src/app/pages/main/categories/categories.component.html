@@ -1,16 +1,3 @@
-<!--<mat-toolbar cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">-->
-<!--  <mat-chip cdkDrag color="primary" (click)="getDishsById(category.id)" *ngFor="let category of categories">-->
-<!--    {{category.name}}-->
-<!--    <i class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">-->
-<!--    </i>-->
-<!--  </mat-chip>-->
-<!--  <div class="add-button button">-->
-<!--    <i class="material-icons" (click)="createPopup = true">-->
-<!--      add-->
-<!--    </i>-->
-<!--  </div>-->
-<!--</mat-toolbar>-->
-
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
   <div class="example-box" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"
        cdkDrag>
@@ -25,70 +12,16 @@
   </div>
 </div>
 
-
-
-<!--<mat-tab-group cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">-->
-<!--  <mat-tab class="example-box" (click)="getDishsById(category.id , i)"-->
-<!--           *ngFor="let category of categories; let i = index" cdkDrag class="example-box"-->
-<!--           cdkDrag>{{category.name}}</mat-tab>-->
-<!--</mat-tab-group>-->
-<!--<div class="two-sections">-->
-<!--  <form [formGroup]="dishGroup">-->
-<!--  <div class="two-sections__item">-->
-<!--    <div class="example-container">-->
-<!--      <mat-form-field class="example-full-width">-->
-<!--        <input matInput placeholder="Name" formControlName="name">-->
-<!--      </mat-form-field>-->
-<!--      <mat-form-field>-->
-<!--        <input matInput formControlName="description" placeholder="Description">-->
-<!--      </mat-form-field>-->
-<!--      <mat-form-field>-->
-<!--        <input matInput formControlName="price" placeholder="Price">-->
-<!--      </mat-form-field>-->
-<!--&lt;!&ndash;      <mat-form-field>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input matInput formControlName="priceWeight" placeholder="Price Weight">&ndash;&gt;-->
-<!--&lt;!&ndash;      </mat-form-field>&ndash;&gt;-->
-<!--      <mat-form-field>-->
-<!--        <input matInput formControlName="weight" placeholder="Weight">-->
-<!--      </mat-form-field>-->
-<!--&lt;!&ndash;        <input formControlName="image" (change)="fileSelect($event)"  type="file" placeholder="Image">&ndash;&gt;-->
-<!--        <input formControlName="image" (change)="addPhoto($event)"  type="file" placeholder="Image">-->
-<!--      <button mat-button *ngIf="dishId" (click)="updateDish()">Edit</button>-->
-<!--      <button mat-button  (click)="addDish()">New</button>-->
-
-<!--      &lt;!&ndash;      <button mat-button (click)="deleteDishes(dishId)">Delete</button>&ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  </form>-->
-
 <app-dish  [categoryId]="categoryId" [newDishes]="dishes" [condition]="condition" (conditionForm)="eventEmit($event)">
 
 </app-dish>
-<!--    <div class="two-sections__item">-->
-<!--    <mat-list>-->
-<!--      <mat-list-item *ngFor="let dish of dishes">-->
-<!--        <mat-divider></mat-divider>-->
-<!--        <p class="point" (click)="getDish(dish.id)">{{dish.name}}</p>-->
-<!--      </mat-list-item>-->
-<!--    </mat-list>-->
-<!--  </div>-->
-<!--</div>-->
 
-
-<!--<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">-->
-<!--  <div class="example-box" *ngFor="let dish of dishes" cdkDrag>-->
-<!--    <div class="example-custom-placeholder" (click)="getDish(dish.id)" *cdkDragPlaceholder>-->
-<!--      {{dish.name}}-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<div class="popup-wrapper" *ngIf="createPopup">
-  <div class="popup">
+<div class="popup" *ngIf="createPopup">
+  <div class="popup__wrapper">
     <mat-form-field>
       <input matInput type="text" [(ngModel)]="newCategory">
     </mat-form-field>
-    <div class="btn__popup">
+    <div class="popup__btn">
       <i class="material-icons " (click)="addCategory()">
         done
       </i>

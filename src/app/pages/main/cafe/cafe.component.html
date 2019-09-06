@@ -1,105 +1,101 @@
-<form class="example-form" [formGroup]="cafeGroup" *ngIf="!condition">
-  <div *ngFor="let cafe of cafes">
-    <mat-form-field class="example-full-width" *ngIf="cafe.edit">
-      <input matInput placeholder="Name"  formControlName="name" value="{{cafe.name}}">
-    </mat-form-field>
+<div class="form">
+  <form class="example-form" [formGroup]="cafeGroup" *ngIf="!condition">
+    <div *ngFor="let cafe of cafes">
 
-    <mat-form-field class="example-full-width" *ngIf="cafe.edit">
-      <input matInput placeholder="Address"  formControlName="address" value="{{cafe.address}}">
-    </mat-form-field>
+      <mat-form-field class="example-full-width" *ngIf="cafe.edit">
+        <input matInput placeholder="Name" formControlName="name" value="{{cafe.name}}">
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width" *ngIf="cafe.edit">
-      <input type="tel" matInput placeholder="phone"  formControlName="phone" value="{{cafe.phone}}">
-    </mat-form-field>
+      <mat-form-field class="example-full-width" *ngIf="cafe.edit">
+        <input matInput placeholder="Address" formControlName="address" value="{{cafe.address}}">
+      </mat-form-field>
 
-    <input *ngIf="cafe.edit" type="file" (change)="addPhoto($event)" formControlName="logo">
-  </div>
+      <mat-form-field class="example-full-width" *ngIf="cafe.edit">
+        <input type="tel" matInput placeholder="phone" formControlName="phone" value="{{cafe.phone}}">
+      </mat-form-field>
 
+      <input *ngIf="cafe.edit" type="file" (change)="addPhoto($event)" formControlName="logo">
+    </div>
+  </form>
 
-</form>
+  <form class="example-form" [formGroup]="timeGroup" *ngIf="!condition">
 
-<form class="example-form" [formGroup]="timeGroup" *ngIf="!condition">
+    <div>
 
-  <div *ngFor="let cafe of cafes">
-    <mat-list *ngFor="let time of cafe">
-      <mat-list-item>Monday</mat-list-item>
-      <input type="time" formControlName="Monday" value="{{time.workTime}}">
-      <input type="time" formControlName="MondayClose">
-    </mat-list>
-    <mat-list>
-      <mat-list-item>Tuesday</mat-list-item>
-      <input type="time" formControlName="Tuesday">
-      <input type="time" formControlName="TuesdayClose">
-    </mat-list>
-    <mat-list>
-      <mat-list-item>Wednesday</mat-list-item>
-      <input type="time" formControlName="Wednesday">
-      <input type="time" formControlName="WednesdayClose">
-    </mat-list>
-    <mat-list>
-      <mat-list-item>Thursday</mat-list-item>
-      <input type="time" formControlName="Thursday">
-      <input type="time" formControlName="ThursdayClose">
-    </mat-list>
-    <mat-list>
-      <mat-list-item>Friday</mat-list-item>
-      <input type="time" formControlName="Friday">
-      <input type="time" formControlName="FridayClose">
-    </mat-list>
-    <mat-list>
-      <mat-list-item>Saturday</mat-list-item>
-      <input type="time" formControlName="Saturday">
-      <input type="time" formControlName="SaturdayClose">
-    </mat-list>
-    <mat-list>
-      <mat-list-item>Sunday</mat-list-item>
-      <input type="time" formControlName="Sunday">
-      <input type="time" formControlName="SundayClose">
-    </mat-list>
+      <mat-list class="form__list">
 
-  </div>
+        <mat-list-item class="form__title">Monday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Monday">
+        <input type="time" class="form__input" formControlName="MondayClose">
+      </mat-list>
+      <mat-list>
+        <mat-list-item class="form__title">Tuesday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Tuesday">
+        <input type="time" class="form__input" formControlName="TuesdayClose">
+      </mat-list>
+      <mat-list>
+        <mat-list-item class="form__title">Wednesday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Wednesday">
+        <input type="time" class="form__input" formControlName="WednesdayClose">
+      </mat-list>
+      <mat-list>
+        <mat-list-item class="form__title">Thursday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Thursday">
+        <input type="time" class="form__input" formControlName="ThursdayClose">
+      </mat-list>
+      <mat-list>
+        <mat-list-item class="form__title">Friday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Friday">
+        <input type="time" class="form__input" formControlName="FridayClose">
+      </mat-list>
+      <mat-list>
+        <mat-list-item class="form__title-huy">Saturday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Saturday">
+        <input type="time" class="form__input" formControlName="SaturdayClose">
+      </mat-list>
+      <mat-list>
+        <mat-list-item class="form__title">Sunday</mat-list-item>
+        <input type="time" class="form__input" formControlName="Sunday">
+        <input type="time" class="form__input" formControlName="SundayClose">
+      </mat-list>
+    </div>
 
-  <div class="btn__cafe" >
-    <i class="material-icons">
-      done_all
-    </i>
-    <i class="material-icons" (click)="closeEditCafe()">
-      block
-    </i>
-  </div>
-</form>
+    <div class="form__btn">
+      <i class="material-icons">
+        done_all
+      </i>
+      <i class="material-icons" (click)="closeEditCafe()">
+        block
+      </i>
+    </div>
+  </form>
+
+</div>
+
 
 <div class="header" *ngIf="condition">
-
   <mat-card class="example-card" *ngFor="let cafe of cafes">
-
     <mat-card-header class="header__cafe">
-
       <mat-card-title>
         <i class="fas fa-home "></i>
         {{cafe.name}}
       </mat-card-title>
-
-      <div class="create__cafe">
+      <div>
         <i class="material-icons" (click)="openEditCafe(cafe)">
           create
         </i>
       </div>
-
     </mat-card-header>
-
-
-    <img mat-card-image class="cafe__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
-
-    <i class="fas fa-phone-volume header__number">{{cafe.phone}}</i>
-    <div class="work__time-wrapper">
+    <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
+    <i class="fas fa-phone-volume header__phone">{{cafe.phone}}</i>
+    <div class="header__week">
       <div>
-        <mat-list role="list" class="work__time" *ngFor="let week of week">
+        <mat-list role="list" class="week__items" *ngFor="let week of week">
           <mat-list-item class="work__week">{{week}}</mat-list-item>
         </mat-list>
       </div>
       <div>
-        <mat-list role="list" class="work__time" *ngFor="let time of cafe.workTime">
+        <mat-list role="list" class="week__items" *ngFor="let time of cafe.workTime">
           <mat-list-item class="work__week">{{time}}</mat-list-item>
         </mat-list>
       </div>

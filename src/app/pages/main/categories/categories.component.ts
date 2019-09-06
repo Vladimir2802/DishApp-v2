@@ -99,7 +99,7 @@ export class CategoriesComponent implements OnInit {
 
   activeCategory(i) {
     let act = document.querySelectorAll('.example-box');
-    let mw = document.querySelector('.menu__wrapper');
+    let mw = document.querySelector('.menu');
     act.forEach(item => {
       item.classList.remove('active__category');
     });

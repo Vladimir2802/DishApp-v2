@@ -3,13 +3,13 @@
     <div class="two-sections__item">
       <div class="example-container">
         <mat-form-field class="example-full-width">
-          <input matInput  placeholder="Name" formControlName="name">
+          <input matInput placeholder="Name" formControlName="name">
         </mat-form-field>
         <mat-form-field>
           <input matInput formControlName="description" placeholder="Description">
         </mat-form-field>
         <mat-form-field>
-          <input matInput  formControlName="price" placeholder="Price">
+          <input matInput formControlName="price" placeholder="Price">
         </mat-form-field>
         <mat-form-field>
           <input matInput formControlName="weight" placeholder="Weight">
@@ -25,41 +25,44 @@
       </div>
     </div>
   </form>
-
 </div>
 
-<button mat-fab *ngIf="condition" (click)="toggle('hide')">
-  <i class="material-icons color__icons">
-    add
-  </i>
-</button>
+<div class="add-cafe">
+  <button mat-fab *ngIf="condition" (click)="toggle('hide')">
+    <i class="material-icons color__icons">
+      add
+    </i>
+  </button>
 
-<button mat-fab *ngIf="!condition && !hide">
-  <i class="material-icons color__icons" (click)="addDish()">
-    check
-  </i>
-</button>
+  <button mat-fab *ngIf="!condition && !hide">
+    <i class="material-icons color__icons" (click)="addDish()">
+      check
+    </i>
+  </button>
+</div>
 
 
-<div *ngIf="condition" class="menu__wrapper anim-show" >
+<div *ngIf="condition" class="menu anim-show">
   <form [formGroup]="updateDishGroup">
-
-  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
 
       <div class="example-box " *ngFor="let dish of newDishes" cdkDrag (dblclick)="dblClickDishes(dish)">
-        <img class="menu__image"  *ngIf="dish.edit" src="{{dish.image}}" >
+        <img class="menu__image" *ngIf="dish.edit" src="{{dish.image}}">
         <input type="file" (change)="newAddPhoto($event)" *ngIf="!dish.edit" formControlName="image">
-        <div class="menu">
-          <input [readonly]="dish.edit" class="menu__name" value="{{dish.name}}" formControlName="name">
+        <div class="menu-info">
+          <input [readonly]="dish.edit" class="menu-info__name" value="{{dish.name}}" formControlName="name">
           <i class="fas fa-euro-sign"></i>
-          <input [readonly]="dish.edit" class="menu__price" value="{{dish.price}}" formControlName="price">
+          <input [readonly]="dish.edit" class="menu-info__price" value="{{dish.price}}" formControlName="price">
 
         </div>
-        <textarea [readonly]="dish.edit" class="menu__description" value="{{dish.description}}" formControlName="description"></textarea>
+
+        <textarea [readonly]="dish.edit" class="menu__description" value="{{dish.description}}"
+                  formControlName="description"></textarea>
         <input [readonly]="dish.edit" class="menu__weight" value="{{dish.weight}}" formControlName="weight">
-        <div class="menu">
+
+        <div class="menu__item">
           <i class="far fa-trash-alt" *ngIf="dish.edit" (click)="deleteDish(dish.id)"></i>
-          <i class="material-icons"  *ngIf="!dish.edit" (click)="updateDish(dish.id)">
+          <i class="material-icons" *ngIf="!dish.edit" (click)="updateDish(dish.id)">
             done
           </i>
           <i class="material-icons" *ngIf="!dish.edit" (click)="dish.edit = true">
@@ -68,7 +71,7 @@
         </div>
       </div>
 
-  </div>
+    </div>
   </form>
 
 </div>

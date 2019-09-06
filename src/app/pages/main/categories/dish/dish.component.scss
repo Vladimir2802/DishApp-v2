@@ -1,14 +1,16 @@
-.main__container{
-  overflow: hidden;
-}
+//MENU
+//.main__container {
+//  overflow: hidden;
+//}
+
 .two-sections {
   position: absolute;
   padding: 10px;
-  //display: flex;
 
   &__item {
     width: 50%;
     height: 100%;
+
     .example-container {
       flex-direction: column;
       margin: 0 auto;
@@ -34,18 +36,63 @@
 
 }
 
-.menu__wrapper {
+//MENU UPDATE
+.menu {
   margin: 0 auto;
   padding: 10px;
+
+
+  .example-box {
+    margin: 0 auto;
+    width: 30vw;
+    padding: 10px;
+  }
+
+  &__image {
+    padding-right: 10px;
+    width: 50%;
+    height: 50%;
+  }
+
+  &-info {
+    &__name {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    &__price {
+
+    }
+  }
+
+  &__description {
+
+  }
+
+  &__weight {
+
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+  }
+
 }
 
 
-.example-box {
-  margin: 0 auto;
-  width: 30vw;
-  padding: 10px;
+//ADD-CAFE
+.add-cafe {
+  .mat-fab {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    background-color: white;
+    color: black;
+  }
 }
 
+//Drag and Drop
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;
@@ -74,45 +121,28 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.menu {
-  display: flex;
-  justify-content: space-between;
-}
 
-.menu__image {
-  padding-right: 10px;
-  width: 100%;
-}
-.menu__name{
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.mat-card-image {
-  width: 60vh;
-}
-
-.mat-fab {
-  position: fixed;
-  right: 40px;
-  bottom: 40px;
-  background-color: white;
-  color: black;
-}
-
-.anim-show{
+//anim-show
+.anim-show {
   position: absolute;
   right: 35%;
   opacity: 1;
 }
 
-.anim-show-infinite{
+.anim-show-infinite {
 
   animation: show 1s;
 }
-@keyframes show{
-  0%{ opacity:0; right: -35%;}
-  100% { opacity:1; right: 35%;}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    right: -35%;
+  }
+  100% {
+    opacity: 1;
+    right: 35%;
+  }
 }
 
 

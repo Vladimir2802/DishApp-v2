@@ -35,5 +35,12 @@ export const APP_URL = {
     update: api + 'dishes',
     delete: api + 'dishes',
     swap: api + 'dishes'
+  },
+  dishAddition_ingredients: {
+    all: api + 'dish-additions',
+    one: api + 'dish-additions',
+    create: api + 'dish-additions',
+    update: api + 'dish-additions',
+    delete: api + 'dish-additions'
   }
 };

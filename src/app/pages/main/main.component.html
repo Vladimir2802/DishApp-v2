@@ -1,12 +1,15 @@
-<button mat-button  class="menu" [matMenuTriggerFor]="beforeMenu">
-  <i class="material-icons">
-    reorder
-  </i>
-</button>
-<mat-menu #beforeMenu="matMenu" xPosition="before">
-  <button mat-menu-item routerLink="/main/home"  routerLinkActive="active">Home</button>
-  <button mat-menu-item routerLink="/main/cafe"  routerLinkActive="active">Cafe</button>
-  <button mat-menu-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">Log Out</button>
-</mat-menu>
+<div class="dropdown">
+  <button mat-button [matMenuTriggerFor]="beforeMenu">
+    <i class="material-icons">
+      reorder
+    </i>
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item routerLink="/main/home"  routerLinkActive="active">Home</button>
+    <button mat-menu-item routerLink="/main/cafe"  routerLinkActive="active">Cafe</button>
+    <button mat-menu-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">Log Out</button>
+  </mat-menu>
+</div>
+
 <router-outlet></router-outlet>
 

@@ -109,6 +109,11 @@ export class DishComponent implements OnInit {
       });
   }
 
+  getAllIngredients(id){
+    console.log(this.dishId);
+    // this.dishService.getAll(this.)
+  }
+
   addDish() {
     console.log(this.categoryId);
     this.dishService.createDish(this.newPrepareFormData())

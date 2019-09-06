@@ -1,99 +1,84 @@
-.example-form {
-  margin: 0 auto;
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+//update form
+.form {
+  .example-form {
+    margin: 0 auto;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+
+  .form__btn {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  mat-list {
+    display: flex;
+  }
+
+  &__input {
+    width: 89px;
+    height: 20px;
+  }
 }
 
-.example-full-width {
-  width: 100%;
-}
-
-.btn__cafe {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-input{
-  //width: 90px;
-  //height: 20px;
-}
-
-.work__time {
-  //display: flex;
-  //justify-content: space-evenly;
-}
-
-mat-list{
-  display: flex;
-}
-
-.work__time__list{
-  display: flex;
-}
-
-.work__time__btn{
-  width: 13vw;
-}
-
-
-
-
+//
 .header {
   margin: 0 auto;
 
+  .example-card {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  &__cafe {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  mat-card-title {
+    text-transform: uppercase;
+  }
+
+  &__logo {
+    height: 70%;
+  }
+
+  &__phone {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__week {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mat-list-base .mat-list-item {
+    height: auto;
+  }
+
+  .week__items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .work__week {
+    font-size: 12px;
+  }
 }
 
-.header__cafe {
-  display: flex;
-  justify-content: space-between;
-}
-
-.header__number {
-  display: flex;
-  justify-content: space-between;
-}
-
-mat-card-title {
-
-  text-transform: uppercase;
-}
 
 
 
-.header__home {
-  display: flex;
-  justify-content: space-between;
-}
 
-.example-card {
-  max-width: 300px;
-  margin: 0 auto;
-}
 
-.example-header-image {
-  padding: 10px;
-}
 
-.cafe__logo {
-  height: 70%;
-}
 
-.mat-list-base .mat-list-item {
-  height: auto;
-}
 
-.work__time-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
 
-.work__time {
-  display: flex;
-  flex-direction: column;
 
-}
-
-.work__week {
-  font-size: 12px;
-}

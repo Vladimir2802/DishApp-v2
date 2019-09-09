@@ -1,31 +1,81 @@
 <div class="two-sections" *ngIf="!condition">
-  <form [formGroup]="dishGroup">
-    <div class="two-sections__item">
-      <div class="example-container">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Name" formControlName="name">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput formControlName="description" placeholder="Description">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput formControlName="price" placeholder="Price">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput formControlName="weight" placeholder="Weight">
-        </mat-form-field>
-        <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
-        <i class="material-icons" *ngIf="hide">
-          done_all
-        </i>
-        <i class="material-icons" (click)="toggle()">
-          block
-        </i>
+  <mat-card class="example-card">
 
+    <form [formGroup]="dishGroup">
+      <div class="two-sections__item">
+        <div class="example-container">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="description" placeholder="Description">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="price" placeholder="Price">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="weight" placeholder="Weight">
+          </mat-form-field>
+          <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
+
+          <i class="material-icons" (click)="toggle()">
+            block
+          </i>
+          <div class="two-sections__accordion" >
+            <mat-accordion>
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                   (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    More details
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+
+                <form class="example-form" [formGroup]="ingredientsGroup">
+
+                  <div class="two-sections__form">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Name" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Price" formControlName="price">
+                    </mat-form-field>
+                  </div>
+
+
+                  <i class="material-icons" (click)="addIngredientsItem()">
+                    add
+                  </i>
+
+                </form>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+
+
+
+          </div>
+
+
+          <i class="material-icons" *ngIf="hide">
+            done_all
+          </i>
+
+
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </mat-card>
+
 </div>
+
+<div>
+  <mat-list role="list" *ngFor="let ingredientsValue of ingredients">
+    <mat-list-item role="listitem">{{ingredientsValue.name}}</mat-list-item>
+  </mat-list>
+</div>
+
 
 <div class="add-cafe">
   <button mat-fab *ngIf="condition" (click)="toggle('hide')">
@@ -35,7 +85,7 @@
   </button>
 
   <button mat-fab *ngIf="!condition && !hide">
-    <i class="material-icons color__icons" (click)="addDish()">
+    <i class="material-icons color__icons" (click)="addDishItem()">
       check
     </i>
   </button>
@@ -43,7 +93,9 @@
 
 
 <div *ngIf="condition" class="menu anim-show">
+
   <form [formGroup]="updateDishGroup">
+
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
 
       <div class="example-box " *ngFor="let dish of newDishes" cdkDrag (dblclick)="dblClickDishes(dish)">
@@ -51,14 +103,32 @@
         <input type="file" (change)="newAddPhoto($event)" *ngIf="!dish.edit" formControlName="image">
         <div class="menu-info">
           <input [readonly]="dish.edit" class="menu-info__name" value="{{dish.name}}" formControlName="name">
-          <i class="fas fa-euro-sign"></i>
+          <!--<i class="fas fa-euro-sign menu-info__image"></i>-->
           <input [readonly]="dish.edit" class="menu-info__price" value="{{dish.price}}" formControlName="price">
 
         </div>
 
         <textarea [readonly]="dish.edit" class="menu__description" value="{{dish.description}}"
                   formControlName="description"></textarea>
-        <input [readonly]="dish.edit" class="menu__weight" value="{{dish.weight}}" formControlName="weight">
+        <div class="menu__weight">
+          <p>weight:</p>
+          <input [readonly]="dish.edit" class="menu__weight-input" value="{{dish.weight}}" formControlName="weight">
+        </div>
+
+        <div class="menu__list">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                More details
+              </mat-expansion-panel-header>
+              <div *ngFor="let item of dish.ingredients" class="expansion-panel">
+                <p>{{item.name}}</p>
+                <p>{{item.price}}</p>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+
 
         <div class="menu__item">
           <i class="far fa-trash-alt" *ngIf="dish.edit" (click)="deleteDish(dish.id)"></i>
@@ -72,6 +142,7 @@
       </div>
 
     </div>
+
   </form>
 
 </div>

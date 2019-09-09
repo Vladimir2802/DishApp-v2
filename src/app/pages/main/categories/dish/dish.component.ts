@@ -15,6 +15,9 @@ export class DishComponent implements OnInit {
 
   @Input() newDishes: any = [];
   dishGroup: FormGroup;
+  ingredientsGroup: FormGroup;
+  ingredients: any = [];
+  complete: boolean = false;
   newFile: any;
   dishId: any;
   @Input() condition: boolean;
@@ -51,13 +54,10 @@ export class DishComponent implements OnInit {
       weight: [''],
       lang: ['en']
     });
-    // this.updateDishGroup.patchValue({
-    //   name: this.newDishes.name,
-    //   description: this.newDishes.description,
-    //   price: this.newDishes.price,
-    //   priceWeight: this.newDishes.priceWeight,
-    //   weight: this.newDishes.weight
-    // });
+    this.ingredientsGroup = this.fb.group({
+      name: [''],
+      price: ['']
+    });
     console.log(this.updateDishGroup.value);
   }
 
@@ -72,6 +72,7 @@ export class DishComponent implements OnInit {
       this.conditionForm.emit(this.condition);
     }
   }
+
 
   newGetDish(id: any) {
     this.dishId = id;
@@ -105,23 +106,51 @@ export class DishComponent implements OnInit {
         this.newDishes.forEach(item => {
           item.edit = true;
         });
-        console.log(this.newDishes);
+        // console.log(this.newDishes);
       });
   }
 
-  getAllIngredients(id){
+  getAllIngredients(id) {
     console.log(this.dishId);
     // this.dishService.getAll(this.)
   }
 
   addDish() {
-    console.log(this.categoryId);
     this.dishService.createDish(this.newPrepareFormData())
       .subscribe(res => {
-        console.log(res);
-        this.dishGroup.reset('');
+        this.dishId = res['data']['id'];
         this.newGetDishesById();
-        this.toggle();
+        this.addIngredients(res['data']['id']);
+      });
+  }
+
+  addIngredientsItem() {
+    if (!this.complete) {
+      this.addDish();
+      this.complete = true;
+    } else {
+      this.addIngredients(this.dishId);
+    }
+  }
+
+  addDishItem() {
+    if (!this.complete) {
+      this.addDish();
+      // this.dishGroup.reset('');
+    } else {
+      this.toggle();
+    }
+  }
+
+  addIngredients(id) {
+    this.dishService.createIngredients(this.newPrepareFormDataIngredients(id))
+      .subscribe(res => {
+        this.ingredients.push(res['data']);
+        console.log(this.ingredients);
+        this.ingredientsGroup.patchValue({
+          name: '',
+          price: ''
+        });
       });
   }
 
@@ -134,6 +163,19 @@ export class DishComponent implements OnInit {
         console.log(res);
       });
 
+  }
+
+
+  newPrepareFormDataIngredients(id) {
+    let fb = new FormData();
+    for (let prop in this.ingredientsGroup.value) {
+      if (this.ingredientsGroup.value.hasOwnProperty(prop)) {
+        fb.append(`${prop}`, this.ingredientsGroup.value[prop]);
+      }
+    }
+    fb.append('dishId', id);
+    fb.append('lang', 'en');
+    return fb;
   }
 
   dblClickDishes(menu) {
@@ -149,12 +191,13 @@ export class DishComponent implements OnInit {
     }
     fd.append('image', this.newFile);
     fd.append('categoryId', this.categoryId);
+    fd.append('lang', 'en');
     return fd;
   }
 
   newPrepareFormDataDb() {
     let fd = new FormData();
-    for(let prop in this.updateDishGroup.value) {
+    for (let prop in this.updateDishGroup.value) {
       if (this.updateDishGroup.value.hasOwnProperty(prop)) {
         fd.append(`${prop}`, this.updateDishGroup.value[prop]);
       }

@@ -33,7 +33,9 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.route.snapshot.data['data']['data'];
-    this.getDishsById(this.categories[0].id, 0);
+    if(this.categories.length != 0){
+      this.getDishsById(this.categories[0].id, 0);
+    }
   }
 
 

@@ -4,7 +4,13 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Address" formControlName="address">
+    <input matInput
+           placeholder="Address"
+           matGoogleMapsAutocomplete
+           [country]="ua"
+           (onAutocompleteSelected)="onAutocompleteSelected($event)"
+           (onLocationSelected)="onLocationSelected($event)"
+           formControlName="address">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -70,13 +76,21 @@
   </div>
 </form>
 
+<div>
+
+</div>
+
 <div class="google__maps">
   <!-- this creates a google map on the page with the given lat/lng from -->
   <!-- the component as the initial center of the map: -->
   <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
+
+
+
 </div>
+
 
 
 

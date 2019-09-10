@@ -10,9 +10,10 @@ import {CafeService} from '../shared/services/cafe.service';
 })
 export class CreateCafeComponent implements OnInit, AfterViewInit {
 
-  title = 'My first AGM project';
-  lat = 51.678418;
-  lng = 7.809007;
+  // lat = 51.678418;
+  // lng = 7.809007;
+  lat = '';
+  lng = '';
 
   cafeGroup: FormGroup;
   timeGroup: FormGroup;
@@ -118,10 +119,20 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
       fb.append(`work_time[]`, day);
     }
     fb.append('logo', this.newFile);
-    fb.append('position[0]', '49.5859836');
-    fb.append('position[1]', '34.5469355');
+    fb.append('position[0]', this.lat);
+    fb.append('position[1]', this.lng);
     return fb;
 
+  }
+
+
+  onAutocompleteSelected(ev){
+    console.log(ev);
+  }
+
+  onLocationSelected(ev){
+    this.lat = ev.latitude;
+    this.lng = ev.longitude;
   }
 
 }

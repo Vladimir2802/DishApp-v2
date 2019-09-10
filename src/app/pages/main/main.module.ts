@@ -13,6 +13,8 @@ import { CreateCafeComponent } from './create-cafe/create-cafe.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 import { AgmCoreModule } from '@agm/core';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -30,9 +32,12 @@ import { AgmCoreModule } from '@agm/core';
     SharedModule,
     NgxMaterialTimepickerModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDGNinnVlrH3QrIyL5Abo2Z42aDJ4KLW3c'
-    })
-  ],
+      apiKey: 'AIzaSyDGNinnVlrH3QrIyL5Abo2Z42aDJ4KLW3c',
+      libraries: ['places']
+
+    }),
+    MatGoogleMapsAutocompleteModule.forRoot(),
+],
   exports: [
     NgxMaterialTimepickerModule
   ]

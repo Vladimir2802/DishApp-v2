@@ -1,11 +1,29 @@
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"
-       cdkDrag>
+
+  <div (click)="getDishsById(category.id , i)"
+       *ngFor="let category of categories | slice:lowestPagginationNumber:higestPagginationNumber; let i = index"
+       cdkDrag
+       class="example-box">
     {{category.name}}
-    <i class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
+    <i class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id, i)">
     </i>
   </div>
-  <div class="add-button button">
+
+  <div class="scroll-button" *ngIf="showMoreCategoriesArrows && lowestPagginationNumber != 0"
+       (click)="changeCategoriesPage(false)">
+    <i class="material-icons">
+      keyboard_arrow_left
+    </i>
+  </div>
+
+  <div class="scroll-button" *ngIf="showMoreCategoriesArrows && higestPagginationNumber < categories.length"
+       (click)="changeCategoriesPage(true)">
+    <i class="material-icons">
+      keyboard_arrow_right
+    </i>
+  </div>
+
+  <div class="scroll-button">
     <i class="material-icons add__icons" (click)="createPopup = true">
       add
     </i>

@@ -9,6 +9,11 @@ import {CafeService} from '../shared/services/cafe.service';
   styleUrls: ['./create-cafe.component.scss']
 })
 export class CreateCafeComponent implements OnInit, AfterViewInit {
+
+  title = 'My first AGM project';
+  lat = 51.678418;
+  lng = 7.809007;
+
   cafeGroup: FormGroup;
   timeGroup: FormGroup;
   newFile: any;
@@ -32,6 +37,11 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
   constructor(public fb: FormBuilder,
               public cafeService: CafeService) {
   }
+
+
+
+
+
 
   ngOnInit() {
     this.cafeGroup = this.fb.group({

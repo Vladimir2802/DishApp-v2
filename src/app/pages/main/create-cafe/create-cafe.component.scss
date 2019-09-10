@@ -36,3 +36,12 @@ mat-list{
   width: 13vw;
 }
 
+//maps
+.google__maps{
+  padding: 0 20px;
+  agm-map {
+    height: 300px;
+    padding: 0 20px;
+  }
+}
+

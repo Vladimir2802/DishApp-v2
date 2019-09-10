@@ -21,6 +21,7 @@ import {ToastrModule} from 'ngx-toastr';
     HttpClientModule,
     SharedModule,
     ToastrModule.forRoot(),
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

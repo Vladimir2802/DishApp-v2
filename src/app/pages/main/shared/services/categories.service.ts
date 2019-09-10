@@ -31,6 +31,10 @@ export class CategoriesService implements Resolve<any> {
     return this.request.post(APP_URL.category.store, data);
   }
 
+  update(data, id) {
+    return this.request.post(APP_URL.category.update + id.toString(), data);
+  }
+
   delete(id) {
     return this.request.delete(`${APP_URL.category.delete}/${id}`); // id: Category
   }

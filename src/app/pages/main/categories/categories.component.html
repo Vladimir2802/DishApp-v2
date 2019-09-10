@@ -1,8 +1,9 @@
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"
+  <div class="example-box" (dblclick)="editCategory(category)" (click)="getDishsById(category.id , i)" *ngFor="let category of categories; let i = index"
        cdkDrag>
-    {{category.name}}
-    <i class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
+    <label *ngIf="editingCategoryId != category.id">{{category.name}}</label>
+    <input *ngIf="editingCategoryId == category.id" (keyup.enter)="editCategory(category)" (mouseleave)="editCategory(category)" [(ngModel)]="editingCategoryInput">
+    <i *ngIf="editingCategoryId != category.id" class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
     </i>
   </div>
   <div class="add-button button">

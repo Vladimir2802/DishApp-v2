@@ -97,6 +97,22 @@
   flex-grow: 1;
   flex-basis: 0;
 }
+
+.example-box input{
+  border: none;
+  outline: none;
+  background: none;
+  margin: 0px 2px 0px 2px;
+  text-align: center;
+  width: auto;
+  height: auto;
+  color: #48ac98;
+}
+
+.example-box label{
+  cursor: pointer;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;

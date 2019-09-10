@@ -20,7 +20,7 @@
 <div class="popup" *ngIf="createPopup">
   <div class="popup__wrapper">
     <mat-form-field>
-      <input matInput type="text" [(ngModel)]="newCategory">
+      <input matInput type="text" placeholder="Name" [(ngModel)]="newCategory">
     </mat-form-field>
     <div class="popup__btn">
       <i class="material-icons " (click)="addCategory()">

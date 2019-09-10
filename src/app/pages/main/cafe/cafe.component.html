@@ -89,6 +89,7 @@
     <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
     <i class="fas fa-phone-volume header__phone">{{cafe.phone}}</i>
     <div class="header__week">
+
       <div>
         <mat-list role="list" class="week__items" *ngFor="let week of week">
           <mat-list-item class="work__week">{{week}}</mat-list-item>
@@ -101,7 +102,12 @@
       </div>
 
     </div>
-
+    <i class="material-icons"  routerLink="/main/{{cafe.menuId}}/categories">
+      menu_book
+    </i>
+    <mat-list role="list" class="header__address">
+      <mat-list-item class="work__address">{{cafe.address}}</mat-list-item>
+    </mat-list>
   </mat-card>
 
 </div>

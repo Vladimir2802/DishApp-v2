@@ -14,10 +14,6 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 import { AgmCoreModule } from '@agm/core';
 
-
-
-
-
 @NgModule({
   declarations: [
     MainComponent,

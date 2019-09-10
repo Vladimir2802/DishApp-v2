@@ -132,7 +132,7 @@
 
         <div class="menu__item">
           <i class="far fa-trash-alt" *ngIf="dish.edit" (click)="deleteDish(dish.id)"></i>
-          <i class="material-icons" *ngIf="!dish.edit" (click)="updateDish(dish.id)">
+          <i class="material-icons" *ngIf="!dish.edit" (click)="updateDish(dish)">
             done
           </i>
           <i class="material-icons" *ngIf="!dish.edit" (click)="dish.edit = true">

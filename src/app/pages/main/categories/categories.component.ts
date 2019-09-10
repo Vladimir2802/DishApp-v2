@@ -83,7 +83,6 @@ export class CategoriesComponent implements OnInit {
     this.dishService.getAll(id)
       .subscribe(res => {
         this.dishes = res['data'];
-        console.log(this.dishes);
         this.dishes.forEach(item => {
           item.edit = true;
           item.readOnly = true;

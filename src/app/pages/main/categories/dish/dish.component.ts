@@ -58,7 +58,6 @@ export class DishComponent implements OnInit {
       name: [''],
       price: ['']
     });
-    console.log(this.updateDishGroup.value);
   }
 
   toggle(state?) {
@@ -154,16 +153,6 @@ export class DishComponent implements OnInit {
       });
   }
 
-  updateDish(id) {
-    this.dishId = id;
-    console.log(this.dishId);
-    this.dishService.updateDish(this.dishId, this.newPrepareFormDataDb())
-      .subscribe(res => {
-        this.newGetDishesById();
-        console.log(res);
-      });
-
-  }
 
 
   newPrepareFormDataIngredients(id) {
@@ -180,6 +169,13 @@ export class DishComponent implements OnInit {
 
   dblClickDishes(menu) {
     menu.edit = false;
+    this.updateDishGroup.patchValue({
+      name: menu.name,
+      description: menu.description,
+      price: menu.price,
+      // priceWeight: menu.priceWeight,
+      weight: menu.weight,
+    });
   }
 
   newPrepareFormData() {
@@ -193,6 +189,15 @@ export class DishComponent implements OnInit {
     fd.append('categoryId', this.categoryId);
     fd.append('lang', 'en');
     return fd;
+  }
+
+  updateDish(dish) {
+    this.dishId = dish.id;
+    this.dishService.updateDish(this.dishId, this.newPrepareFormDataDb())
+      .subscribe(res => {
+        this.newGetDishesById();
+      });
+
   }
 
   newPrepareFormDataDb() {

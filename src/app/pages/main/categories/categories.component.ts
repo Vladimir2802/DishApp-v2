@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit {
               public fb: FormBuilder) {
   }
 
-  animationCategoryIndex; animationCategoryDurationTime;
+  animationCategoryIndex; animationCategoryDurationTime; animationCategoryDirectionRight: boolean;
   categories: any = [];
   file: any;
   dishes: any = [];
@@ -28,6 +28,7 @@ export class CategoriesComponent implements OnInit {
   newCategory: any;
   categoryId: any;
   lastCategoryId: any;
+  lastCategoryIndex: any;
   editingCategoryId: number; editingCategoryInput: string;
 
   createPopup = false;
@@ -87,11 +88,22 @@ export class CategoriesComponent implements OnInit {
 
 
   getDishsById(id: any, i) {
+    if (i < this.lastCategoryIndex) {
+      this.animationCategoryDirectionRight = false;
+    } else {
+      this.animationCategoryDirectionRight = true;
+    }
     this.lastCategoryId = this.categoryId;
     this.categoryId = id;
     this.lastDishes = this.dishes;
     this.animationCategoryDurationTime = 0;
-    this.animationCategoryIndex = 0;
+    if (i < this.lastCategoryIndex) {
+      this.animationCategoryDirectionRight = false;
+      this.animationCategoryIndex = 1;
+    } else {
+      this.animationCategoryDirectionRight = true;
+      this.animationCategoryIndex = 0;
+    }
     this.dishService.getAll(id)
       .subscribe(res => {
         this.dishes = res['data'];
@@ -103,8 +115,13 @@ export class CategoriesComponent implements OnInit {
           this.condition = true;
         }
         // this.activeCategory(i);
-        this.animationCategoryDurationTime = 1500;
-        this.animationCategoryIndex = 1;
+        this.animationCategoryDurationTime = 1000;
+        if (this.animationCategoryDirectionRight) {
+          this.animationCategoryIndex = 1;
+        } else {
+          this.animationCategoryIndex = 0;
+        }
+        this.lastCategoryIndex = i;
       });
   }
 

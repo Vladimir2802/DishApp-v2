@@ -143,15 +143,3 @@
 .cdk-drop-list-dragging{
   background-color: #fff;
 }
-
-mat-tab-group{
-  overflow: hidden;
-}
-
-mat-tab{
-  overflow: -moz-scrollbars-none;
-}
-
-mat-tab::-webkit-scrollbar{
-  width: 0 !important;
-}

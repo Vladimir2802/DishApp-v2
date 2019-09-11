@@ -13,9 +13,18 @@
   </div>
 </div>
 
-<app-dish  [categoryId]="categoryId" [newDishes]="dishes" [condition]="condition" (conditionForm)="eventEmit($event)">
-
-</app-dish>
+<mat-tab-group [(selectedIndex)]="animationCategoryIndex" [disableRipple]="true" [animationDuration]="animationCategoryDurationTime">
+  <mat-tab [disabled]="true" >
+    <app-dish  [categoryId]="lastCategoryId" [newDishes]="lastDishes"
+               [condition]="condition" [isItCurrent]="animationCategoryIndex" (conditionForm)="eventEmit($event)">
+    </app-dish>
+  </mat-tab>
+  <mat-tab [disabled]="true">
+    <app-dish  [categoryId]="categoryId" [newDishes]="dishes"
+               [condition]="condition" [isItCurrent]="animationCategoryIndex" (conditionForm)="eventEmit($event)">
+    </app-dish>
+  </mat-tab>
+</mat-tab-group>
 
 <div class="popup" *ngIf="createPopup">
   <div class="popup__wrapper">

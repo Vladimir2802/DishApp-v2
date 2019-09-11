@@ -21,6 +21,7 @@ export class DishComponent implements OnInit {
   newFile: any;
   dishId: any;
   @Input() condition: boolean;
+  @Input() isItCurrent: number;
   @Output() conditionForm: any = new EventEmitter<any>();
   text: any = {};
   readonly: boolean = true;
@@ -28,6 +29,7 @@ export class DishComponent implements OnInit {
   hide: boolean = true;
 
   updateDishGroup: FormGroup;
+  panelOpenState: boolean;
 
   constructor(public dishService: DishService,
               public activatedRoute: ActivatedRoute,

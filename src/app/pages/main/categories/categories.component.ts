@@ -12,28 +12,33 @@ import {DishService} from '../shared/services/dish.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: any = [];
-  file: any;
-  dishes: any = [];
-  dishId: any;
-  condition: boolean = true;
-  newCategory: any;
-  categoryId: any;
-  editingCategoryId: number; editingCategoryInput: string;
-
-  createPopup: boolean = false;
-
-  dishGroup: FormGroup;
-
   constructor(public route: ActivatedRoute,
               public categoriesService: CategoriesService,
               public dishService: DishService,
               public fb: FormBuilder) {
   }
 
+  animationCategoryIndex; animationCategoryDurationTime;
+  categories: any = [];
+  file: any;
+  dishes: any = [];
+  lastDishes: any = [];
+  dishId: any;
+  condition = true;
+  newCategory: any;
+  categoryId: any;
+  lastCategoryId: any;
+  editingCategoryId: number; editingCategoryInput: string;
+
+  createPopup = false;
+
+  dishGroup: FormGroup;
+
+  private tout;
+
   ngOnInit() {
-    this.categories = this.route.snapshot.data['data']['data'];
-    if(this.categories.length != 0){
+    this.categories = this.route.snapshot.data.data.data;
+    if (this.categories.length !== 0) {
       this.getDishsById(this.categories[0].id, 0);
     }
   }
@@ -53,14 +58,14 @@ export class CategoriesComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.categories, event.previousIndex, event.currentIndex);
-    let id1 = this.categories[event.previousIndex].id;
-    let id2 = this.categories[event.currentIndex].id;
-    if (id1 === id2) return;
+    const id1 = this.categories[event.previousIndex].id;
+    const id2 = this.categories[event.currentIndex].id;
+    if (id1 === id2) { return; }
 
     this.categoriesService.swap(id1, id2)
       .subscribe(res => {
         console.log(res);
-      })
+      });
   }
 
   addCategory() {
@@ -68,7 +73,7 @@ export class CategoriesComponent implements OnInit {
       {
         lang: 'en',
         name: this.newCategory,
-        menu_id: this.route.snapshot.params['id']
+        menu_id: this.route.snapshot.params.id
       })
       .subscribe(res => {
         this.categoriesService.getIndex()
@@ -82,7 +87,11 @@ export class CategoriesComponent implements OnInit {
 
 
   getDishsById(id: any, i) {
+    this.lastCategoryId = this.categoryId;
     this.categoryId = id;
+    this.lastDishes = this.dishes;
+    this.animationCategoryDurationTime = 0;
+    this.animationCategoryIndex = 0;
     this.dishService.getAll(id)
       .subscribe(res => {
         this.dishes = res['data'];
@@ -93,23 +102,29 @@ export class CategoriesComponent implements OnInit {
         if (!this.condition) {
           this.condition = true;
         }
-        this.activeCategory(i);
+        // this.activeCategory(i);
+        this.animationCategoryDurationTime = 1500;
+        this.animationCategoryIndex = 1;
       });
   }
 
-  private tout;
-
   activeCategory(i) {
-    let act = document.querySelectorAll('.example-box');
-    let mw = document.querySelector('.menu');
+    const act = document.querySelectorAll('.example-box');
+    const mw = document.getElementsByClassName('.menu');
     act.forEach(item => {
       item.classList.remove('active__category');
     });
 
-    mw.classList.remove('anim-show-infinite');
+    mw[0].classList.remove('anim-hide-infinite');
+    mw[1].classList.remove('anim-show-infinite');
     // @ts-ignore
-    mw.offsetWidth;
-    mw.classList.add('anim-show-infinite');
+    mw[0].offsetWidth;
+    // @ts-ignore
+    mw[0].classList.add('anim-hide-infinite');
+    // @ts-ignore
+    mw[1].offsetWidth;
+    // @ts-ignore
+    mw[1].classList.add('anim-show-infinite');
 
     act[i].classList.add('active__category');
 

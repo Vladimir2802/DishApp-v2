@@ -78,13 +78,13 @@
 
 
 <div class="add-cafe">
-  <button mat-fab *ngIf="condition" (click)="toggle('hide')">
+  <button mat-fab *ngIf="condition && isItCurrent" (click)="toggle('hide')">
     <i class="material-icons color__icons">
       add
     </i>
   </button>
 
-  <button mat-fab *ngIf="!condition && !hide">
+  <button mat-fab *ngIf="!condition && !hide && isItCurrent">
     <i class="material-icons color__icons" (click)="addDishItem()">
       check
     </i>
@@ -92,7 +92,7 @@
 </div>
 
 
-<div *ngIf="condition" class="menu anim-show">
+<div *ngIf="condition" class="menu">
 
   <form [formGroup]="updateDishGroup">
 

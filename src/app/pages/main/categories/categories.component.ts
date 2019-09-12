@@ -12,40 +12,47 @@ import {DishService} from '../shared/services/dish.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: any = [];
-  file: any;
-  dishes: any = [];
-  dishId: any;
-  condition: boolean = true;
-  newCategory: any;
-  categoryId: any;
-  editingCategoryId: number; editingCategoryInput: string;
-
-  createPopup: boolean = false;
-
-  dishGroup: FormGroup;
-
   constructor(public route: ActivatedRoute,
               public categoriesService: CategoriesService,
               public dishService: DishService,
               public fb: FormBuilder) {
   }
 
+  categories: any = [];
+  file: any;
+  dishes: any = [];
+  dishId: any;
+  condition = true;
+  newCategory: any;
+  categoryId: any;
+  editingCategoryId: number; editingCategoryInput: string;
+
+  createPopup = false;
+  showMoreCategoriesArrows: boolean;
+
+  lowestPagginationNumber; higestPagginationNumber;
+
+  dishGroup: FormGroup;
+
+  private tout;
+
   ngOnInit() {
-    this.categories = this.route.snapshot.data['data']['data'];
-    if(this.categories.length != 0){
-      this.getDishsById(this.categories[0].id, 0);
-    }
+    this.categories = this.route.snapshot.data.data.data;
+    this.getDishsById(this.categories[0].id, 0);
+    this.lowestPagginationNumber = 0; this.higestPagginationNumber = 6;
+    if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
   }
 
 
-  deleteCategory(id) {
+  deleteCategory(id, index) {
     this.categoriesService.delete(id)
       .subscribe(res => {
-        if (res['success']) {
+        if (res.success) {
           this.categories = this.categories.filter(item => {
             return item.id !== id;
           });
+          if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
+          this.changeCategoriesPage(true, index);
         }
       });
   }
@@ -53,14 +60,14 @@ export class CategoriesComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.categories, event.previousIndex, event.currentIndex);
-    let id1 = this.categories[event.previousIndex].id;
-    let id2 = this.categories[event.currentIndex].id;
-    if (id1 === id2) return;
+    const id1 = this.categories[event.previousIndex].id;
+    const id2 = this.categories[event.currentIndex].id;
+    if (id1 === id2) { return; }
 
     this.categoriesService.swap(id1, id2)
       .subscribe(res => {
         console.log(res);
-      })
+      });
   }
 
   addCategory() {
@@ -68,14 +75,16 @@ export class CategoriesComponent implements OnInit {
       {
         lang: 'en',
         name: this.newCategory,
-        menu_id: this.route.snapshot.params['id']
+        menu_id: this.route.snapshot.params.id
       })
       .subscribe(res => {
         this.categoriesService.getIndex()
           .subscribe(res => {
-            this.categories = res['data'];
+            this.categories = res.data;
             this.newCategory = '';
             this.createPopup = false;
+            if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
+            this.changeCategoriesPage(true, this.categories.length);
           });
       });
   }
@@ -97,11 +106,9 @@ export class CategoriesComponent implements OnInit {
       });
   }
 
-  private tout;
-
   activeCategory(i) {
-    let act = document.querySelectorAll('.example-box');
-    let mw = document.querySelector('.menu');
+    const act = document.querySelectorAll('.example-box');
+    const mw = document.querySelector('.menu');
     act.forEach(item => {
       item.classList.remove('active__category');
     });
@@ -119,26 +126,48 @@ export class CategoriesComponent implements OnInit {
     this.condition = ev;
   }
 
-  editCategory(category: any) {
-    if (this.editingCategoryId === category.id) {
-      this.saveCategoryName(category);
-      this.editingCategoryId = undefined;
-    } else {
-      this.editingCategoryId = category.id;
-      this.editingCategoryInput = category.name;
+  changeCategoriesPage(next: boolean, elementToScrollIndex?: number) {
+      if (next) {
+        if (this.higestPagginationNumber < this.categories.length) {
+          this.lowestPagginationNumber += 1;
+          this.higestPagginationNumber += 1;
+        } else {
+          this.changeCategoriesPage(false);
+        }
+      } else {
+        if (this.lowestPagginationNumber > 0) {
+          this.lowestPagginationNumber -= 1;
+          this.higestPagginationNumber -= 1;
+        }
+      }
+
+      if (elementToScrollIndex) {
+        if (elementToScrollIndex > this.higestPagginationNumber) {
+          this.changeCategoriesPage(true, elementToScrollIndex);
+        }
+      }
     }
-  }
 
-  saveCategoryName(category: any) {
-    const categoryData = new FormData();
-    categoryData.append('name', this.editingCategoryInput);
-    categoryData.append('lang', 'en');
-
-    this.categoriesService.update(categoryData, category.id)
-      .subscribe(data => {
-        // @ts-ignore
-        category.name = data.data.name;
-      });
-  }
+  // editCategory(category: any) {
+  //   if (this.editingCategoryId === category.id) {
+  //     this.saveCategoryName(category);
+  //     this.editingCategoryId = undefined;
+  //   } else {
+  //     this.editingCategoryId = category.id;
+  //     this.editingCategoryInput = category.name;
+  //   }
+  // }
+  //
+  // saveCategoryName(category: any) {
+  //   const categoryData = new FormData();
+  //   categoryData.append('name', this.editingCategoryInput);
+  //   categoryData.append('lang', 'en');
+  //
+  //   this.categoriesService.update(categoryData, category.id)
+  //     .subscribe(data => {
+  //       // @ts-ignore
+  //       category.name = data.data.name;
+  //     });
+  // }
 
 }

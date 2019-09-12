@@ -131,32 +131,32 @@ export class CategoriesComponent implements OnInit {
         this.lastCategoryIndex = i;
       });
   }
-
-  private tout;
-
-  activeCategory(i) {
-    const act = document.querySelectorAll('.example-box');
-    const mw = document.querySelector('.menu');
-    const act = document.querySelectorAll('.example-box');
-    const mw = document.getElementsByClassName('.menu');
-    act.forEach(item => {
-      item.classList.remove('active__category');
-    });
-
-    mw[0].classList.remove('anim-hide-infinite');
-    mw[1].classList.remove('anim-show-infinite');
-    // @ts-ignore
-    mw[0].offsetWidth;
-    // @ts-ignore
-    mw[0].classList.add('anim-hide-infinite');
-    // @ts-ignore
-    mw[1].offsetWidth;
-    // @ts-ignore
-    mw[1].classList.add('anim-show-infinite');
-
-    act[i].classList.add('active__category');
-
-  }
+  //
+  // private tout;
+  //
+  // activeCategory(i) {
+  //   const act = document.querySelectorAll('.example-box');
+  //   const mw = document.querySelector('.menu');
+  //   const act = document.querySelectorAll('.example-box');
+  //   const mw = document.getElementsByClassName('.menu');
+  //   act.forEach(item => {
+  //     item.classList.remove('active__category');
+  //   });
+  //
+  //   mw[0].classList.remove('anim-hide-infinite');
+  //   mw[1].classList.remove('anim-show-infinite');
+  //   // @ts-ignore
+  //   mw[0].offsetWidth;
+  //   // @ts-ignore
+  //   mw[0].classList.add('anim-hide-infinite');
+  //   // @ts-ignore
+  //   mw[1].offsetWidth;
+  //   // @ts-ignore
+  //   mw[1].classList.add('anim-show-infinite');
+  //
+  //   act[i].classList.add('active__category');
+  //
+  // }
 
   eventEmit(ev) {
     this.condition = ev;
@@ -177,48 +177,33 @@ export class CategoriesComponent implements OnInit {
         }
       }
 
-    if (elementToScrollIndex) {
-      if (elementToScrollIndex > this.higestPagginationNumber) {
-        this.changeCategoriesPage(true, elementToScrollIndex);
+      if (elementToScrollIndex) {
+        if (elementToScrollIndex > this.higestPagginationNumber) {
+          this.changeCategoriesPage(true, elementToScrollIndex);
+        }
       }
+    }
+
+  editCategory(category: any) {
+    if (this.editingCategoryId === category.id) {
+      this.saveCategoryName(category);
+      this.editingCategoryId = undefined;
+    } else {
+      this.editingCategoryId = category.id;
+      this.editingCategoryInput = category.name;
     }
   }
 
-  // saveCategoryName(category: any) {
-  //   const categoryData = new FormData();
-  //   categoryData.append('name', this.editingCategoryInput);
-  //   categoryData.append('lang', 'en');
-  //
-  //   this.categoriesService.update(categoryData, category.id)
-  //     .subscribe(data => {
-  //       // @ts-ignore
-  //       category.name = data.data.name;
-  //     });
-  // }
+  saveCategoryName(category: any) {
+    const categoryData = new FormData();
+    categoryData.append('name', this.editingCategoryInput);
+    categoryData.append('lang', 'en');
 
-
-// }
-
-// editCategory(category: any) {
-  //   if (this.editingCategoryId === category.id) {
-  //     this.saveCategoryName(category);
-  //     this.editingCategoryId = undefined;
-  //   } else {
-  //     this.editingCategoryId = category.id;
-  //     this.editingCategoryInput = category.name;
-  //   }
-  // }
-  //
-  // saveCategoryName(category: any) {
-  //   const categoryData = new FormData();
-  //   categoryData.append('name', this.editingCategoryInput);
-  //   categoryData.append('lang', 'en');
-  //
-  //   this.categoriesService.update(categoryData, category.id)
-  //     .subscribe(data => {
-  //       // @ts-ignore
-  //       category.name = data.data.name;
-  //     });
-  // }
+    this.categoriesService.update(categoryData, category.id)
+      .subscribe(data => {
+        // @ts-ignore
+        category.name = data.data.name;
+      });
+  }
 
 }

@@ -1,11 +1,9 @@
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
 
-  <div (click)="getDishsById(category.id , i)"
-       *ngFor="let category of categories | slice:lowestPagginationNumber:higestPagginationNumber; let i = index"
-       cdkDrag
-       class="example-box">
-    {{category.name}}
-    <i class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id, i)">
+  <div (click)="getDishsById(category.id , i)" (dblclick)="editCategory(category)" *ngFor="let category of categories | slice:lowestPagginationNumber:higestPagginationNumber; let i = index" cdkDrag class="example-box">
+    <label *ngIf="editingCategoryId != category.id">{{category.name}}</label>
+    <input *ngIf="editingCategoryId == category.id" (keyup.enter)="editCategory(category)" (mouseleave)="editCategory(category)" [(ngModel)]="editingCategoryInput">
+    <i *ngIf="editingCategoryId != category.id" class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
     </i>
   </div>
 
@@ -15,19 +13,21 @@
       keyboard_arrow_left
     </i>
   </div>
-
-  <div class="scroll-button" *ngIf="showMoreCategoriesArrows && higestPagginationNumber < categories.length"
-       (click)="changeCategoriesPage(true)">
-    <i class="material-icons">
-      keyboard_arrow_right
-    </i>
-  </div>
-
   <div class="scroll-button">
-    <i class="material-icons add__icons" (click)="createPopup = true">
-      add
-    </i>
+    <div  *ngIf="showMoreCategoriesArrows && higestPagginationNumber < categories.length"
+         (click)="changeCategoriesPage(true)">
+      <i class="material-icons">
+        keyboard_arrow_right
+      </i>
+    </div>
+
+    <div >
+      <i class="material-icons add__icons scroll-button-add" (click)="createPopup = true">
+        add
+      </i>
+    </div>
   </div>
+
 </div>
 
 <mat-tab-group [(selectedIndex)]="animationCategoryIndex" [disableRipple]="true"

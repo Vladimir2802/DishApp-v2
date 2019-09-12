@@ -8,7 +8,7 @@ import {CafeComponent} from './cafe/cafe.component';
 import {CafeService} from './shared/services/cafe.service';
 import {DishComponent} from './categories/dish/dish.component';
 import {CreateCafeComponent} from './create-cafe/create-cafe.component';
-import {TablesService} from './shared/services/table.service';
+// import {TablesService} from './shared/services/table.service';
 
 const routes: Routes = [
   {

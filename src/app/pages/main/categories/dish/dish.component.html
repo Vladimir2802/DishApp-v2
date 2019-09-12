@@ -78,13 +78,19 @@
 
 
 <div class="add-cafe">
-  <button mat-fab *ngIf="condition && isItCurrent" (click)="toggle('hide')">
+  <button mat-fab *ngIf="!newDishes.length" (click)="toggle('hide')" class="pulsing-button">
     <i class="material-icons color__icons">
       add
     </i>
   </button>
 
-  <button mat-fab *ngIf="!condition && !hide && isItCurrent">
+  <button mat-fab *ngIf="condition && newDishes.length" (click)="toggle('hide')">
+    <i class="material-icons color__icons">
+      add
+    </i>
+  </button>
+
+  <button mat-fab *ngIf="!condition && !hide">
     <i class="material-icons color__icons" (click)="addDishItem()">
       check
     </i>

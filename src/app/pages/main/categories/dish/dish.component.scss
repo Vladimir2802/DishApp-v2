@@ -226,3 +226,18 @@
 .far {
   padding: 10px;
 }
+
+.pulsing-button{
+  animation: pulsing-button 1s 3s infinite;
+}
+
+@keyframes pulsing-button {
+  0% {
+    opacity: 25%;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1.25);
+  }
+}

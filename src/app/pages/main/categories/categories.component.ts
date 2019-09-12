@@ -30,6 +30,7 @@ export class CategoriesComponent implements OnInit {
   lastCategoryId: any;
   lastCategoryIndex: any;
   editingCategoryId: number; editingCategoryInput: string;
+  categoryDraging: boolean;
 
   createPopup = false;
   showMoreCategoriesArrows: boolean;
@@ -43,26 +44,26 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
     this.categories = this.route.snapshot.data.data.data;
     this.getDishsById(this.categories[0].id, 0);
-    this.lowestPagginationNumber = 0; this.higestPagginationNumber = 6;
-    if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
+    this.pagginationController(6, true);
   }
 
 
   deleteCategory(id, index) {
     this.categoriesService.delete(id)
       .subscribe(res => {
+        // @ts-ignore
         if (res['success']) {
           this.categories = this.categories.filter(item => {
             return item.id !== id;
           });
-          if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
-          this.changeCategoriesPage(true, index);
+          this.changeCategoriesPage(6, index);
         }
       });
   }
 
 
   drop(event: CdkDragDrop<string[]>) {
+    this.categoryDraging = false;
     moveItemInArray(this.categories, event.previousIndex, event.currentIndex);
     const id1 = this.categories[event.previousIndex].id;
     const id2 = this.categories[event.currentIndex].id;
@@ -79,16 +80,16 @@ export class CategoriesComponent implements OnInit {
       {
         lang: 'en',
         name: this.newCategory,
-        menu_id: this.route.snapshot.params['id']
+        menu_id: this.route.snapshot.params.id
       })
       .subscribe(res => {
         this.categoriesService.getIndex()
+        // tslint:disable-next-line:no-shadowed-variable
           .subscribe(res => {
             this.categories = res['data'];
             this.newCategory = '';
             this.createPopup = false;
-            if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
-            this.changeCategoriesPage(true, this.categories.length);
+            this.changeCategoriesPage(6, this.categories.length);
           });
       });
   }
@@ -162,27 +163,38 @@ export class CategoriesComponent implements OnInit {
     this.condition = ev;
   }
 
-  changeCategoriesPage(next: boolean, elementToScrollIndex?: number) {
-      if (next) {
-        if (this.higestPagginationNumber < this.categories.length) {
-          this.lowestPagginationNumber += 1;
-          this.higestPagginationNumber += 1;
-        } else {
-          this.changeCategoriesPage(false);
-        }
-      } else {
-        if (this.lowestPagginationNumber > 0) {
-          this.lowestPagginationNumber -= 1;
-          this.higestPagginationNumber -= 1;
+  changeCategoriesPage(elementsToScroll: number, forward?: boolean, changeByDragable?: boolean, elementToScrollIndex?: number) {
+    if (elementToScrollIndex) {
+      if (elementToScrollIndex > this.higestPagginationNumber) {
+        if (this.pagginationController(elementsToScroll)) {
+          this.lowestPagginationNumber ++; this.higestPagginationNumber ++;
+          this.changeCategoriesPage(elementsToScroll, undefined, undefined, elementToScrollIndex);
+          this.pagginationController(elementsToScroll);
         }
       }
+    } else if (changeByDragable) {
+      if (this.categoryDraging) {
+        this.changeCategoriesPage(1, forward);
+      }
+    } else if (forward) {
+      if (this.pagginationController(elementsToScroll) && this.higestPagginationNumber < this.categories.length) {
+        this.lowestPagginationNumber += elementsToScroll; this.higestPagginationNumber += elementsToScroll;
+        this.pagginationController(elementsToScroll);
+      }
+    } else if (!forward) {
+      if (this.pagginationController(elementsToScroll)) {
+        this.lowestPagginationNumber -= elementsToScroll; this.higestPagginationNumber -= elementsToScroll;
+        this.pagginationController(elementsToScroll);
+      }
+    } else { this.pagginationController(elementsToScroll); }
+  }
 
-      if (elementToScrollIndex) {
-        if (elementToScrollIndex > this.higestPagginationNumber) {
-          this.changeCategoriesPage(true, elementToScrollIndex);
-        }
-      }
-    }
+  pagginationController(elementsToScroll: number, init?: boolean) {
+    if (this.categories.length > 6) { this.showMoreCategoriesArrows = true; } else { this.showMoreCategoriesArrows = false; }
+    if (init) {this.lowestPagginationNumber = 0; this.higestPagginationNumber = elementsToScroll;}
+    if (this.lowestPagginationNumber >= 0 && this.higestPagginationNumber > this.lowestPagginationNumber)
+      { return true; } else {this.lowestPagginationNumber = 0; this.higestPagginationNumber = elementsToScroll; }
+  }
 
   editCategory(category: any) {
     if (this.editingCategoryId === category.id) {

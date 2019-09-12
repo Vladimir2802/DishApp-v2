@@ -15,6 +15,7 @@
   }
 
 .scroll-button{
+  float: left;
   display: flex;
   align-items: center;
   padding-left: 55px;
@@ -95,6 +96,7 @@
   display: flex;
   flex-direction: row;
   background: white;
+  justify-content: space-between;
   //overflow: scroll;
   margin: 0 4vw;
 }
@@ -158,4 +160,8 @@
 
 .cdk-drop-list-dragging{
   background-color: #fff;
+}
+
+.selected-category{
+  background: rgba(0, 0, 0, 0.1);
 }

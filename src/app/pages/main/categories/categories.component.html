@@ -1,21 +1,23 @@
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
 
   <div (click)="getDishsById(category.id , i)" (dblclick)="editCategory(category)"
-       (cdkDragStarted)="categoryDraging = true"
-       *ngFor="let category of categories | slice:lowestPagginationNumber:higestPagginationNumber; let i = index" cdkDrag class="example-box">
+       (cdkDragStarted)="categoryDraging = true" (cdkDragEnded)="categoryDraging = false"
+       *ngFor="let category of categories | slice:lowestPagginationNumber:higestPagginationNumber; let i = index" cdkDrag class="example-box" [class.selected-category]="category.id == categoryId">
     <label *ngIf="editingCategoryId != category.id">{{category.name}}</label>
     <input *ngIf="editingCategoryId == category.id" (keyup.enter)="editCategory(category)" (mouseleave)="editCategory(category)" [(ngModel)]="editingCategoryInput">
     <i *ngIf="editingCategoryId != category.id" class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id, i)">
     </i>
   </div>
 
-  <div class="scroll-button" *ngIf="showMoreCategoriesArrows && lowestPagginationNumber != 0"
-       (click)="changeCategoriesPage(6, false)" (mouseover)="changeCategoriesPage(1, false, true)">
-    <i class="material-icons">
-      keyboard_arrow_left
-    </i>
-  </div>
   <div class="scroll-button">
+
+    <div *ngIf="showMoreCategoriesArrows && lowestPagginationNumber != 0"
+         (click)="changeCategoriesPage(6, false)" (mouseover)="changeCategoriesPage(1, false, true)">
+      <i class="material-icons">
+        keyboard_arrow_left
+      </i>
+    </div>
+
     <div  *ngIf="showMoreCategoriesArrows && higestPagginationNumber < categories.length"
          (click)="changeCategoriesPage(6, true)" (mouseover)="changeCategoriesPage(1, true, true)">
       <i class="material-icons">

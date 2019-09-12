@@ -87,6 +87,9 @@
       </div>
     </mat-card-header>
     <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
+    <mat-list role="list" class="header__address">
+      <mat-list-item class="work__address">{{cafe.address}}</mat-list-item>
+    </mat-list>
     <i class="fas fa-phone-volume header__phone">{{cafe.phone}}</i>
     <div class="header__week">
 
@@ -102,13 +105,13 @@
       </div>
 
     </div>
-    <i class="material-icons"  routerLink="/main/{{cafe.menuId}}/categories">
-      menu_book
-    </i>
-    <mat-list role="list" class="header__address">
-      <mat-list-item class="work__address">{{cafe.address}}</mat-list-item>
-    </mat-list>
+<div class="header__book-menu">
+  <i class="material-icons" routerLink="/main/{{cafe.menuId}}/categories">
+    menu_book
+  </i>
+</div>
+
   </mat-card>
-<app-home></app-home>
+  <app-home></app-home>
 </div>
 

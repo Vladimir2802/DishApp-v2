@@ -50,12 +50,21 @@
 
   &__phone {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   &__week {
     display: flex;
     justify-content: space-between;
+  }
+
+  &__book-menu {
+    display: flex;
+    justify-content: flex-end;
+
+    .material-icons {
+      //justify-content: flex-end;
+    }
   }
 
   .mat-list-base .mat-list-item {

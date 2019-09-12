@@ -5,6 +5,7 @@
     <input *ngIf="editingCategoryId == category.id" (keyup.enter)="editCategory(category)" (mouseleave)="editCategory(category)" [(ngModel)]="editingCategoryInput">
     <i *ngIf="editingCategoryId != category.id" class="far fa-trash-alt delete-btn" (click)="deleteCategory(category.id)">
     </i>
+
   </div>
   <div class="add-button button">
     <i class="material-icons add__icons" (click)="createPopup = true">

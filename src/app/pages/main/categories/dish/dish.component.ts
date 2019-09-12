@@ -60,6 +60,7 @@ export class DishComponent implements OnInit {
       name: [''],
       price: ['']
     });
+    console.log(this.dishId);
   }
 
   toggle(state?) {

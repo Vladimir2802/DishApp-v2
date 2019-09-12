@@ -43,10 +43,11 @@
   //margin: 0 auto;
   //padding: 10px;
   //text-align: center;
-
+  min-height: 90vh;
+  overflow: -moz-scrollbars-none;
 
   .example-box {
-    //margin: 0 auto;
+    margin: 0 auto;
     margin-bottom: 10px;
     width: 30vw;
     //padding:  0 0 20px 0;
@@ -168,6 +169,7 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   //margin: 0 auto;
+  //display: table;
 }
 
 //.cdk-drop-list-dragging {
@@ -182,8 +184,11 @@
 }
 
 .anim-show-infinite {
-
   animation: show 1s;
+}
+
+.anim-hide-infinite{
+  animation: hide 1s;
 }
 
 @keyframes show {
@@ -194,6 +199,17 @@
   100% {
     opacity: 1;
     right: 35%;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 0;
+    left: 35%;
+  }
+  100% {
+    opacity: 1;
+    left: 35%;
   }
 }
 
@@ -209,19 +225,4 @@
 
 .far {
   padding: 10px;
-}
-
-.pulsing-button{
-  animation: pulsing-button 1s 3s infinite;
-}
-
-@keyframes pulsing-button {
-  0% {
-    opacity: 25%;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 100%;
-    transform: scale(1.25);
-  }
 }

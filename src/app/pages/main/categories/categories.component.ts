@@ -18,13 +18,17 @@ export class CategoriesComponent implements OnInit {
               public fb: FormBuilder) {
   }
 
+  animationCategoryIndex; animationCategoryDurationTime; animationCategoryDirectionRight: boolean;
   categories: any = [];
   file: any;
   dishes: any = [];
+  lastDishes: any = [];
   dishId: any;
   condition = true;
   newCategory: any;
   categoryId: any;
+  lastCategoryId: any;
+  lastCategoryIndex: any;
   editingCategoryId: number; editingCategoryInput: string;
 
   createPopup = false;
@@ -47,7 +51,7 @@ export class CategoriesComponent implements OnInit {
   deleteCategory(id, index) {
     this.categoriesService.delete(id)
       .subscribe(res => {
-        if (res.success) {
+        if (res['success']) {
           this.categories = this.categories.filter(item => {
             return item.id !== id;
           });
@@ -75,12 +79,12 @@ export class CategoriesComponent implements OnInit {
       {
         lang: 'en',
         name: this.newCategory,
-        menu_id: this.route.snapshot.params.id
+        menu_id: this.route.snapshot.params['id']
       })
       .subscribe(res => {
         this.categoriesService.getIndex()
           .subscribe(res => {
-            this.categories = res.data;
+            this.categories = res['data'];
             this.newCategory = '';
             this.createPopup = false;
             if (this.categories.length > 6) {this.showMoreCategoriesArrows = true; } else {this.showMoreCategoriesArrows = false; }
@@ -91,7 +95,22 @@ export class CategoriesComponent implements OnInit {
 
 
   getDishsById(id: any, i) {
+    if (i < this.lastCategoryIndex) {
+      this.animationCategoryDirectionRight = false;
+    } else {
+      this.animationCategoryDirectionRight = true;
+    }
+    this.lastCategoryId = this.categoryId;
     this.categoryId = id;
+    this.lastDishes = this.dishes;
+    this.animationCategoryDurationTime = 0;
+    if (i < this.lastCategoryIndex) {
+      this.animationCategoryDirectionRight = false;
+      this.animationCategoryIndex = 1;
+    } else {
+      this.animationCategoryDirectionRight = true;
+      this.animationCategoryIndex = 0;
+    }
     this.dishService.getAll(id)
       .subscribe(res => {
         this.dishes = res['data'];
@@ -102,21 +121,38 @@ export class CategoriesComponent implements OnInit {
         if (!this.condition) {
           this.condition = true;
         }
-        this.activeCategory(i);
+        // this.activeCategory(i);
+        this.animationCategoryDurationTime = 1000;
+        if (this.animationCategoryDirectionRight) {
+          this.animationCategoryIndex = 1;
+        } else {
+          this.animationCategoryIndex = 0;
+        }
+        this.lastCategoryIndex = i;
       });
   }
+
+  private tout;
 
   activeCategory(i) {
     const act = document.querySelectorAll('.example-box');
     const mw = document.querySelector('.menu');
+    const act = document.querySelectorAll('.example-box');
+    const mw = document.getElementsByClassName('.menu');
     act.forEach(item => {
       item.classList.remove('active__category');
     });
 
-    mw.classList.remove('anim-show-infinite');
+    mw[0].classList.remove('anim-hide-infinite');
+    mw[1].classList.remove('anim-show-infinite');
     // @ts-ignore
-    mw.offsetWidth;
-    mw.classList.add('anim-show-infinite');
+    mw[0].offsetWidth;
+    // @ts-ignore
+    mw[0].classList.add('anim-hide-infinite');
+    // @ts-ignore
+    mw[1].offsetWidth;
+    // @ts-ignore
+    mw[1].classList.add('anim-show-infinite');
 
     act[i].classList.add('active__category');
 
@@ -141,14 +177,29 @@ export class CategoriesComponent implements OnInit {
         }
       }
 
-      if (elementToScrollIndex) {
-        if (elementToScrollIndex > this.higestPagginationNumber) {
-          this.changeCategoriesPage(true, elementToScrollIndex);
-        }
+    if (elementToScrollIndex) {
+      if (elementToScrollIndex > this.higestPagginationNumber) {
+        this.changeCategoriesPage(true, elementToScrollIndex);
       }
     }
+  }
 
-  // editCategory(category: any) {
+  // saveCategoryName(category: any) {
+  //   const categoryData = new FormData();
+  //   categoryData.append('name', this.editingCategoryInput);
+  //   categoryData.append('lang', 'en');
+  //
+  //   this.categoriesService.update(categoryData, category.id)
+  //     .subscribe(data => {
+  //       // @ts-ignore
+  //       category.name = data.data.name;
+  //     });
+  // }
+
+
+// }
+
+// editCategory(category: any) {
   //   if (this.editingCategoryId === category.id) {
   //     this.saveCategoryName(category);
   //     this.editingCategoryId = undefined;

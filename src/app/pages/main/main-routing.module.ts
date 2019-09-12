@@ -12,7 +12,7 @@ import {CreateCafeComponent} from './create-cafe/create-cafe.component';
 const routes: Routes = [
   {
     path: '', component: MainComponent, children: [
-      {path: 'home', component: HomeComponent,},
+      // {path: 'home', component: HomeComponent,},
       {path: 'create-cafe', component: CreateCafeComponent},
       {path: 'cafe', component: CafeComponent, resolve: {data: CafeService}},
       {path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}},
@@ -20,7 +20,7 @@ const routes: Routes = [
         path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}, children: [
           {path: 'dishes', component: DishComponent}]
       },
-      {path: '', redirectTo: 'home', pathMatch: 'full'}
+      {path: '', redirectTo: 'cafe', pathMatch: 'full'}
     ]
   }
 ];

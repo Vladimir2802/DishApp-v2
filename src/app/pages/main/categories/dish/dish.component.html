@@ -78,7 +78,13 @@
 
 
 <div class="add-cafe">
-  <button mat-fab *ngIf="condition" (click)="toggle('hide')">
+  <button mat-fab *ngIf="newDishes.length == 0" (click)="toggle('hide')" class="pulsing-button">
+    <i class="material-icons color__icons">
+      add
+    </i>
+  </button>
+
+  <button mat-fab *ngIf="condition && newDishes.length" (click)="toggle('hide')">
     <i class="material-icons color__icons">
       add
     </i>
@@ -146,9 +152,3 @@
   </form>
 
 </div>
-
-
-
-
-
-

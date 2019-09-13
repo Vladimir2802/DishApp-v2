@@ -29,6 +29,8 @@
 //
 .header {
   margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
 
   .example-card {
     max-width: 300px;
@@ -80,7 +82,6 @@
     font-size: 12px;
   }
 }
-
 
 
 

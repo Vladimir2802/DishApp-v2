@@ -1,5 +1,6 @@
+<nav>
 <div class="dropdown">
-  <button mat-button [matMenuTriggerFor]="beforeMenu">
+  <button mat-button [matMenuTriggerFor]="beforeMenu" matTooltip="Menu">
     <i class="material-icons">
       reorder
     </i>
@@ -10,6 +11,19 @@
     <button mat-menu-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">Log Out</button>
   </mat-menu>
 </div>
+  <div>
+    <button mat-button matTooltip="Tables control">
+      <i class="fas fa-table"></i>
+    </button>
+  </div>
+  <div>
+    <button mat-button routerLink="/main/create-cafe" matTooltip="Add cafe">
+      <i class="material-icons">
+        post_add
+      </i>
+    </button>
+  </div>
+</nav>
 
 <router-outlet></router-outlet>
 

@@ -1,3 +1,4 @@
+<div style="height: 36px;"></div>
 <div class="form">
   <form class="example-form" [formGroup]="cafeGroup" *ngIf="!condition">
     <div *ngFor="let cafe of cafes">
@@ -73,8 +74,9 @@
 </div>
 
 
-<div class="header" *ngIf="condition">
-  <mat-card class="example-card" *ngFor="let cafe of cafes">
+<mat-grid-list cols="4" rowHeight="1:1.75" class="header" *ngIf="condition">
+  <mat-grid-tile class="example-card" *ngFor="let cafe of cafes">
+    <mat-card>
     <mat-card-header class="header__cafe">
       <mat-card-title>
         <i class="fas fa-home "></i>
@@ -111,7 +113,7 @@
   </i>
 </div>
 
-  </mat-card>
-  <app-home></app-home>
-</div>
+    </mat-card>
+  </mat-grid-tile>
 
+</mat-grid-list>

@@ -11,19 +11,20 @@
             <input matInput formControlName="description" placeholder="Description">
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="price" placeholder="Price">
+            <input matInput formControlName="price" placeholder="Price" type="number" maxlength="8">
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="weight" placeholder="Weight">
+            <input matInput formControlName="weight" placeholder="Weight" type="number" maxlength="6">
           </mat-form-field>
           <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
 
           <i class="material-icons" (click)="toggle()">
             block
           </i>
-          <div class="two-sections__accordion" >
+          <div class="two-sections__accordion" *ngIf="dishGroup.valid && newFile">
             <mat-accordion>
               <mat-expansion-panel (opened)="panelOpenState = true"
+                                   (opened)="addDish()"
                                    (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
@@ -39,12 +40,11 @@
                       <input matInput placeholder="Name" formControlName="name">
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Price" formControlName="price">
+                      <input matInput placeholder="Price" formControlName="price" type="number" maxlength="8">
                     </mat-form-field>
                   </div>
 
-
-                  <i class="material-icons" (click)="addIngredientsItem()">
+                  <i class="material-icons" style="cursor: pointer" (click)="addIngredientsItem()">
                     add
                   </i>
 
@@ -52,16 +52,11 @@
               </mat-expansion-panel>
             </mat-accordion>
 
-
-
-
           </div>
-
 
           <i class="material-icons" *ngIf="hide">
             done_all
           </i>
-
 
         </div>
       </div>
@@ -90,7 +85,7 @@
     </i>
   </button>
 
-  <button mat-fab *ngIf="!condition && !hide">
+  <button mat-fab *ngIf="!condition && !hide && !dishGroup.invalid">
     <i class="material-icons color__icons" (click)="addDishItem()">
       check
     </i>

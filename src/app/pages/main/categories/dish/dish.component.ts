@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DishService} from '../../shared/services/dish.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../shared/services/categories.service';
 import {ActivatedRoute} from '@angular/router';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -38,35 +38,16 @@ export class DishComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dishGroup = this.fb.group({
-      name: [''],
-      description: [''],
-      price: [''],
-      priceWeight: ['0'],
-      // image: [null],
-      weight: [''],
-      lang: ['en']
-    });
-    this.updateDishGroup = this.fb.group({
-      name: [''],
-      description: [''],
-      price: [''],
-      priceWeight: ['0'],
-      image: [null],
-      weight: [''],
-      lang: ['en']
-    });
-    this.ingredientsGroup = this.fb.group({
-      name: [''],
-      price: ['']
-    });
+    this.initFormGroups();
   }
 
   toggle(state?) {
     this.condition = !this.condition;
     if (state === 'hide') {
+      this.initFormGroups();
       this.hide = false;
     } else {
+      this.initFormGroups();
       this.hide = true;
     }
     if (!this.condition) {
@@ -112,7 +93,6 @@ export class DishComponent implements OnInit {
   }
 
   getAllIngredients(id) {
-    console.log(this.dishId);
     // this.dishService.getAll(this.)
   }
 
@@ -126,11 +106,13 @@ export class DishComponent implements OnInit {
   }
 
   addIngredientsItem() {
-    if (!this.complete) {
-      this.addDish();
-      this.complete = true;
-    } else {
-      this.addIngredients(this.dishId);
+    if (this.ingredientsGroup.valid) {
+      if (!this.complete) {
+        this.addDish();
+        this.complete = true;
+      } else {
+        this.addIngredients(this.dishId);
+      }
     }
   }
 
@@ -260,6 +242,31 @@ export class DishComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
       });
+  }
+
+  initFormGroups() {
+    this.dishGroup = this.fb.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
+      priceWeight: ['0', [Validators.required, Validators.maxLength(8)]],
+      // image: [null],
+      weight: ['', [Validators.required, Validators.maxLength(8)]],
+      lang: ['en']
+    });
+    this.updateDishGroup = this.fb.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
+      priceWeight: ['0', [Validators.required, Validators.maxLength(8)]],
+      image: [null],
+      weight: ['', [Validators.required, Validators.maxLength(6)]],
+      lang: ['en']
+    });
+    this.ingredientsGroup = this.fb.group({
+      name: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]]
+    });
   }
 
 }

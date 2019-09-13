@@ -82,10 +82,17 @@
         <i class="fas fa-home "></i>
         {{cafe.name}}
       </mat-card-title>
-      <div>
+      <div class="header__book-menu">
+        <img src="../../../../assets/icons/table.svg" class="table-icons" alt="">
+        <i class="material-icons" routerLink="/main/{{cafe.menuId}}/categories">
+          menu_book
+        </i>
         <i class="material-icons" (click)="openEditCafe(cafe)">
           create
         </i>
+      </div>
+      <div>
+
       </div>
     </mat-card-header>
     <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
@@ -107,11 +114,7 @@
       </div>
 
     </div>
-<div class="header__book-menu">
-  <i class="material-icons" routerLink="/main/{{cafe.menuId}}/categories">
-    menu_book
-  </i>
-</div>
+
 
     </mat-card>
   </mat-grid-tile>

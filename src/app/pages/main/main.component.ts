@@ -8,10 +8,17 @@ import {Router} from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
+  addCafeButtonHiden: boolean;
 
   constructor(public router: Router) { }
 
   ngOnInit() {
+    this.router.events.subscribe(data => {
+      switch (this.router.url) {
+        case '/main/cafe': this.addCafeButtonHiden = false; break;
+        default: this.addCafeButtonHiden = true; break;
+      }
+    });
   }
 
   logOut() {

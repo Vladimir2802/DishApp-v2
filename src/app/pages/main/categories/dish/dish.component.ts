@@ -245,6 +245,7 @@ export class DishComponent implements OnInit {
   }
 
   initFormGroups() {
+    this.ingredients.length = 0;
     this.dishGroup = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -259,7 +260,7 @@ export class DishComponent implements OnInit {
       description: ['', [Validators.required]],
       price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
       priceWeight: ['0', [Validators.required, Validators.maxLength(8)]],
-      image: [null],
+      // image: [null],
       weight: ['', [Validators.required, Validators.maxLength(6)]],
       lang: ['en']
     });

@@ -262,5 +262,4 @@ export class DishComponent implements OnInit {
       });
   }
 
-
 }

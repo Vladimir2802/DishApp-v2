@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CafeService} from '../shared/services/cafe.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
 
 
   constructor(public fb: FormBuilder,
-              public cafeService: CafeService) {
+              public cafeService: CafeService,
+              private router: Router) {
   }
 
 
@@ -78,10 +80,12 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
     this.plusTime();
     this.cafeService.storeCafe(this.newPrepareFormData())
       .subscribe(res => {
-        console.log(res);
+        this.router.navigate(['/main/cafe']).finally();
       });
-    console.log(this.cafeGroup.value);
+  }
 
+  cancelCreateCafe() {
+    this.router.navigate(['/main/cafe']).finally();
   }
 
   plusTime(){

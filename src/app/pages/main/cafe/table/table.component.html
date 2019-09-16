@@ -1,2 +1,23 @@
 <div style="height: 36px;"></div>
-<p>table works!</p>
+
+
+
+<div *ngFor="let tables of tableValueAll">
+  <p>Number:{{tables.number}}</p>
+  <p>busyAt: {{tables.busyAt}}</p>
+  <p>Image QR  <img src="{{tables.qr}}" alt=""> </p>
+  <i class="material-icons" (click)="deleteTable(tables.id)">
+    delete
+  </i>
+
+
+
+  <div [formGroup]="tableGroup">
+    <input type="text" formControlName="number">
+    <i class="material-icons" (click)="addTable()">
+      add
+    </i>
+  </div>
+</div>
+
+

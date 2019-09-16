@@ -129,7 +129,7 @@ export class DishComponent implements OnInit {
     this.dishService.createIngredients(this.newPrepareFormDataIngredients(id))
       .subscribe(res => {
         this.ingredients.push(res['data']);
-        console.log(this.ingredients);
+        // console.log(this.ingredients);
         this.ingredientsGroup.patchValue({
           name: '',
           price: ''

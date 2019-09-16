@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TablesService} from '../../shared/services/table.service';
 import {CafeService} from '../../shared/services/cafe.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -10,36 +11,60 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class TableComponent implements OnInit {
 
-  cafes: any = [];
+  table: any = [];
+  tableData: any = [];
+  tableValueAll: any = [];
+  tableId: any = [];
+  tableGroup: FormGroup;
 
 
   constructor(public tableService: TablesService,
               public cageService: CafeService,
               public route: ActivatedRoute,
-              public router: Router) {
+              public router: Router,
+              public fb: FormBuilder) {
   }
 
   ngOnInit() {
-   this.cafes = this.route.snapshot.data['data'];
-    console.log(this.cafes);
-    this.getAllTable();
-this.cafeId();
+    this.initFormGroup();
+    this.table = this.route.snapshot.data['data'];
+    this.tableData = this.table['data'];
+    this.tableValue();
+    // console.log(this.tableValueAll);
   }
 
-
-  getAllTable(){
-    // this.tableService.getAll()
-    //   .subscribe(res => {
-    //     console.log(res);
-    //   })
+  tableValue() {
+    this.tableData.forEach(item => {
+      this.tableValueAll.push(item);
+    });
   }
 
-  cafeId(){
-    // this.cafes.forEach(item => {
-    //   console.log(item);
-    // })
+  deleteTable(id){
+    this.tableValueAll.forEach(item =>{
+      this.tableId = item.id;
+      // console.log(this.tableId);
+    });
+    this.tableService.delete(this.tableId)
+      .subscribe(res => {
+        // console.log(res);
+      })
   }
 
+  addTable() {
+    this.tableService.createTable({
+      number: this.tableGroup,
+      cafe_id: this.route.snapshot.params.id
+    })
+      .subscribe(res => {
+        console.log(res);
+      })
+  }
+
+  initFormGroup(){
+    this.tableGroup = this.fb.group({
+      number: [''],
+    })
+  }
 
 
 }

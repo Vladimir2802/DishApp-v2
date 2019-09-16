@@ -23,5 +23,13 @@ export class TablesService implements Resolve <any> {
     return this.request.get(`${APP_URL.table.all}?cafe_id=${id}`);
   }
 
+  delete(id:any){
+    return this.request.delete(`${APP_URL.table.delete}/${id}`);
+  }
+
+  createTable(data){
+    return this.request.post(APP_URL.table.store, data);
+  }
+
 }
 

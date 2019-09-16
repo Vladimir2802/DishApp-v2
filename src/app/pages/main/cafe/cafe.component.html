@@ -74,9 +74,8 @@
 </div>
 
 
-<mat-grid-list cols="4" rowHeight="1:1.75" class="header" *ngIf="condition">
-  <mat-grid-tile class="example-card" *ngFor="let cafe of cafes">
-    <mat-card>
+<div class="header" *ngIf="condition">
+  <mat-card class="example-card" *ngFor="let cafe of cafes">
     <mat-card-header class="header__cafe">
       <mat-card-title>
         <i class="fas fa-home "></i>
@@ -119,8 +118,6 @@
 
     </div>
 
+  </mat-card>
 
-    </mat-card>
-  </mat-grid-tile>
-
-</mat-grid-list>
+</div>

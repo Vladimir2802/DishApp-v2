@@ -30,11 +30,17 @@
 .header {
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 
   .example-card {
+    box-shadow: 5px 5px 10px black;
+    flex: 0 1 calc(33.3% - 32px);
     max-width: 300px;
-    margin: 0 auto;
+    height: 100%;
+    min-height: 550px;
+    margin: 0.5% auto;
   }
 
   &__cafe {
@@ -53,6 +59,7 @@
   &__phone {
     display: flex;
     justify-content: flex-end;
+    padding: 0px 16px;
   }
 
   &__week {
@@ -63,9 +70,15 @@
   &__book-menu {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-start;
 
     .material-icons {
       //justify-content: flex-end;
+    }
+
+    img{
+      margin-top: 2px;
+      margin-right: 4px;
     }
   }
 
@@ -81,6 +94,14 @@
   .work__week {
     font-size: 12px;
   }
+}
+
+.header * {
+  box-sizing: border-box;
+}
+
+.header > *:not(:last-child) {
+  margin-right: 32px;
 }
 
 mat-grid-list{

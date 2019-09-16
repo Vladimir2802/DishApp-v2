@@ -12,7 +12,7 @@ export const APP_URL = {
     store: api + 'cafes',
     one: api + 'cafes',
     update: api + 'cafes/',
-    delete: api + 'cafes/'
+    delete: api + 'cafes'
   },
   table: {
     all: api + 'tables',

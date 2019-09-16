@@ -15,6 +15,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import {MatGridListModule, MatTooltipModule} from '@angular/material';
+import { TableComponent } from './cafe/table/table.component';
 
 
 
@@ -30,6 +31,7 @@ import {MatGridListModule, MatTooltipModule} from '@angular/material';
     CafeComponent,
     DishComponent,
     CreateCafeComponent,
+    TableComponent,
   ],
   imports: [
     MainRoutingModule,

@@ -28,4 +28,8 @@ export class CafeService implements Resolve <any>{
   updateCafe(data){
     return this.request.post(APP_URL.cafe.update,data);
   }
+
+  deleteCafe(id:any){
+    return this.request.delete(`${APP_URL.cafe.delete}/${id}`);
+  }
 }

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CafeService} from '../shared/services/cafe.service';
-import {log} from 'util';
 
 @Component({
   selector: 'app-cafe',
@@ -57,24 +56,25 @@ export class CafeComponent implements OnInit {
       SundayClose: ['']
     });
     this.cafes = this.route.snapshot.data['data']['data'];
+    console.log(this.cafes);
   }
 
-  getCafe(){
+  getCafe() {
     this.cafes.forEach(item => {
       item.edit = false;
-    })
+    });
   }
 
   addPhoto(event) {
     this.newFile = event.target.files[0];
   }
 
-  openEditCafe(cafe){
+  openEditCafe(cafe) {
     this.condition = !this.condition;
     cafe.edit = true;
   }
 
-  closeEditCafe(){
+  closeEditCafe() {
     this.condition = !this.condition;
     this.getCafe();
   }
@@ -85,6 +85,12 @@ export class CafeComponent implements OnInit {
   //   })
   // }
 
+  deleteCafes(id){
+    this.cafeService.deleteCafe(id)
+      .subscribe(res => {
+        console.log(res);
+      })
+  }
 
 
 }

@@ -50,7 +50,7 @@
         <input type="time" class="form__input" formControlName="FridayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title-huy">Saturday</mat-list-item>
+        <mat-list-item class="form__title">Saturday</mat-list-item>
         <input type="time" class="form__input" formControlName="Saturday">
         <input type="time" class="form__input" formControlName="SaturdayClose">
       </mat-list>
@@ -83,12 +83,16 @@
         {{cafe.name}}
       </mat-card-title>
       <div class="header__book-menu">
-        <img src="../../../../assets/icons/table.svg" class="table-icons" alt="">
+        <img src="../../../../assets/icons/table.svg" class="table-icons" alt="" routerLink="/main/{{cafe.id}}/table">
         <i class="material-icons" routerLink="/main/{{cafe.menuId}}/categories">
           menu_book
         </i>
         <i class="material-icons" (click)="openEditCafe(cafe)">
           create
+        </i>
+
+        <i class="material-icons" (click)="deleteCafes(cafe.id)">
+          delete
         </i>
       </div>
       <div>

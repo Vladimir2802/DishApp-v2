@@ -20,10 +20,6 @@ const routes: Routes = [
       {path: 'cafe', component: CafeComponent, resolve: {data: CafeService}},
       {path: ':id/table', component: TableComponent, resolve: {data: TablesService}},
       {path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}},
-      {
-        path: ':id/categories', component: CategoriesComponent, resolve: {data: CategoriesService}, children: [
-          {path: 'dishes', component: DishComponent}]
-      },
       {path: '', redirectTo: 'cafe', pathMatch: 'full'}
     ]
   }

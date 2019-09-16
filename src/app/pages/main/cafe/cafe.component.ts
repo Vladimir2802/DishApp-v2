@@ -56,7 +56,8 @@ export class CafeComponent implements OnInit {
       SundayClose: ['']
     });
     this.cafes = this.route.snapshot.data['data']['data'];
-    console.log(this.cafes);
+    // console.log(this.cafes);
+    // this.getCafesId();
   }
 
   getCafe() {
@@ -85,12 +86,16 @@ export class CafeComponent implements OnInit {
   //   })
   // }
 
-  deleteCafes(id){
+  deleteCafes(id) {
     this.cafeService.deleteCafe(id)
       .subscribe(res => {
-        console.log(res);
-      })
+
+      });
   }
+
+  // getCafesId() {
+  //   this.cafes;
+  // }
 
 
 }

@@ -1,4 +1,6 @@
 <div style="height: 50px"></div>
+
+<div style="display: flex; justify-content: space-between;">
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
 
   <div (click)="getDishsById(category.id , i)" (dblclick)="editCategory(category)"
@@ -10,6 +12,8 @@
     </i>
   </div>
 
+</div>
+
   <div class="scroll-button">
 
     <div *ngIf="showMoreCategoriesArrows && lowestPagginationNumber != 0"
@@ -20,7 +24,7 @@
     </div>
 
     <div  *ngIf="showMoreCategoriesArrows && higestPagginationNumber < categories.length"
-         (click)="changeCategoriesPage(6, true)" (mouseover)="changeCategoriesPage(1, true, true)">
+          (click)="changeCategoriesPage(6, true)" (mouseover)="changeCategoriesPage(1, true, true)">
       <i class="material-icons">
         keyboard_arrow_right
       </i>

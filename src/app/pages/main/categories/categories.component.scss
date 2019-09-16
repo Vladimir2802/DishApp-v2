@@ -15,7 +15,6 @@
   }
 
 .scroll-button{
-  float: left;
   display: flex;
   align-items: center;
   padding-left: 55px;
@@ -96,9 +95,9 @@
   display: flex;
   flex-direction: row;
   background: white;
-  justify-content: space-between;
+  justify-content: flex-start;
+  width: 100%;
   //overflow: scroll;
-  margin: 0 4vw;
 }
 
 .example-box {

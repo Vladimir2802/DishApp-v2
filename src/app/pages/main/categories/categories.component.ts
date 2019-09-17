@@ -1,5 +1,5 @@
 import {Component, OnInit, EventEmitter} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CategoriesService} from '../shared/services/categories.service';
@@ -15,7 +15,8 @@ export class CategoriesComponent implements OnInit {
   constructor(public route: ActivatedRoute,
               public categoriesService: CategoriesService,
               public dishService: DishService,
-              public fb: FormBuilder) {
+              public fb: FormBuilder,
+              private router: Router) {
   }
 
   animationCategoryIndex; animationCategoryDurationTime; animationCategoryDirectionRight: boolean;
@@ -218,6 +219,11 @@ export class CategoriesComponent implements OnInit {
         // @ts-ignore
         category.name = data.data.name;
       });
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.router.navigate(['auth']);
   }
 
 }

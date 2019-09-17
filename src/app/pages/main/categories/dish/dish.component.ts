@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../shared/services/categories.service';
 import {ActivatedRoute} from '@angular/router';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-dish',
@@ -27,6 +28,7 @@ export class DishComponent implements OnInit {
   readonly: boolean = true;
   readonlyDishes: boolean = true;
   hide: boolean = true;
+  dishHaveBeenAdded: boolean;
 
   updateDishGroup: FormGroup;
   panelOpenState: boolean;
@@ -34,7 +36,8 @@ export class DishComponent implements OnInit {
   constructor(public dishService: DishService,
               public activatedRoute: ActivatedRoute,
               public categoriesService: CategoriesService,
-              public fb: FormBuilder) {
+              public fb: FormBuilder,
+              private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -96,14 +99,14 @@ export class DishComponent implements OnInit {
     // this.dishService.getAll(this.)
   }
 
-  addDish() {
-    this.dishService.createDish(this.newPrepareFormData())
-      .subscribe(res => {
-        this.dishId = res['data']['id'];
-        this.newGetDishesById();
-        this.addIngredients(res['data']['id']);
-      });
-  }
+  // addDish() {
+  //   this.dishService.createDish(this.newPrepareFormData())
+  //     .subscribe(res => {
+  //       this.dishId = res['data']['id'];
+  //       this.newGetDishesById();
+  //       this.addIngredients(res['data']['id']);
+  //     });
+  // }
 
   addIngredientsItem() {
     if (this.ingredientsGroup.valid) {
@@ -245,6 +248,8 @@ export class DishComponent implements OnInit {
   }
 
   initFormGroups() {
+    this.dishHaveBeenAdded = false;
+    this.newFile = undefined;
     this.ingredients.length = 0;
     this.dishGroup = this.fb.group({
       name: ['', [Validators.required]],
@@ -270,4 +275,40 @@ export class DishComponent implements OnInit {
     });
   }
 
+  addDish() {
+      if (!this.dishHaveBeenAdded) {
+        const FD = new FormData();
+        FD.append('lang', 'en');
+        FD.append('name', this.dishGroup.controls.name.value);
+        FD.append('description', this.dishGroup.controls.description.value);
+        FD.append('image', this.newFile);
+        FD.append('price', this.dishGroup.controls.price.value);
+        FD.append('weight', this.dishGroup.controls.weight.value);
+        FD.append('categoryId', this.categoryId);
+        this.dishService.createDish(FD)
+          .subscribe(data => {
+            this.dishHaveBeenAdded = true;
+            this.dishId = data['data']['id'];
+            this.newGetDishesById();
+          }, error => {
+            this.toastr.error('ERROR');
+          });
+      }
+  }
+
+  addIngredient() {
+    const FD = new FormData();
+    FD.append('lang', 'en');
+    FD.append('name', this.ingredientsGroup.controls.name.value);
+    FD.append('price', this.ingredientsGroup.controls.price.value);
+    FD.append('dishId', this.dishId);
+    this.dishService.createIngredients(FD)
+      .subscribe(res => {
+        this.ingredients.push(res['data']);
+        this.ingredientsGroup.patchValue({
+          name: '',
+          price: ''
+        });
+      });
+  }
 }

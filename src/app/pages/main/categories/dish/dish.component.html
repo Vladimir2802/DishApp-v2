@@ -1,79 +1,41 @@
-<div class="two-sections" *ngIf="!condition">
-  <mat-card class="example-card">
-
-    <form [formGroup]="dishGroup">
-      <div class="two-sections__item">
-        <div class="example-container">
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Name" formControlName="name">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput formControlName="description" placeholder="Description">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput formControlName="price" placeholder="Price" type="number" maxlength="8">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput formControlName="weight" placeholder="Weight" type="number" maxlength="6">
-          </mat-form-field>
-          <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
-
-          <i class="material-icons" (click)="toggle()">
-            block
-          </i>
-          <div class="two-sections__accordion" *ngIf="dishGroup.valid && newFile">
-            <mat-accordion>
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                   (opened)="addDish()"
-                                   (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    More details
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-
-
-                <form class="example-form" [formGroup]="ingredientsGroup">
-
-                  <div class="two-sections__form">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Name" formControlName="name">
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Price" formControlName="price" type="number" maxlength="8">
-                    </mat-form-field>
-                  </div>
-
-                  <i class="material-icons" style="cursor: pointer" (click)="addIngredientsItem()">
-                    add
-                  </i>
-
-                </form>
-              </mat-expansion-panel>
-            </mat-accordion>
-
-          </div>
-
-          <i class="material-icons" *ngIf="hide">
-            done_all
-          </i>
-
-        </div>
-      </div>
-    </form>
-  </mat-card>
-
+<!--<mat-form-field>-->
+<!--  <input matInput formControlName="description" placeholder="Description">-->
+<!--</mat-form-field>-->
+<div class="dish-creating" *ngIf="!condition">
+  <form class="dish-form" [formGroup]="dishGroup">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="description" placeholder="Description">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="price" placeholder="Price" type="number" maxlength="8">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="weight" placeholder="Weight" type="number" maxlength="6">
+    </mat-form-field>
+    <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
+  </form>
+  <button mat-button (click)="panelOpenState = true" (click)="addDish()" class="big-button" *ngIf="!panelOpenState && dishGroup.valid && newFile"><h3>Add ingredients</h3></button>
+  <form class="ingridients-form" [formGroup]="ingredientsGroup" *ngIf="panelOpenState && dishHaveBeenAdded">
+    <button mat-button class="big-button" (click)="addIngredient()"><h3>Add ingredient +</h3></button>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Price" formControlName="price" type="number" maxlength="8">
+    </mat-form-field>
+  </form>
+  <div *ngIf="ingredients.length" class="ingredients-list">
+    <label fxFlex>Added ingredients:</label>
+    <mat-divider></mat-divider>
+    <label *ngFor="let ingredient of ingredients" fxFlex>{{ingredient.name}}<mat-divider></mat-divider></label>
+  </div>
 </div>
-
-<div>
-  <mat-list role="list" *ngFor="let ingredientsValue of ingredients">
-    <mat-list-item role="listitem">{{ingredientsValue.name}}</mat-list-item>
-  </mat-list>
-</div>
-
 
 <div class="add-cafe">
-  <button mat-fab *ngIf="!newDishes.length" (click)="toggle('hide')" class="pulsing-button">
+  <button mat-fab *ngIf="!newDishes.length && condition" (click)="toggle('hide')" class="pulsing-button">
     <i class="material-icons color__icons">
       add
     </i>
@@ -85,11 +47,18 @@
     </i>
   </button>
 
-  <button mat-fab *ngIf="!condition && !hide && !dishGroup.invalid">
-    <i class="material-icons color__icons" (click)="addDishItem()">
+  <button mat-fab *ngIf="!condition && !hide && !dishGroup.invalid && newFile">
+    <i class="material-icons color__icons" (click)="addDish()" (click)="toggle()">
       check
     </i>
   </button>
+
+  <button mat-fab class="reverse" *ngIf="!condition && !hide">
+    <i class="material-icons color__icons" (click)="toggle()">
+      cancel
+    </i>
+  </button>
+
 </div>
 
 

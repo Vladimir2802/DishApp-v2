@@ -1,7 +1,21 @@
-<div style="height: 50px"></div>
+<!--<div style="height: 50px"></div>-->
 
 <div style="display: flex; justify-content: space-between;">
 <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+
+  <div class="dropdown">
+    <button mat-button [matMenuTriggerFor]="beforeMenu" matTooltip="Menu">
+      <i class="material-icons">
+        reorder
+      </i>
+      <mat-menu #beforeMenu="matMenu" xPosition="before" >
+        <!--<button mat-menu-item routerLink="/main/home"  routerLinkActive="active">Home</button>-->
+        <button mat-menu-item routerLink="/main/cafe"  routerLinkActive="active">Cafe</button>
+        <button mat-menu-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">Log Out</button>
+      </mat-menu>
+    </button>
+
+  </div>
 
   <div (click)="getDishsById(category.id , i)" (dblclick)="editCategory(category)"
        (cdkDragStarted)="categoryDraging = true" (cdkDragEnded)="categoryDraging = false"

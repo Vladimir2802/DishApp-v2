@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
         case '/main/' + 2 + '/categories': this.navBarHiden = true; break;
         default: this.addCafeButtonHiden = true; this.navBarHiden = false; break;
       }
-      console.log(this.router.url);
+      // console.log(this.router.url);
     });
   }
 

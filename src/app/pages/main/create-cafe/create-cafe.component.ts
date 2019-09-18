@@ -54,8 +54,8 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
       logo: [null]
     });
     this.timeGroup = this.fb.group({
-      Monday: [''],
-      MondayClose: [''],
+      Monday: ['07'],
+      MondayClose: ['21'],
       Tuesday: [''],
       TuesdayClose: [''],
       Wednesday: [''],
@@ -137,6 +137,9 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
   onLocationSelected(ev){
     this.lat = ev.latitude;
     this.lng = ev.longitude;
+
+    this.cafeService.setPosition(this.lat, this.lng);
   }
+
 
 }

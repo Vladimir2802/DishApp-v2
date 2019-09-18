@@ -4,7 +4,7 @@
     <div *ngFor="let cafe of cafes">
 
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
-        <input matInput placeholder="Name" formControlName="name" value="{{cafe.name}}">
+        <input matInput placeholder="Name" formControlName="name">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
@@ -61,8 +61,8 @@
       </mat-list>
     </div>
 
-    <div class="form__btn">
-      <i class="material-icons">
+    <div class="form__btn" >
+      <i class="material-icons" (click)="updateCafe()">
         done_all
       </i>
       <i class="material-icons" (click)="closeEditCafe()">

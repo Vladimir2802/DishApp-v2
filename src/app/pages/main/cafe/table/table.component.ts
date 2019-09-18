@@ -16,6 +16,8 @@ export class TableComponent implements OnInit {
   tableValueAll: any = [];
   tableId: any = [];
   tableGroup: FormGroup;
+  www: any;
+  fd: any = [];
 
 
   constructor(public tableService: TablesService,
@@ -31,6 +33,9 @@ export class TableComponent implements OnInit {
     this.tableData = this.table['data'];
     this.tableValue();
     // console.log(this.tableValueAll);
+    this.www = this.route.snapshot.params.id;
+    console.log(this.www);
+
   }
 
   tableValue() {
@@ -39,32 +44,38 @@ export class TableComponent implements OnInit {
     });
   }
 
-  deleteTable(id){
-    this.tableValueAll.forEach(item =>{
+  deleteTable(id) {
+    this.tableValueAll.forEach(item => {
       this.tableId = item.id;
       // console.log(this.tableId);
     });
     this.tableService.delete(this.tableId)
       .subscribe(res => {
         // console.log(res);
-      })
+      });
   }
 
   addTable() {
-    this.tableService.createTable({
-      number: this.tableGroup,
-      cafe_id: this.route.snapshot.params.id
-    })
+    this.fd = new FormData();
+    this.fd.append('cafe_id', this.route.snapshot.params.id);
+    this.fd.append('number', this.tableGroup.controls.number.value);
+    this.tableService.createTable(this.fd)
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
+
+  initFormGroup() {
+    this.tableGroup = this.fb.group({
+      number: [''],
+    });
+  }
+
+  updateTable(id){
+    this.tableService.updateTable(id, this.fd)
       .subscribe(res => {
         console.log(res);
       })
+
   }
-
-  initFormGroup(){
-    this.tableGroup = this.fb.group({
-      number: [''],
-    })
-  }
-
-
 }

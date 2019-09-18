@@ -15,6 +15,8 @@ export class CafeComponent implements OnInit {
   newFile: any;
   condition: boolean = true;
   cafeId: any;
+  workTime: string[];
+
 
   week: any = [
     'Monday',
@@ -25,6 +27,7 @@ export class CafeComponent implements OnInit {
     'Saturday',
     'Sunday'
   ];
+
 
   constructor(public route: ActivatedRoute,
               public router: Router,
@@ -56,8 +59,9 @@ export class CafeComponent implements OnInit {
       SundayClose: ['']
     });
     this.cafes = this.route.snapshot.data['data']['data'];
-    // console.log(this.cafes);
+    console.log(this.cafes);
     // this.getCafesId();
+    this.cafeIdValue();
   }
 
   getCafe() {
@@ -73,18 +77,32 @@ export class CafeComponent implements OnInit {
   openEditCafe(cafe) {
     this.condition = !this.condition;
     cafe.edit = true;
+    this.cafeId = cafe.id;
+    this.cafeGroup.patchValue({
+      name: cafe.name,
+      address: cafe.address,
+      phone: cafe.phone
+    });
+
+    let patchWeeks = {};
+    for (let key in cafe.workTime) {
+      let weekDay = this.week[key];
+      let val = cafe.workTime[key];
+
+      if (val !== '-') {
+        let times = val.split(' - ');
+
+        patchWeeks[weekDay] = times[0];
+        patchWeeks[`${weekDay}Close`] = times[1];
+      }
+    }
+    this.timeGroup.patchValue(patchWeeks);
   }
 
   closeEditCafe() {
     this.condition = !this.condition;
     this.getCafe();
   }
-
-  // setTimeWork(){
-  //   this.timeGroup.patchValue({
-  //
-  //   })
-  // }
 
   deleteCafes(id) {
     this.cafeService.deleteCafe(id)
@@ -93,9 +111,56 @@ export class CafeComponent implements OnInit {
       });
   }
 
-  // getCafesId() {
-  //   this.cafes;
-  // }
+  updateCafe() {
+    this.plusTime();
+    this.cafeService.updateCafe(this.cafeId, this.newPrepareFormDataDb())
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
 
+  newPrepareFormDataDb() {
+    let fd = new FormData();
+    console.log(this.cafeGroup.value);
+    for (let prop in this.cafeGroup.value) {
+      if (this.cafeGroup.value.hasOwnProperty(prop)) {
+        fd.append(`${prop}`, this.cafeGroup.value[prop]);
+      }
+    }
+    for (let day of this.workTime) {
+      fd.append(`work_time`, day);
+    }
+    let position = this.cafeService.getPosition();
+    // fd.append('logo', this.newFile);
+    fd.append('position[0]', position.lat);
+    fd.append('position[1]', position.lng);
+    console.log(fd);
+    return fd;
+
+  }
+
+  plusTime() {
+    this.workTime = [];
+    for (let day of this.week) {
+      let open = this.timeGroup.value[day];
+      let close = this.timeGroup.value[`${day}Close`];
+
+      console.log({day, open, close});
+
+      if (open && close) {
+        this.workTime.push(`${open} - ${close}`);
+      } else {
+        this.workTime.push('-');
+      }
+    }
+    console.log(this.workTime);
+  }
+
+  cafeIdValue() {
+    // this.cafes.forEach(item => {
+    //   this.cafeId = item.id;
+    //   console.log(this.cafeId);
+    // });
+  }
 
 }

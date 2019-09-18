@@ -54,20 +54,20 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
       logo: [null]
     });
     this.timeGroup = this.fb.group({
-      Monday: [''],
-      MondayClose: [''],
-      Tuesday: [''],
-      TuesdayClose: [''],
-      Wednesday: [''],
-      WednesdayClose: [''],
-      Thursday: [''],
-      ThursdayClose: [''],
-      Friday: [''],
-      FridayClose: [''],
-      Saturday: [''],
-      SaturdayClose: [''],
-      Sunday: [''],
-      SundayClose: ['']
+      Monday: ['07:00'],
+      MondayClose: ['23:00'],
+      Tuesday: ['07:00'],
+      TuesdayClose: ['23:00'],
+      Wednesday: ['07:00'],
+      WednesdayClose: ['23:00'],
+      Thursday: ['07:00'],
+      ThursdayClose: ['23:00'],
+      Friday: ['07:00'],
+      FridayClose: ['23:00'],
+      Saturday: ['07:00'],
+      SaturdayClose: ['23:00'],
+      Sunday: ['07:00'],
+      SundayClose: ['23:00']
     });
 
   }
@@ -137,6 +137,9 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
   onLocationSelected(ev){
     this.lat = ev.latitude;
     this.lng = ev.longitude;
+
+    this.cafeService.setPosition(this.lat, this.lng);
   }
+
 
 }

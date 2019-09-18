@@ -7,20 +7,28 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CafeService implements Resolve <any>{
+export class CafeService implements Resolve <any> {
+
+  position: any = {
+    lat: '',
+    lng: ''
+};
 
   private selectedMenu: number;
 
-  constructor(public request: RequestService) {}
+  constructor(public request: RequestService) {
+  }
+
 
   resolve(): Observable<any> | any {
     return this.getAll();
   }
+
   getAll() {
     return this.request.get(APP_URL.cafe.all);
   }
 
-  getIndex(id){
+  getIndex(id) {
     return this.request.get(`${APP_URL.cafe.one}/${id}`);
   }
 
@@ -28,12 +36,21 @@ export class CafeService implements Resolve <any>{
     return this.request.post(APP_URL.cafe.store, data);
   }
 
-  updateCafe(data){
-    return this.request.post(APP_URL.cafe.update,data);
+  updateCafe(id, data) {
+    return this.request.post(`${APP_URL.cafe.update}${id}`, data);
   }
 
-  deleteCafe(id:any){
+  deleteCafe(id: any) {
     return this.request.delete(`${APP_URL.cafe.delete}/${id}`);
+  }
+
+  setPosition(lat, lng) {
+    this.position.lat = lat;
+    this.position.lng = lng;
+  }
+
+  getPosition(){
+    return  this.position;
   }
 
   setSelectedMenu(id: number){

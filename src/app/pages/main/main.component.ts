@@ -18,11 +18,11 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(data => {
       switch (this.router.url) {
-        case '/main/cafe': this.addCafeButtonHiden = false; break;
+        case '/main/cafe': this.addCafeButtonHiden = false;  this.navBarHiden = false; break;
         case '/main/' + this.cafeService.getSelectedMenu() + '/categories': this.navBarHiden = true; break;
         default: this.addCafeButtonHiden = true; this.navBarHiden = false; break;
       }
-      console.log(this.router.url);
+      // console.log(this.router.url);
     });
   }
 

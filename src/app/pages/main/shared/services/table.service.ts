@@ -31,5 +31,9 @@ export class TablesService implements Resolve <any> {
     return this.request.post(APP_URL.table.store, data);
   }
 
+  updateTable(id:any, data){
+    return this.request.post(`${APP_URL.table.update}/${id}`, data);
+  }
+
 }
 

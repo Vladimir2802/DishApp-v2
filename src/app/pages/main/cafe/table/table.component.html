@@ -1,5 +1,11 @@
 <div style="height: 36px;"></div>
 
+<div [formGroup]="tableGroup">
+  <input type="text" formControlName="number">
+  <i class="material-icons" (click)="addTable()">
+    add
+  </i>
+</div>
 
 
 <div *ngFor="let tables of tableValueAll">
@@ -10,14 +16,12 @@
     delete
   </i>
 
+  <i class="material-icons" (click)="updateTable(tables.id)">
+    create
+  </i>
 
 
-  <div [formGroup]="tableGroup">
-    <input type="text" formControlName="number">
-    <i class="material-icons" (click)="addTable()">
-      add
-    </i>
-  </div>
+
 </div>
 
 

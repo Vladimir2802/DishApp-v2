@@ -2,7 +2,9 @@
 <div class="form">
   <form class="example-form" [formGroup]="cafeGroup" *ngIf="!condition">
     <div *ngFor="let cafe of cafes">
-      <!--<img mat-card-image class="image-logo" src="{{cafe.logo}}" *ngIf="cafe.edit">-->
+      <!--<mat-card *ngIf="cafe.edit">-->
+      <img  class="image-logo" src="{{cafe.logo}}" *ngIf="cafe.edit">
+      <!--</mat-card>-->
 
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
         <input matInput placeholder="Name" formControlName="name" value="{{cafe.name}}">

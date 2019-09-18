@@ -14,8 +14,10 @@ export class CafeComponent implements OnInit {
   timeGroup: FormGroup;
   newFile: any;
   condition: boolean = true;
-  cafeId: any;
+  cafe: any;
   workTime: string[];
+  lat = '';
+  lng = '';
 
 
   week: any = [
@@ -77,13 +79,14 @@ export class CafeComponent implements OnInit {
   openEditCafe(cafe) {
     this.condition = !this.condition;
     cafe.edit = true;
-    this.cafeId = cafe.id;
+    this.cafe = cafe;
     this.cafeGroup.patchValue({
       name: cafe.name,
       address: cafe.address,
       phone: cafe.phone
     });
-
+    this.lat = cafe.position[0];
+    this.lng = cafe.position[1];
     let patchWeeks = {};
     for (let key in cafe.workTime) {
       let weekDay = this.week[key];
@@ -113,7 +116,7 @@ export class CafeComponent implements OnInit {
 
   updateCafe() {
     this.plusTime();
-    this.cafeService.updateCafe(this.cafeId, this.newPrepareFormDataDb())
+    this.cafeService.updateCafe(this.cafe.id, this.newPrepareFormDataDb())
       .subscribe(res => {
         console.log(res);
       });
@@ -123,17 +126,17 @@ export class CafeComponent implements OnInit {
     let fd = new FormData();
     console.log(this.cafeGroup.value);
     for (let prop in this.cafeGroup.value) {
-      if (this.cafeGroup.value.hasOwnProperty(prop)) {
+      if (prop !== 'logo' && this.cafeGroup.value.hasOwnProperty(prop)) {
         fd.append(`${prop}`, this.cafeGroup.value[prop]);
       }
     }
     for (let day of this.workTime) {
-      fd.append(`work_time`, day);
+      fd.append(`work_time[]`, day);
     }
     let position = this.cafeService.getPosition();
-    // fd.append('logo', this.newFile);
-    fd.append('position[0]', position.lat);
-    fd.append('position[1]', position.lng);
+    fd.append('logo', this.newFile);
+    fd.append('position[0]', this.lat );
+    fd.append('position[1]', this.lng );
     console.log(fd);
     return fd;
 
@@ -154,6 +157,23 @@ export class CafeComponent implements OnInit {
       }
     }
     console.log(this.workTime);
+  }
+
+
+  onAutocompleteSelected(ev){
+    console.log(ev);
+    this.cafeGroup.patchValue({
+      address: ev.name
+    });
+  }
+
+  onLocationSelected(ev){
+
+    console.log(ev);
+    this.lat = ev.latitude;
+    this.lng = ev.longitude;
+
+    this.cafeService.setPosition(this.lat, this.lng);
   }
 
   cafeIdValue() {

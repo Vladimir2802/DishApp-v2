@@ -83,7 +83,7 @@
       </mat-card-title>
       <div class="header__book-menu">
         <img src="../../../../assets/icons/table.svg" class="table-icons" alt="" routerLink="/main/{{cafe.id}}/table">
-        <i class="material-icons" routerLink="/main/{{cafe.menuId}}/categories">
+        <i class="material-icons" routerLink="/main/{{cafe.menuId}}/categories" (click)="cafeService.setSelectedMenu(cafe.menuId)">
           menu_book
         </i>
         <i class="material-icons" (click)="openEditCafe(cafe)">
@@ -98,7 +98,8 @@
 
       </div>
     </mat-card-header>
-    <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
+    <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}"
+    (click)="cafeService.setSelectedMenu(cafe.menuId)">
     <mat-list role="list" class="header__address">
       <mat-list-item class="work__address">{{cafe.address}}</mat-list-item>
     </mat-list>

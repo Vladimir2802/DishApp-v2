@@ -8,6 +8,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CafeService implements Resolve <any>{
+
+  private selectedMenu: number;
+
   constructor(public request: RequestService) {}
 
   resolve(): Observable<any> | any {
@@ -31,5 +34,13 @@ export class CafeService implements Resolve <any>{
 
   deleteCafe(id:any){
     return this.request.delete(`${APP_URL.cafe.delete}/${id}`);
+  }
+
+  setSelectedMenu(id: number){
+    this.selectedMenu = id;
+  }
+
+  getSelectedMenu(){
+    return this.selectedMenu;
   }
 }

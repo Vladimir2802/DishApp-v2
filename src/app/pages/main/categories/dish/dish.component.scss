@@ -41,12 +41,13 @@
 //MENU UPDATE
 .menu {
   //margin: 0 auto;
-  //padding: 10px;
   //text-align: center;
   min-height: 90vh;
   overflow: -moz-scrollbars-none;
 
   .example-box {
+    padding: 10px;
+
     //margin: 0 0 30px 0;
     margin: 10px auto 30px auto;
     //padding-bottom: 30px;
@@ -127,7 +128,7 @@
 
   &__item {
     position: absolute;
-    top: 12px;
+    top: 18px;
     right: 20px;
     display: flex;
     justify-content: space-between;

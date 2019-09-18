@@ -2,19 +2,17 @@
 <div class="form">
   <form class="example-form" [formGroup]="cafeGroup" *ngIf="!condition">
     <div *ngFor="let cafe of cafes">
+      <!--<img mat-card-image class="image-logo" src="{{cafe.logo}}" *ngIf="cafe.edit">-->
 
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
-        <input matInput placeholder="Name" formControlName="name">
+        <input matInput placeholder="Name" formControlName="name" value="{{cafe.name}}">
       </mat-form-field>
-
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
         <input matInput placeholder="Address" formControlName="address" value="{{cafe.address}}">
       </mat-form-field>
-
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
         <input type="tel" matInput placeholder="phone" formControlName="phone" value="{{cafe.phone}}">
       </mat-form-field>
-
       <input *ngIf="cafe.edit" type="file" (change)="addPhoto($event)" formControlName="logo">
     </div>
   </form>
@@ -61,7 +59,7 @@
       </mat-list>
     </div>
 
-    <div class="form__btn" >
+    <div class="form__btn">
       <i class="material-icons" (click)="updateCafe()">
         done_all
       </i>
@@ -98,6 +96,8 @@
 
       </div>
     </mat-card-header>
+
+
     <img mat-card-image class="header__logo" routerLink="/main/{{cafe.menuId}}/categories" src="{{cafe.logo}}">
     <mat-list role="list" class="header__address">
       <mat-list-item class="work__address">{{cafe.address}}</mat-list-item>

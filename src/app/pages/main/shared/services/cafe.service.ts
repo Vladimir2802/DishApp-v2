@@ -14,6 +14,8 @@ export class CafeService implements Resolve <any> {
     lng: ''
 };
 
+  private selectedMenu: number;
+
   constructor(public request: RequestService) {
   }
 
@@ -49,5 +51,13 @@ export class CafeService implements Resolve <any> {
 
   getPosition(){
     return  this.position;
+  }
+
+  setSelectedMenu(id: number){
+    this.selectedMenu = id;
+  }
+
+  getSelectedMenu(){
+    return this.selectedMenu;
   }
 }

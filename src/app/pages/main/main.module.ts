@@ -16,10 +16,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import {MatGridListModule, MatTooltipModule} from '@angular/material';
 import { TableComponent } from './cafe/table/table.component';
-
-
-
-
+import {AutosizeModule} from 'ngx-autosize';
 
 
 @NgModule({
@@ -46,6 +43,7 @@ import { TableComponent } from './cafe/table/table.component';
     MatGoogleMapsAutocompleteModule.forRoot(),
     MatGridListModule,
     MatTooltipModule,
+    AutosizeModule,
   ],
   exports: [
     NgxMaterialTimepickerModule

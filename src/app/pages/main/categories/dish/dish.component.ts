@@ -77,7 +77,7 @@ export class DishComponent implements OnInit {
             description: res['description'],
             price: res['price'],
             priceWeight: ['priceWeight'],
-            image: ['image'],
+            // image: ['image'],
             weight: ['weight'],
             lang: ['en']
           });
@@ -172,7 +172,9 @@ export class DishComponent implements OnInit {
         fd.append(`${prop}`, this.dishGroup.value[prop]);
       }
     }
-    fd.append('image', this.newFile);
+    if(this.newFile) {
+      fd.append('image', this.newFile);
+    }
     fd.append('categoryId', this.categoryId);
     fd.append('lang', 'en');
     return fd;
@@ -182,6 +184,7 @@ export class DishComponent implements OnInit {
     this.dishId = dish.id;
     this.dishService.updateDish(this.dishId, this.newPrepareFormDataDb())
       .subscribe(res => {
+        this.newFile = null;
         this.newGetDishesById();
       });
 
@@ -194,7 +197,9 @@ export class DishComponent implements OnInit {
         fd.append(`${prop}`, this.updateDishGroup.value[prop]);
       }
     }
-    fd.append('image', this.newFile);
+    if(this.newFile) {
+      fd.append('image', this.newFile);
+    }
     fd.append('categoryId', this.categoryId);
     return fd;
   }

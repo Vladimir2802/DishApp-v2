@@ -70,7 +70,7 @@
 
       <div class="example-box " *ngFor="let dish of newDishes" cdkDrag (dblclick)="dblClickDishes(dish)">
         <img class="menu__image" src="{{dish.image}}">
-        <input type="file" (change)="newAddPhoto($event)" *ngIf="!dish.edit" formControlName="image">
+        <input type="file" (change)="newAddPhoto($event)" *ngIf="!dish.edit">
         <div class="menu-info">
           <input [readonly]="dish.edit" class="menu-info__name" value="{{dish.name}}" formControlName="name">
           <!--<i class="fas fa-euro-sign menu-info__image"></i>-->
@@ -78,7 +78,7 @@
 
         </div>
 
-        <textarea [readOnly]="dish.edit" class="menu__description" value="{{dish.description}}"
+        <textarea autosize [readOnly]="dish.edit" class="menu__description" value="{{dish.description}}"
                   formControlName="description"></textarea>
         <div class="menu__weight">
           <p>weight:</p>
@@ -92,8 +92,10 @@
                 More details
               </mat-expansion-panel-header>
               <div *ngFor="let item of dish.ingredients" class="expansion-panel">
-                <p>{{item.name}}</p>
-                <p>{{item.price}}</p>
+<!--                <p>{{item.name}}</p>-->
+<!--                <p>{{item.price}}</p>-->
+                <input [readOnly]="dish.edit" value="{{item.name}}">
+                <input [readOnly]="dish.edit" value="{{item.price}}">
               </div>
             </mat-expansion-panel>
           </mat-accordion>

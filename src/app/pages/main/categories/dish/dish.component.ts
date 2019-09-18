@@ -296,6 +296,17 @@ export class DishComponent implements OnInit {
       }
   }
 
+  cancelDishAdd() {
+    if (this.dishHaveBeenAdded) {
+      this.dishService.delete(this.dishId)
+        .subscribe(data => {
+          this.panelOpenState = false;
+          this.newGetDishesById();
+        });
+    }else{
+    }
+  }
+
   addIngredient() {
     const FD = new FormData();
     FD.append('lang', 'en');

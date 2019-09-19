@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DishService} from '../../shared/services/dish.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../shared/services/categories.service';
 import {ActivatedRoute} from '@angular/router';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
@@ -17,6 +17,7 @@ export class DishComponent implements OnInit {
   @Input() newDishes: any = [];
   dishGroup: FormGroup;
   ingredientsGroup: FormGroup;
+  ingredientsUpdateGroup: FormGroup;
   ingredients: any = [];
   complete: boolean = false;
   newFile: any;
@@ -91,7 +92,6 @@ export class DishComponent implements OnInit {
         this.newDishes.forEach(item => {
           item.edit = true;
         });
-        // console.log(this.newDishes);
       });
   }
 
@@ -165,6 +165,13 @@ export class DishComponent implements OnInit {
     });
   }
 
+  changeIngredientProperty(ingredient, dishIndex, ingIndex) {
+    // @ts-ignore
+    ingredient.name = document.getElementsByClassName('dish-search')[dishIndex].getElementsByClassName('ingredients-input__name')[ingIndex].value;
+    // @ts-ignore
+    ingredient.price = document.getElementsByClassName('dish-search')[dishIndex].getElementsByClassName('ingredients-input__price')[ingIndex].value;
+  }
+
   newPrepareFormData() {
     let fd = new FormData();
     for (let prop in this.dishGroup.value) {
@@ -184,10 +191,17 @@ export class DishComponent implements OnInit {
     this.dishId = dish.id;
     this.dishService.updateDish(this.dishId, this.newPrepareFormDataDb())
       .subscribe(res => {
+        dish.ingredients.forEach((item, index) => {
+          const fd = new FormData();
+          fd.append('lang', 'en');
+          fd.append('name', item.name);
+          fd.append('price', item.price);
+          this.dishService.updateIngredients(item.id, fd)
+            .subscribe(data => {});
+        });
         this.newFile = null;
         this.newGetDishesById();
       });
-
   }
 
   newPrepareFormDataDb() {

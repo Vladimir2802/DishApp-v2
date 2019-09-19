@@ -68,7 +68,7 @@
 
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
 
-      <div class="example-box " *ngFor="let dish of newDishes" cdkDrag (dblclick)="dblClickDishes(dish)">
+      <div class="example-box dish-search" *ngFor="let dish of newDishes; let i = index" cdkDrag (dblclick)="dblClickDishes(dish)">
         <img class="menu__image" src="{{dish.image}}">
         <input type="file" (change)="newAddPhoto($event)" *ngIf="!dish.edit">
         <div class="menu-info">
@@ -91,11 +91,11 @@
               <mat-expansion-panel-header>
                 More details
               </mat-expansion-panel-header>
-              <div *ngFor="let item of dish.ingredients" class="expansion-panel">
+              <div *ngFor="let item of dish.ingredients; let j = index" class="expansion-panel">
 <!--                <p>{{item.name}}</p>-->
 <!--                <p>{{item.price}}</p>-->
-                <input [readOnly]="dish.edit" value="{{item.name}}">
-                <input [readOnly]="dish.edit" value="{{item.price}}">
+                <input [readOnly]="dish.edit" value="{{item.name}}" class="ingredients-input__name" (change)="changeIngredientProperty(item, i, j)">
+                <input [readOnly]="dish.edit" value="{{item.price}}" class="ingredients-input__price" (change)="changeIngredientProperty(item, i, j)">
               </div>
             </mat-expansion-panel>
           </mat-accordion>

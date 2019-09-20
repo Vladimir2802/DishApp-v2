@@ -4,31 +4,31 @@
 <div class="dish-creating" *ngIf="!condition">
   <form class="dish-form" [formGroup]="dishGroup">
     <mat-form-field>
-      <input matInput placeholder="Name" formControlName="name">
+      <input matInput placeholder="{{ 'DISH.NAME' | translate }}" formControlName="name">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="description" placeholder="Description">
+      <input matInput formControlName="description" placeholder="{{ 'DISH.DESCRIPTION' | translate }}">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="price" placeholder="Price" type="number" maxlength="8">
+      <input matInput formControlName="price" placeholder="{{ 'DISH.PRICE' | translate }}" type="number" maxlength="8">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="weight" placeholder="Weight" type="number" maxlength="6">
+      <input matInput formControlName="weight" placeholder="{{ 'DISH.WEIGHT' | translate }}" type="number" maxlength="6">
     </mat-form-field>
     <input (change)="newAddPhoto($event)" type="file" placeholder="Image">
   </form>
-  <button mat-button (click)="panelOpenState = true" (click)="addDish()" class="big-button" *ngIf="!panelOpenState && dishGroup.valid && newFile"><h3>Add ingredients</h3></button>
+  <button mat-button (click)="panelOpenState = true" (click)="addDish()" class="big-button" *ngIf="!panelOpenState && dishGroup.valid && newFile"><h3>{{ 'DISH.ADDINGREDIENTS' | translate }}</h3></button>
   <form class="ingridients-form" [formGroup]="ingredientsGroup" *ngIf="panelOpenState && dishHaveBeenAdded">
-    <button mat-button class="big-button" (click)="addIngredient()" disabled="{{ingredientsGroup.invalid}}"><h3>Add ingredient +</h3></button>
+    <button mat-button class="big-button" (click)="addIngredient()" disabled="{{ingredientsGroup.invalid}}"><h3>{{ 'DISH.ADDINGREDIENT' | translate }} +</h3></button>
     <mat-form-field>
-      <input matInput placeholder="Name" formControlName="name">
+      <input matInput placeholder="{{ 'DISH.NAME' | translate }}" formControlName="name">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Price" formControlName="price" type="number" maxlength="8">
+      <input matInput placeholder="{{ 'DISH.PRICE' | translate }}" formControlName="price" type="number" maxlength="8">
     </mat-form-field>
   </form>
   <div *ngIf="ingredients.length" class="ingredients-list">
-    <label fxFlex>Added ingredients:</label>
+    <label fxFlex>{{ 'DISH.ADDEDINGREDIENTS' | translate }}:</label>
     <mat-divider></mat-divider>
     <label *ngFor="let ingredient of ingredients" fxFlex>{{ingredient.name}}<mat-divider></mat-divider></label>
   </div>
@@ -70,6 +70,7 @@
 
       <div class="example-box dish-search" *ngFor="let dish of newDishes; let i = index" cdkDrag (dblclick)="dblClickDishes(dish)">
         <img class="menu__image" src="{{dish.image}}">
+        <div *ngIf="!dish.image" style="height: 36px"></div>
         <input type="file" (change)="newAddPhoto($event)" *ngIf="!dish.edit">
         <div class="menu-info">
           <input [readonly]="dish.edit" class="menu-info__name" value="{{dish.name}}" formControlName="name">
@@ -81,7 +82,7 @@
         <textarea autosize [readOnly]="dish.edit" class="menu__description" value="{{dish.description}}"
                   formControlName="description"></textarea>
         <div class="menu__weight">
-          <p>weight:</p>
+          <p>{{ "DISH.WEIGHT" | translate }}:</p>
           <input [readonly]="dish.edit" class="menu__weight-input" value="{{dish.weight}}" formControlName="weight">
         </div>
 
@@ -89,7 +90,7 @@
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
-                More details
+                {{ 'DISH.INGREDIENTS' | translate }}
               </mat-expansion-panel-header>
               <div *ngFor="let item of dish.ingredients; let j = index" class="expansion-panel">
 <!--                <p>{{item.name}}</p>-->

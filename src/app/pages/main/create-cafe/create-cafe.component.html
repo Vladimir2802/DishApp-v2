@@ -1,12 +1,12 @@
 <div style="height: 36px"></div>
 <form class="example-form" [formGroup]="cafeGroup">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Name" formControlName="name">
+    <input matInput placeholder="{{ 'DISH.NAME' | translate }}" formControlName="name">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <input matInput
-           placeholder="Address"
+           placeholder="{{ 'CAFE.ADDRESS' | translate }}"
            matGoogleMapsAutocomplete
            [country]="ua"
            (onAutocompleteSelected)="onAutocompleteSelected($event)"
@@ -15,7 +15,7 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input type="tel" matInput placeholder="phone" formControlName="phone">
+    <input type="tel" matInput placeholder="{{ 'CAFE.PHONE' | translate }}" formControlName="phone">
   </mat-form-field>
 
   <input type="file"  (change)="addPhoto($event)" formControlName="logo">
@@ -30,37 +30,37 @@
 
   <div >
     <mat-list>
-      <mat-list-item>Monday</mat-list-item>
+      <mat-list-item>{{ 'DATES.MONDAY' | translate }}</mat-list-item>
       <input type="time"  formControlName="Monday" class="time__week">
       <input type="time"  formControlName="MondayClose" class="time__week">
     </mat-list>
     <mat-list>
-      <mat-list-item>Tuesday</mat-list-item>
+      <mat-list-item>{{ 'DATES.TUESDAY' | translate }}</mat-list-item>
       <input type="time" formControlName="Tuesday" class="time__week">
       <input type="time" formControlName="TuesdayClose" class="time__week">
     </mat-list>
     <mat-list>
-      <mat-list-item>Wednesday</mat-list-item>
+      <mat-list-item>{{ 'DATES.WEDNESDAY' | translate }}</mat-list-item>
       <input type="time" formControlName="Wednesday" class="time__week">
       <input type="time" formControlName="WednesdayClose" class="time__week">
     </mat-list>
     <mat-list>
-      <mat-list-item>Thursday</mat-list-item>
+      <mat-list-item>{{ 'DATES.THURSDAY' | translate }}</mat-list-item>
       <input type="time" formControlName="Thursday" class="time__week">
       <input type="time" formControlName="ThursdayClose" class="time__week">
     </mat-list>
     <mat-list>
-      <mat-list-item>Friday</mat-list-item>
+      <mat-list-item>{{ 'DATES.FRIDAY' | translate }}</mat-list-item>
       <input type="time" formControlName="Friday" class="time__week">
       <input type="time" formControlName="FridayClose" class="time__week">
     </mat-list>
     <mat-list>
-      <mat-list-item>Saturday</mat-list-item>
+      <mat-list-item>{{ 'DATES.SATURDAY' | translate }}</mat-list-item>
       <input type="time" formControlName="Saturday" class="time__week">
       <input type="time" formControlName="SaturdayClose" class="time__week">
     </mat-list>
     <mat-list>
-      <mat-list-item>Sunday</mat-list-item>
+      <mat-list-item>{{ 'DATES.SUNDAY' | translate }}</mat-list-item>
       <input type="time" formControlName="Sunday" class="time__week">
       <input type="time" formControlName="SundayClose" class="time__week">
     </mat-list>

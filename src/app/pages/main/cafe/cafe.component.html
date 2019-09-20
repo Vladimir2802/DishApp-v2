@@ -7,7 +7,7 @@
       <!--</mat-card>-->
 
       <mat-form-field class="example-full-width" *ngIf="cafe.edit">
-        <input matInput placeholder="Name" formControlName="name" value="{{cafe.name}}">
+        <input matInput placeholder="{{ 'DISH.NAME' | translate }}" formControlName="name" value="{{cafe.name}}">
       </mat-form-field>
       <!--<mat-form-field class="example-full-width" *ngIf="cafe.edit">-->
       <!--<input matInput placeholder="Address" formControlName="address" value="{{cafe.address}}">-->
@@ -36,37 +36,37 @@
 
       <mat-list class="form__list">
 
-        <mat-list-item class="form__title">Monday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.MONDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Monday">
         <input type="time" class="form__input" formControlName="MondayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title">Tuesday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.TUESDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Tuesday">
         <input type="time" class="form__input" formControlName="TuesdayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title">Wednesday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.WEDNESDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Wednesday">
         <input type="time" class="form__input" formControlName="WednesdayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title">Thursday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.THURSDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Thursday">
         <input type="time" class="form__input" formControlName="ThursdayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title">Friday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.FRIDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Friday">
         <input type="time" class="form__input" formControlName="FridayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title">Saturday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.SATURDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Saturday">
         <input type="time" class="form__input" formControlName="SaturdayClose">
       </mat-list>
       <mat-list>
-        <mat-list-item class="form__title">Sunday</mat-list-item>
+        <mat-list-item class="form__title">{{ "DATES.SUNDAY" | translate }}</mat-list-item>
         <input type="time" class="form__input" formControlName="Sunday">
         <input type="time" class="form__input" formControlName="SundayClose">
       </mat-list>
@@ -118,9 +118,16 @@
     <div class="header__week">
 
       <div>
-        <mat-list role="list" class="week__items" *ngFor="let week of week">
-          <mat-list-item class="work__week">{{week}}</mat-list-item>
-        </mat-list>
+<!--        <mat-list role="list" class="week__items" *ngFor="let week of week">-->
+<!--          <mat-list-item class="work__week">{{week}}</mat-list-item>-->
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.MONDAY' | translate }}</mat-list-item></mat-list>
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.TUESDAY' | translate }}</mat-list-item></mat-list>
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.WEDNESDAY' | translate }}</mat-list-item></mat-list>
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.THURSDAY' | translate }}</mat-list-item></mat-list>
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.FRIDAY' | translate }}</mat-list-item></mat-list>
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.SATURDAY' | translate }}</mat-list-item></mat-list>
+        <mat-list role="list" class="week__items"><mat-list-item class="work__week">{{ 'DATES.SUNDAY' | translate }}</mat-list-item></mat-list>
+<!--        </mat-list>-->
       </div>
       <div>
         <mat-list role="list" class="week__items" *ngFor="let time of cafe.workTime">

@@ -3,19 +3,19 @@
 
     <input class="form-group__input"
            formControlName="email"
-           type="text" placeholder="Email">
+           type="text" placeholder="{{ 'AUTH.EMAIL' | translate }}">
 
 
     <input class="form-group__input"
            formControlName="password"
-           type="password" placeholder="Password">
+           type="password" placeholder="{{ 'AUTH.PASSWORD' | translate }}">
     <input class="form-group__input"
            formControlName="password_repeat"
-           type="password" placeholder="Repeat password">
+           type="password" placeholder="{{ 'AUTH.REPEATPASSWORD' | translate }}">
 
     <button class="form-group__button" type="submit" [disabled]="entityForm.invalid ||
     entityForm.controls.password.value != entityForm.controls.password_repeat.value">
-      Sign Up
+      {{ "AUTH.SIGNUP" | translate }}
     </button>
   </form>
 </div>

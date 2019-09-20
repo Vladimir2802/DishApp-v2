@@ -8,10 +8,17 @@
       <i class="material-icons">
         reorder
       </i>
-      <mat-menu #beforeMenu="matMenu" xPosition="before" >
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
         <!--<button mat-menu-item routerLink="/main/home"  routerLinkActive="active">Home</button>-->
-        <button mat-menu-item routerLink="/main/cafe"  routerLinkActive="active">Cafe</button>
-        <button mat-menu-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">Log Out</button>
+        <button mat-menu-item routerLink="/main/cafe"  routerLinkActive="active">{{ "MENU.CAFE" | translate }}</button>
+        <button mat-menu-item [matMenuTriggerFor]="langMenu">{{"SETTINGS.LANGUAGE" | translate}}</button>
+        <mat-menu #langMenu="matMenu">
+          <button mat-menu-item (click)="setLang('de')">Deutsche</button>
+          <button mat-menu-item (click)="setLang('en')">English</button>
+          <button mat-menu-item (click)="setLang('ru')">Русский</button>
+          <button mat-menu-item (click)="setLang('ua')">Українська</button>
+        </mat-menu>
+        <button mat-menu-item routerLink="/auth/sing-in" (click)="logOut()" routerLinkActive="active">{{ "MENU.LOGOUT" | translate }}</button>
       </mat-menu>
     </button>
 

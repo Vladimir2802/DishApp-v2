@@ -4,6 +4,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CategoriesService} from '../shared/services/categories.service';
 import {DishService} from '../shared/services/dish.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories',
@@ -16,7 +17,8 @@ export class CategoriesComponent implements OnInit {
               public categoriesService: CategoriesService,
               public dishService: DishService,
               public fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              public translateService: TranslateService) {
   }
 
   animationCategoryIndex; animationCategoryDurationTime; animationCategoryDirectionRight: boolean;
@@ -43,6 +45,8 @@ export class CategoriesComponent implements OnInit {
   private tout;
 
   ngOnInit() {
+    this.translateService.setDefaultLang('en'); this.setLang();
+
     this.categories = this.route.snapshot.data.data.data;
     this.getDishsById(this.categories[0].id, 0);
     this.pagginationController(6, true);
@@ -224,6 +228,17 @@ export class CategoriesComponent implements OnInit {
   logOut() {
     localStorage.clear();
     this.router.navigate(['auth']);
+  }
+
+  setLang(lang?){
+    if (lang) {
+      this.translateService.use(lang);
+      localStorage.setItem('lang', JSON.stringify(lang));
+    } else {
+      if (localStorage.getItem('lang')) {
+        this.translateService.use(JSON.parse(localStorage.getItem('lang')));
+      }
+    }
   }
 
 }

@@ -3,22 +3,22 @@
 
     <input class="form-group__input"
            formControlName="email"
-           type="text" placeholder="Email">
+           type="text" placeholder="{{ 'AUTH.EMAIL' | translate }}">
 
 
     <input class="form-group__input"
            formControlName="password"
-           type="password" placeholder="Password">
+           type="password" placeholder="{{ 'AUTH.PASSWORD' | translate }}">
 
-    <p routerLink="/auth/registration">Forgot your password?</p>
+    <p routerLink="/auth/registration">{{ "AUTH.FORGOTPASSWORD?" | translate }}</p>
 
 
     <button class="form-group__button" type="submit" [disabled]="entityForm.invalid">
-      Sign In
+      {{ "AUTH.SIGNIN" | translate }}
     </button>
 
     <button class="form-group__button" type="submit" routerLink="/auth/registration">
-      Sign Up
+      {{ "AUTH.SIGNUP" | translate }}
     </button>
   </form>
 </div>

@@ -1,6 +1,37 @@
 {
   "MENU.SETTINGS": "Настройки",
   "MENU.LOGOUT": "Выйти",
+  "MENU.CAFE": "Кафе",
+  "MENU.MENU": "Меню",
+  "MENU.ADDCAFE": "Добавить кафе",
+
+  "DATES.MONDAY": "Понедельник",
+  "DATES.TUESDAY": "Вторник",
+  "DATES.WEDNESDAY": "Среда",
+  "DATES.THURSDAY": "Четверг",
+  "DATES.FRIDAY": "Пятница",
+  "DATES.SATURDAY": "Суббота",
+  "DATES.SUNDAY": "Воскресенье",
+
+  "DISH.WEIGHT": "Вес",
+  "DISH.INGREDIENTS": "Ингредиенты",
+  "DISH.NAME": "Название",
+  "DISH.DESCRIPTION": "Описание",
+  "DISH.WEIGHT": "Вес",
+  "DISH.PRICE": "Цена",
+  "DISH.ADDINGREDIENTS": "Добавить ингредиенты",
+  "DISH.ADDEDINGREDIENTS": "Добавленные ингредиенты",
+  "DISH.ADDINGREDIENT": "Добавить ингредиент",
+
+  "CAFE.PHONE": "Телефон",
+  "CAFE.ADDRESS": "Адрес",
+
+  "AUTH.EMAIL": "Електронная почта",
+  "AUTH.PASSWORD": "Пароль",
+  "AUTH.REPEATPASSWORD": "Повторите пароль",
+  "AUTH.FORGOTPASSWORD?": "Забыли пароль?",
+  "AUTH.SIGNIN": "Войти",
+  "AUTH.SIGNUP": "Зарегистрироваться",
 
   "SETTINGS.CHANGE_PASSWORD": "Изменить пароль",
   "SETTINGS.LANGUAGE": "Язык",

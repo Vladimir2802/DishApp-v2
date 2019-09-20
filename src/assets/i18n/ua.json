@@ -1,6 +1,36 @@
 {
   "MENU.SETTINGS": "Налаштування",
   "MENU.LOGOUT": "Вихід з акаунту",
+  "MENU.CAFE": "Кафе",
+  "MENU.MENU": "Меню",
+  "MENU.ADDCAFE": "Додати кафе",
+
+  "DATES.MONDAY": "Понеділок",
+  "DATES.TUESDAY": "Вівторок",
+  "DATES.WEDNESDAY": "Середа",
+  "DATES.THURSDAY": "Четвер",
+  "DATES.FRIDAY": "П'ятниця",
+  "DATES.SATURDAY": "Субота",
+  "DATES.SUNDAY": "Неділя",
+
+  "DISH.WEIGHT": "Вага",
+  "DISH.INGREDIENTS": "Інгредіенти",
+  "DISH.NAME": "Назва",
+  "DISH.DESCRIPTION": "Опис",
+  "DISH.PRICE": "Ціна",
+  "DISH.ADDINGREDIENTS": "Додати інгредіенти",
+  "DISH.ADDEDINGREDIENTS": "Додані інгредіенти",
+  "DISH.ADDINGREDIENT": "Додати інгредіент",
+
+  "CAFE.PHONE": "Телефон",
+  "CAFE.ADDRESS": "Адреса",
+
+  "AUTH.EMAIL": "Електронна почта",
+  "AUTH.PASSWORD": "Пароль",
+  "AUTH.REPEATPASSWORD": "Повтоіть пароль",
+  "AUTH.FORGOTPASSWORD?": "Забули пароль?",
+  "AUTH.SIGNIN": "Увійти",
+  "AUTH.SIGNUP": "Зареєструватися",
 
   "SETTINGS.CHANGE_PASSWORD": "Змiнити пароль",
   "SETTINGS.LANGUAGE": "Мова",

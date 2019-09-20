@@ -1,6 +1,36 @@
 {
   "MENU.SETTINGS": "die Einstellungen",
   "MENU.LOGOUT": "Ausloggen",
+  "MENU.CAFE": "Cafe",
+  "MENU.MENU": "Menü",
+  "MENU.ADDCAFE": "Café hinzufügen",
+
+  "DATES.MONDAY": "Montag",
+  "DATES.TUESDAY": "Dienstag",
+  "DATES.WEDNESDAY": "Mittwoch",
+  "DATES.THURSDAY": "Donnerstag",
+  "DATES.FRIDAY": "Freitag",
+  "DATES.SATURDAY": "Samstag",
+  "DATES.SUNDAY": "Sonntag",
+
+  "DISH.WEIGHT": "Gewicht",
+  "DISH.INGREDIENTS": "Die Zutaten",
+  "DISH.NAME": "Titel",
+  "DISH.DESCRIPTION": "Beschreibung",
+  "DISH.PRICE": "Preis",
+  "DISH.ADDINGREDIENTS": "Zutaten hinzufügen",
+  "DISH.ADDEDINGREDIENTS": "Zutaten hinzugefügt",
+  "DISH.ADDINGREDIENT": "Zutat hinzufügen",
+
+  "CAFE.PHONE": "Telefon",
+  "CAFE.ADDRESS": "Die Adresse",
+
+  "AUTH.EMAIL": "E-Mail",
+  "AUTH.PASSWORD": "Passwort",
+  "AUTH.REPEATPASSWORD": "Wiederholen Sie das Passwort",
+  "AUTH.FORGOTPASSWORD?": "Passwort vergessen?",
+  "AUTH.SIGNIN": "Einloggen",
+  "AUTH.SIGNUP": "Melden Sie sich an",
 
   "SETTINGS.CHANGE_PASSWORD": "Ändern Sie Ihr Passwort",
   "SETTINGS.LANGUAGE": "Sprache",

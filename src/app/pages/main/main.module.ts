@@ -18,6 +18,13 @@ import {MatGridListModule, MatTooltipModule} from '@angular/material';
 import { TableComponent } from './cafe/table/table.component';
 import {AutosizeModule} from 'ngx-autosize';
 
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient} from '@angular/common/http';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -44,6 +51,13 @@ import {AutosizeModule} from 'ngx-autosize';
     MatGridListModule,
     MatTooltipModule,
     AutosizeModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
   ],
   exports: [
     NgxMaterialTimepickerModule

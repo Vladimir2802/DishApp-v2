@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CafeService} from '../shared/services/cafe.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cafe',
@@ -34,7 +35,8 @@ export class CafeComponent implements OnInit {
   constructor(public route: ActivatedRoute,
               public router: Router,
               public fb: FormBuilder,
-              public cafeService: CafeService) {
+              public cafeService: CafeService,
+              private translateService: TranslateService) {
   }
 
   ngOnInit() {

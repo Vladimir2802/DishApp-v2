@@ -5,6 +5,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import {AuthRoutingModule} from './auth-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import { RegistrationComponent } from './registration/registration.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 
@@ -13,7 +14,8 @@ import { RegistrationComponent } from './registration/registration.component';
   imports: [
     AuthRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class AuthModule { }

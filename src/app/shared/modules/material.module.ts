@@ -12,6 +12,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRippleModule} from '@angular/material/core';
+
 
 
 
@@ -35,7 +37,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatRadioModule,
     MatDividerModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRippleModule
   ],
   exports: [
     MatTabsModule,
@@ -52,7 +55,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatRadioModule,
     MatDividerModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatRippleModule
   ]
 })
 export class MaterialModule {

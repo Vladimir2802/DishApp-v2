@@ -1,8 +1,75 @@
-.example-card {
-  max-width: 400px;
+//.example-card {
+//  max-width: 400px;
+//}
+//
+//.example-header-image {
+//  background-size: cover;
+//}
+
+.table {
+
+
+  &__hall {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    margin: 20px;
+    box-shadow: 9px 6px 11px 3px #c7c3c7;
+
+  }
+
+  &__table {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+    box-shadow: 9px 6px 11px 3px #c7c3c7;
+
+
+    img {
+
+      margin: 10px auto;
+      width: 200px;
+      height: 200px;
+    }
+
+    .mat-card:last-child {
+      margin-bottom: auto;
+    }
+
+
+  }
+
+  &__item {
+    margin: 20px;
+    box-shadow: 9px 6px 11px 3px #c7c3c7;
+
+  }
+
+  &__number {
+    text-align: center;
+  }
+
+  .button__plus {
+    width: 200px;
+    height: 275px;
+    box-shadow: 9px 6px 11px 3px #c7c3c7;
+    align-items: center;
+  }
+
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.icons__plus-table {
+  margin: 0 auto;
+  font-size: 50px;
 }
+
+.material-icons{
+  font-size: 150px;
+  cursor: pointer;
+}
+
+
+
+

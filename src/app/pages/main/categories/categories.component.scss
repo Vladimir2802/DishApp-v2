@@ -17,12 +17,13 @@
 .scroll-button{
   display: flex;
   align-items: center;
-  padding-left: 55px;
+  padding: 0px 42px;
+  //padding-left: 55px;
   //justify-content: center;
   cursor: pointer;
   user-select: none;
   color: #48ac98;
-
+  border-bottom: 1px solid #48ac98;
 }
 
 //

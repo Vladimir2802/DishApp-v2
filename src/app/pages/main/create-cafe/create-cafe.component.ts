@@ -135,6 +135,7 @@ export class CreateCafeComponent implements OnInit, AfterViewInit {
   }
 
   onLocationSelected(ev){
+    // console.log(ev);
     this.lat = ev.latitude;
     this.lng = ev.longitude;
 

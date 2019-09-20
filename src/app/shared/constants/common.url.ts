@@ -21,6 +21,13 @@ export const APP_URL = {
     update: api + 'tables',
     delete: api + 'tables',
   },
+  hall: {
+    all: api + 'halls',
+    store: api + 'halls',
+    one: api + 'halls',
+    update: api + 'halls',
+    delete: api + 'halls',
+  },
   category: {
     all: api + 'categories',
     store: api + 'categories',

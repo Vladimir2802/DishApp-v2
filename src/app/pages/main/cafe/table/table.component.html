@@ -1,27 +1,70 @@
 <div style="height: 36px;"></div>
 
-<div [formGroup]="tableGroup">
-  <input type="text" formControlName="number">
-  <i class="material-icons" (click)="addTable()">
-    add
-  </i>
+
+<div class="table" *ngFor="let halls of hall">
+
+  <mat-card class="table__hall">Hall: №{{halls.name}}</mat-card>
+
+  <mat-card class="table__table">
+    <mat-card class="table__item" *ngFor="let table of halls.tables">
+      <img src="{{table.qr}}" alt="">
+
+      <mat-card class="table__number">Table: №{{table.number}}</mat-card>
+    </mat-card>
+
+
+    <mat-card class="example-ripple-container mat-elevation-z4 button__plus table__table"
+         matRipple
+         [matRippleCentered]="centered"
+         [matRippleDisabled]="disabled"
+         [matRippleUnbounded]="unbounded"
+         [matRippleRadius]="radius"
+         [matRippleColor]="color">
+      <div class="icons__plus-table">
+        <i class="material-icons">
+          add
+        </i>
+      </div>
+    </mat-card>
+  </mat-card>
+
 </div>
 
+<!--<mat-card>Simple card</mat-card>-->
 
-<div *ngFor="let tables of tableValueAll">
-  <p>Number:{{tables.number}}</p>
-  <p>busyAt: {{tables.busyAt}}</p>
-  <p>Image QR  <img src="{{tables.qr}}" alt=""> </p>
-  <i class="material-icons" (click)="deleteTable(tables.id)">
-    delete
-  </i>
+<!--<mat-card class="example-card">-->
 
-  <i class="material-icons" (click)="updateTable(tables.id)">
-    create
-  </i>
+<!--</mat-card>-->
 
 
+<!--<div [formGroup]="tableGroup">-->
+<!--<input type="text" formControlName="number">-->
+<!--<i class="material-icons">-->
+<!--add-->
+<!--</i>-->
+<!--</div>-->
 
-</div>
+<!--<div [formGroup]="tableGroup">-->
+<!--<input type="text" formControlName="number">-->
+<!--<i class="material-icons" (click)="addTable()">-->
+<!--add-->
+<!--</i>-->
+<!--</div>-->
+
+
+<!--<div *ngFor="let tables of tableValueAll">-->
+<!--<p>Number:{{tables.number}}</p>-->
+<!--<p>busyAt: {{tables.busyAt}}</p>-->
+<!--<p>Image QR  <img src="{{tables.qr}}" alt=""> </p>-->
+<!--<i class="material-icons" (click)="deleteTable(tables.id)">-->
+<!--delete-->
+<!--</i>-->
+
+<!--<i class="material-icons" (click)="updateTable(tables.id)">-->
+<!--create-->
+<!--</i>-->
+
+
+<!--</div>-->
 
 

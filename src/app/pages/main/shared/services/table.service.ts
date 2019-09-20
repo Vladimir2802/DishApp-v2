@@ -20,7 +20,7 @@ export class TablesService implements Resolve <any> {
   }
 
   getAll(id: any) {
-    return this.request.get(`${APP_URL.table.all}?cafe_id=${id}`);
+    return this.request.get(`${APP_URL.table.all}?hall_id=${id}`);
   }
 
   delete(id:any){
@@ -34,6 +34,9 @@ export class TablesService implements Resolve <any> {
   updateTable(id:any, data){
     return this.request.post(`${APP_URL.table.update}/${id}`, data);
   }
+
+
+
 
 }
 

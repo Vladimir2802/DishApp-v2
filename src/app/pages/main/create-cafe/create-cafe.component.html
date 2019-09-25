@@ -14,6 +14,17 @@
            formControlName="address">
   </mat-form-field>
 
+  <div class="google__maps">
+    <!-- this creates a google map on the page with the given lat/lng from -->
+    <!-- the component as the initial center of the map: -->
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+
+
+
+  </div>
+
   <mat-form-field class="example-full-width">
     <input type="tel" matInput placeholder="{{ 'CAFE.PHONE' | translate }}" formControlName="phone">
   </mat-form-field>
@@ -85,16 +96,16 @@
 
 </div>
 
-<div class="google__maps">
-  <!-- this creates a google map on the page with the given lat/lng from -->
-  <!-- the component as the initial center of the map: -->
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
+<!--<div class="google__maps">-->
+  <!--&lt;!&ndash; this creates a google map on the page with the given lat/lng from &ndash;&gt;-->
+  <!--&lt;!&ndash; the component as the initial center of the map: &ndash;&gt;-->
+  <!--<agm-map [latitude]="lat" [longitude]="lng">-->
+    <!--<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+  <!--</agm-map>-->
 
 
 
-</div>
+<!--</div>-->
 
 
 

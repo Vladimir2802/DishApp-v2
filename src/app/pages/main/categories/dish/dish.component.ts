@@ -43,6 +43,7 @@ export class DishComponent implements OnInit {
 
   ngOnInit() {
     this.initFormGroups();
+    console.log(this.ingredients);
   }
 
   toggle(state?) {
@@ -260,6 +261,9 @@ export class DishComponent implements OnInit {
       return;
     }
 
+    moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
+
+
     this.dishService.swap(id1, id2)
       .subscribe(res => {
         console.log(res);
@@ -273,24 +277,33 @@ export class DishComponent implements OnInit {
     this.dishGroup = this.fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
-      priceWeight: ['0', [Validators.required, Validators.maxLength(8)]],
+      price: [''],
+      // price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
+      priceWeight: ['0'],
+      // priceWeight: ['0', [Validators.required, Validators.maxLength(8)]],
       // image: [null],
-      weight: ['', [Validators.required, Validators.maxLength(8)]],
+      weight: [''],
+      // weight: ['', [Validators.required, Validators.maxLength(8)]],
       lang: ['en']
     });
     this.updateDishGroup = this.fb.group({
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
+      name: [''],
+      // name: ['', [Validators.required]],
+      description: [''],
+      // description: ['', [Validators.required]],
+      price: [''],
+      // price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]],
       priceWeight: ['0', [Validators.required, Validators.maxLength(8)]],
       // image: [null],
-      weight: ['', [Validators.required, Validators.maxLength(6)]],
+      weight: [''],
+      // weight: ['', [Validators.required, Validators.maxLength(6)]],
       lang: ['en']
     });
     this.ingredientsGroup = this.fb.group({
-      name: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]]
+      name: [''],
+      // name: ['', [Validators.required]],
+      price: ['']
+      // price: ['', [Validators.required, Validators.maxLength(8), Validators.pattern('^\\d+(\\.|\\,)\\d{2}$')]]
     });
   }
 
@@ -335,10 +348,12 @@ export class DishComponent implements OnInit {
     this.dishService.createIngredients(FD)
       .subscribe(res => {
         this.ingredients.push(res['data']);
+        this.newGetDishesById();
         this.ingredientsGroup.patchValue({
           name: '',
           price: ''
         });
+        this.panelOpenState = true;
       });
   }
 }

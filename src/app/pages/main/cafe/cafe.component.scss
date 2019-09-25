@@ -14,6 +14,8 @@
   .form__btn {
     display: flex;
     justify-content: space-evenly;
+    color: #48ac98;
+
   }
 
   mat-list {
@@ -42,7 +44,7 @@
   justify-content: flex-start;
 
   .example-card {
-    box-shadow: 5px 5px 10px black;
+    box-shadow: 9px 6px 11px 3px rgba(199, 195, 199, 1);
     flex: 0 1 calc(33.3% - 32px);
     max-width: 300px;
     height: 100%;
@@ -79,6 +81,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
+    //color: #48ac98;
+    cursor: pointer;
+
 
     .material-icons {
       //justify-content: flex-end;

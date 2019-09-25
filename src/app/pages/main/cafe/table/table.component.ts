@@ -38,61 +38,25 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.initFormGroup();
     this.hall = this.route.snapshot.data['data']['data'];
-    // this.table = this.route.snapshot.data['data'];
-    // console.log(this.table);
-    // this.tableData = this.table['data'];
-    // this.tableValue();
-    // console.log(this.tableValueAll);
-    // this.www = this.route.snapshot.params.id;
-    // console.log(this.www);
-    // this.getAllHall();
+    console.log(this.hall);
   }
 
-  // getAllHall() {
-  //   this.hallService.getAll(1)
-  //     .subscribe(res => {
-  //       console.log(res);
-  //     });
-  // }
+  deleteTable(id, indexHall, indexTable) {
+    this.tableService.delete(id)
+      .subscribe(res => {
+        if (res['success']) {
+          this.hall[indexHall].tables.splice(indexTable, 1);
+        }
+      })
+  }
 
-  // tableValue() {
-  //   this.tableData.forEach(item => {
-  //     this.tableValueAll.push(item);
-  //   });
-  // }
+  getTableAll() {
 
-  // deleteTable(id) {
-  //   this.tableValueAll.forEach(item => {
-  //     this.tableId = item.id;
-  //     // console.log(this.tableId);
-  //   });
-  //   this.tableService.delete(this.tableId)
-  //     .subscribe(res => {
-  //       // console.log(res);
-  //     });
-  // }
-
-  // addTable() {
-  //   this.fd = new FormData();
-  //   this.fd.append('cafe_id', this.route.snapshot.params.id);
-  //   this.fd.append('number', this.tableGroup.controls.number.value);
-  //   this.tableService.createTable(this.fd)
-  //     .subscribe(res => {
-  //       console.log(res);
-  //     });
-  // }
+  }
 
   initFormGroup() {
     this.tableGroup = this.fb.group({
       number: [''],
     });
   }
-
-  // updateTable(id){
-  //   this.tableService.updateTable(id, this.fd)
-  //     .subscribe(res => {
-  //       console.log(res);
-  //     })
-  //
-  // }
 }

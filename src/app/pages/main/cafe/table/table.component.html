@@ -1,12 +1,13 @@
 <div style="height: 36px;"></div>
 
 
-<div class="table" *ngFor="let halls of hall">
+<div class="table" *ngFor="let halls of hall; let i = index">
 
   <mat-card class="table__hall">Hall: №{{halls.name}}</mat-card>
 
-  <mat-card class="table__table">
-    <mat-card class="table__item" *ngFor="let table of halls.tables">
+  <mat-card class="table__title">
+    <mat-card class="table__item" *ngFor="let table of halls.tables; let j = index">
+      <i class="far fa-trash-alt table__btn" (click)="deleteTable(table.id, i, j)"></i>
       <img src="{{table.qr}}" alt="">
 
       <mat-card class="table__number">Table: №{{table.number}}</mat-card>

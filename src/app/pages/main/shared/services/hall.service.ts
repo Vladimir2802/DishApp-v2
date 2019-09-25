@@ -19,4 +19,7 @@ export class HallService {
   getAll(id:any){
     return this.request.get(`${APP_URL.hall.all}?cafe_id=${id}`);
   }
+
+  getId(){
+  }
 }
